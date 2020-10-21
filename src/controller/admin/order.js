@@ -22,6 +22,28 @@ module.exports = class extends think.cmswing.admin {
 
     return this.display();
   }
+
+  // 订单导出
+  async exportAction() {
+    const status = this.get('status');
+    const q = this.get('q');
+
+    const map = {};
+    if (!think.isEmpty(status)) {
+      map.status = status;
+      this.assign('status', status);
+    }
+    if (!think.isEmpty(q)) {
+      map['order_no|user_id|accept_name|mobile'] = ['like', q];
+    }
+    map.is_del = 0;
+    map.type = 0;
+    const data = await this.model('order').where(map).page(this.get('page') || 1, 20).order('create_time DESC').countSelect();   // 导出还分页吗
+    console.log('订单导出----',map,data);
+    
+
+  }
+
   // 订单列表
   async listAction() {
     const status = this.get('status');

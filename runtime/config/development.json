@@ -1,0 +1,85 @@
+{
+  "port": 8360,
+  "workers": 0,
+  "stickyCluster": false,
+  "startServerTimeout": 3000,
+  "reloadSignal": "SIGUSR2",
+  "processKillTimeout": 10000,
+  "jsonpCallbackField": "callback",
+  "jsonContentType": "application/json",
+  "jsonpContentType": "application/javascript",
+  "errnoField": "errno",
+  "errmsgField": "errmsg",
+  "defaultErrno": 1000,
+  "validateDefaultErrno": 1001,
+  "http_": 1,
+  "document_model_type": {
+    "1": "目录",
+    "2": "主题",
+    "3": "段落"
+  },
+  "user_administrator": [
+    1
+  ],
+  "cache": {
+    "type": "file",
+    "file": {
+      "timeout": 86400000,
+      "cachePath": "/Users/zhangyongxing/Desktop/cmswing/wingCode/runtime/cache",
+      "pathDepth": 1,
+      "gcInterval": 86400000
+    }
+  },
+  "model": {
+    "type": "mysql",
+    "mysql": {
+      "logConnect": true,
+      "logSql": true,
+      "user": "root",
+      "password": "shishi123",
+      "database": "cmswing",
+      "host": "47.93.8.191",
+      "port": 3306,
+      "connectionLimit": 1,
+      "prefix": "cmswing_",
+      "cache": {
+        "type": "file",
+        "cachePath": "/Users/zhangyongxing/Desktop/cmswing/wingCode/runtime/cache"
+      }
+    }
+  },
+  "session": {
+    "type": "file",
+    "file": {
+      "cookie": {
+        "name": "thinkjs"
+      },
+      "sessionPath": "/Users/zhangyongxing/Desktop/cmswing/wingCode/runtime/session"
+    }
+  },
+  "view": {
+    "type": "nunjucks",
+    "nunjucks": {
+      "viewPath": "/Users/zhangyongxing/Desktop/cmswing/wingCode/view",
+      "sep": "_",
+      "extname": ".html"
+    }
+  },
+  "logger": {
+    "type": "console",
+    "console": {},
+    "file": {
+      "backups": 10,
+      "absolute": true,
+      "maxLogSize": 51200,
+      "filename": "/Users/zhangyongxing/Desktop/cmswing/wingCode/logs/app.log"
+    },
+    "dateFile": {
+      "level": "ALL",
+      "absolute": true,
+      "pattern": "-yyyy-MM-dd",
+      "alwaysIncludePattern": true,
+      "filename": "/Users/zhangyongxing/Desktop/cmswing/wingCode/logs/app.log"
+    }
+  }
+}

@@ -25,6 +25,9 @@
                                         <a class="btn btn-sm btn-info {%if status == 3 %}active{%endif%}" href="/admin/order/list/?status=3">
                                            执行中
                                         </a>
+                                        <a class="btn btn-sm btn-info {%if status == 3 %}active{%endif%}" href="/admin/order/export/{%if status %}?status={{ status }}{% if controller.get('q') %}&q={{controller.get('q')}}{% endif %}{% else %}{% if controller.get('q') %}?q={{controller.get('q')}}{% endif %}{% endif %}">
+                                          导出
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
