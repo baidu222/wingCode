@@ -8,21 +8,22 @@
             <div class="table-responsive">
                 <table class="table table-striped b-t b-light">
                     <thead>
-                    <tr>
+                        <tr>
 
-                        <th>字段</th>
-                        <th>内容</th>
-                    </tr>
+                            <th>字段</th>
+                            <th>内容</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    {%for k,v in info%}
-                    <tr>
+                        {%for k,v in info%}
+                        <tr>
 
-                        <td>{{k}}</td>
-                        <td>{% if k =='content'%}{{v|safe}}{%else%}{{v}}{%endif%}</td>
+                            <td>{{k}}</td>
+                            <!-- {{v|safe}}展示带标签的内容 -->
+                            <td>{% if k =='content'%}{{v|safe}}{%else%}{{v}}{%endif%}</td>
 
-                    </tr>
-{%endfor%}
+                        </tr>
+                        {%endfor%}
                     </tbody>
                 </table>
             </div>

@@ -10,9 +10,9 @@
         <section class="panel panel-default">
             <header class="panel-heading clearfix">
                 <ul class="nav nav-tabs pull-left">
-                    <li class="{{controller.get('model')|default('active', true)}}"><a  href="/admin/approval/index"> 全部 <span class="badge bg-info">{{count}}</span></a></li>
+                    <li class="{{controller.get('model')|default('active', true)}}"><a  href="/admin/approval/second"> 全部 <span class="badge bg-info">{{count}}</span></a></li>
                     {%for m in model%}
-                    <li class="{%if controller.get('model')==m.id%}active{%endif%}"><a  href="/admin/approval/index/?model={{m.id}}">{{m.title}} {%if m.count > 0%}<span class="badge bg-info">{{m.count}}</span>{%endif%}</a>
+                    <li class="{%if controller.get('model')==m.id%}active{%endif%}"><a  href="/admin/approval/second/?model={{m.id}}">{{m.title}} {%if m.count > 0%}<span class="badge bg-info">{{m.count}}</span>{%endif%}</a>
                    {%endfor%}
                     </li>
                 </ul>
@@ -41,6 +41,7 @@
 
             </div>
             <div class="table-responsive">
+
                 <table class="table table-hover b-t b-light treetable" id="category">
                     <thead>
                     <tr>
@@ -81,6 +82,7 @@
                     </tbody>
                 </table>
             </div>
+         
             <footer class="panel-footer">
                 <div class="row">
 
