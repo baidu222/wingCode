@@ -4175,6 +4175,8 @@ INSERT INTO `cmswing_auth_rule` VALUES ('238', 'admin/ext/admin', '已安装插�
 INSERT INTO `cmswing_auth_rule` VALUES ('239', 'admin/model/ext', '独立模型', '0', '1', '', 'admin', '1');
 INSERT INTO `cmswing_auth_rule` VALUES ('240', 'admin/hooks/index', '钩子管理', '0', '1', '', 'admin', '1');
 
+
+
 -- ----------------------------
 -- Table structure for cmswing_auth_user_role
 -- ----------------------------
@@ -7804,6 +7806,7 @@ INSERT INTO `cmswing_menu` VALUES ('277', 'PC单页内容管理', '3', '0', 'adm
 INSERT INTO `cmswing_menu` VALUES ('278', '手机单页内容管理', '3', '0', 'admin/sp/mobile', '0', '', '0', '0', '1', '');
 INSERT INTO `cmswing_menu` VALUES ('279', '单页内容更新', '3', '0', 'admin/sp/update', '0', '', '0', '0', '1', '');
 
+
 -- ----------------------------
 -- Table structure for cmswing_model
 -- ----------------------------
@@ -9668,3 +9671,36 @@ INSERT INTO `cmswing_zoning` VALUES ('16', '东北', '210000,220000,230000');
 INSERT INTO `cmswing_zoning` VALUES ('17', '西北', '610000,620000,630000,640000,650000');
 INSERT INTO `cmswing_zoning` VALUES ('18', '西南', '500000,510000,520000,530000,540000');
 INSERT INTO `cmswing_zoning` VALUES ('20', '港澳台', '710000,810000,820000');
+
+
+
+
+
+-- ----------------------------
+-- Table structure for cmswing_shop
+-- ----------------------------
+DROP TABLE IF EXISTS `cmswing_shop`;
+CREATE TABLE `cmswing_shop` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `shop_no` varchar(20) CHARACTER SET utf8 NOT NULL,
+  `shop_name` varchar(60) NOT NULL,
+  `user_id` bigint(20) NOT NULL,
+  `status` tinyint(1) DEFAULT '1',
+  `create_time` bigint(13) DEFAULT NULL,
+  `update_time` bigint(13) DEFAULT NULL,
+  `type` int(4) unsigned DEFAULT '0' COMMENT '0-店铺主页，1商品详情页，2-自定义页。',
+  `shop_url` varchar(60) NOT NULL,
+  `is_del` tinyint(1) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+INSERT INTO `cmswing_shop` VALUES ('0', '1501664812818', '首页店铺主页', '2', '1', '1452591992289', '1452591992289', '1', 'https:www/baidu.com', '0');
+
+INSERT INTO `cmswing_menu` VALUES ('280', '店铺管理', '0', '5', 'shop', '0', '', '20', '0', '1', 'fa-shop');
+INSERT INTO `cmswing_menu` VALUES ('281', '保证金管理', '280', '0', 'admin/shop/margin', '0', '', '20', '0', '1', '');
+INSERT INTO `cmswing_menu` VALUES ('282', '店铺装修', '280', '1', 'admin/shop/decoration', '0', '', '20', '0', '1', '');
+INSERT INTO `cmswing_menu` VALUES ('283', '发布商品', '280', '1', 'admin/shop/public', '0', '', '20', '0', '1', '');
+
+INSERT INTO `cmswing_auth_rule` VALUES ('241', 'shop', '店铺管理', '0', '1', '', 'admin', '2');
+INSERT INTO `cmswing_auth_rule` VALUES ('242', 'admin/shop/margin', '保证金管理', '0', '1', '', 'admin', '1');
+INSERT INTO `cmswing_auth_rule` VALUES ('243', 'admin/shop/decoration', '店铺装修', '0', '1', '', 'admin', '1');
+INSERT INTO `cmswing_auth_rule` VALUES ('244', 'admin/shop/public', '发布商品', '0', '1', '', 'admin', '1');
