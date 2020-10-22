@@ -1,0 +1,418 @@
+{% extends "./inc/base.html" %}
+{% block content %}
+<script src="/static/admin/js/jquery.min.js"></script>
+<link rel="stylesheet" href="/static/admin/js/webuploader/webuploader.css" type="text/css">
+<script src="/static/admin/js/webuploader/webuploader.js" type="text/javascript"></script>
+<link rel="stylesheet" href="/static/admin/js/chosen/chosen.css" type="text/css" />
+<section class="vbox">
+    <header class="header bg-light dk">
+        <p>{{controller.meta_title}}</p>
+    </header>
+    <section class="scrollable wrapper">
+        <div class="row"><div class="col-lg-12">
+        <section class="panel panel-default">
+            <div class="panel-body">
+                <form id="ajaxForm" method="post" class="form-horizontal" action="{{http.url}}" data-validate="parsley">
+                    <!-- 公司全名 -->
+                    <div class="form-group" style="margin-top: 25px">
+                        <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i>公司全名</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        name="name" 
+                                        value="{{info.name if info.name else null}}"  
+                                        data-required="true" 
+                                        placeholder="支持中文、英文、数字、标点符号输入">
+                                </div>
+                                <!-- <div class="col-md-12">
+                                    <span class="help-block m-b-none text-muted"><i class="fa fa-info-circle text-info"></i> 支持中文、英文、数字、标点符号输入</span>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 公司介绍 -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i>公司介绍</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <textarea 
+                                        class="form-control" 
+                                        name="description"
+                                        data-required="true" 
+                                        placeholder="支持中文、英文、数字、标点符号输入">{{ info.description }}</textarea>
+                                </div>
+                                <!-- <div class="col-md-12">
+                                    <span class="help-block m-b-none text-muted"><i class="fa fa-info-circle text-info"></i> 支持中文、英文、数字、标点符号输入</span>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 公司经营方式 -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i>经营方式</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <textarea 
+                                        class="form-control" 
+                                        name="operation"
+                                        data-required="true" 
+                                        placeholder="支持中文、英文、数字、标点符号输入">{{ info.operation }}</textarea>
+                                </div>
+                                <!-- <div class="col-md-12">
+                                    <span class="help-block m-b-none text-muted"><i class="fa fa-info-circle text-info"></i> 支持中文、英文、数字、标点符号输入</span>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 公司经营范围 -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i>经营范围</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <textarea 
+                                        class="form-control" 
+                                        name="range"
+                                        data-required="true" 
+                                        placeholder="支持中文、英文、数字、标点符号输入">{{ info.range }}</textarea>
+                                </div>
+                                <!-- <div class="col-md-12">
+                                    <span class="help-block m-b-none text-muted"><i class="fa fa-info-circle text-info"></i> 支持中文、英文、数字、标点符号输入</span>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 公司法人 -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i>法人</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        name="legalPerson" 
+                                        value="{{info.legalPerson if info.legalPerson else null}}" 
+                                        placeholder="支持中文、英文、数字、标点符号输入" 
+                                        data-required="true" >
+                                </div>
+                                <!-- <div class="col-md-12">
+                                    <span class="help-block m-b-none text-muted"><i class="fa fa-info-circle text-info"></i> 支持中文、英文、数字、标点符号输入</span>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 公司电话 -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i>电话</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-md-5">
+                            <input type="text" class="form-control" name="tel" value="{{info.tel if info.tel else null}}" placeholder="支持数字、标点符号输入"  data-required="true" >
+                                </div>
+                                <!-- <div class="col-md-12">
+                                    <span class="help-block m-b-none text-muted"><i class="fa fa-info-circle text-info"></i> 支持中文、英文、数字、标点符号输入</span>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 公司邮箱 -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i>邮箱</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-md-5">
+                            <input type="text" class="form-control" name="email" value="{{info.email if info.email else null}}" placeholder="支持英文、数字、标点符号输入" data-required="true" >
+                                </div>
+                                <!-- <div class="col-md-12">
+                                    <span class="help-block m-b-none text-muted"><i class="fa fa-info-circle text-info"></i> 支持中文、英文、数字、标点符号输入</span>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 公司地址 -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i>公司地址</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-md-5">
+                            <input type="text" class="form-control" name="address" value="{{info.address if info.address else null}}" placeholder="支持英文、数字、标点符号输入" data-required="true" >
+                                </div>
+                                <!-- <div class="col-md-12">
+                                    <span class="help-block m-b-none text-muted"><i class="fa fa-info-circle text-info"></i> 支持中文、英文、数字、标点符号输入</span>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 图片1上传-->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i>logo上传</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-sm-10">
+                                    {{HOOKS@adminUpPic.icon|safe}}
+                                </div>
+                                <div class="col-md-12 hide">
+                                    <span class="help-block m-b-none text-muted"><i class="fa fa-info-circle text-info"></i> 图片上传</span>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <!-- 图片1上传-->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i>企业营业执照</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <!-- <div class="col-sm-10">
+                                    {{HOOKS@adminUpPicss.icon|safe}}
+                                </div>
+                                <div class="col-md-12 hide">
+                                    <span class="help-block m-b-none text-muted"><i class="fa fa-info-circle text-info"></i> 图片上传</span>
+                                </div> -->
+                                <div class="col-md-5 flex-wrap">
+                                    <div class="input-upload" >选择文件</div>
+                                    <input type="file" class="input-file" style="opacity: 0;" id="file" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"/>
+                                    <span class="ml10">请上传文件</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 图片1上传-->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i>银行开户许可证</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-md-5 flex-wrap">
+                                    <div class="input-upload" >选择文件</div>
+                                    <input type="file" class="input-file" style="opacity: 0;" id="file" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"/>
+                                    <span class="ml10">请上传文件</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 图片1上传-->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i>医疗器械生产许可证</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-md-5 flex-wrap">
+                                    <div class="input-upload" >选择文件</div>
+                                    <input type="file" class="input-file" style="opacity: 0;" id="file" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"/>
+                                    <span class="ml10">请上传文件</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 图片1上传-->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i>生产备案凭证</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-md-5 flex-wrap">
+                                    <div class="input-upload" >选择文件</div>
+                                    <input type="file" class="input-file" style="opacity: 0;" id="file" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"/>
+                                    <span class="ml10">请上传文件</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 图片1上传-->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i>网络销售许可证</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-md-5 flex-wrap">
+                                    <div class="input-upload" >选择文件</div>
+                                    <input type="file" class="input-file" style="opacity: 0;" id="file" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"/>
+                                    <span class="ml10">请上传文件</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 图片1上传-->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i>法人身份证复印件</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-md-5 flex-wrap">
+                                    <div class="input-upload" >选择文件</div>
+                                    <input type="file" class="input-file" style="opacity: 0;" id="file" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"/>
+                                    <span class="ml10">请上传身份证正面（国徽面）</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 45px">
+                        <label class="col-sm-2 control-label font-bold"></label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-md-5 flex-wrap">
+                                    <div class="input-upload" >选择文件</div>
+                                    <input type="file" class="input-file" style="opacity: 0;" id="file" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"/>
+                                    <span class="ml10">请上传身份证反面（人像面）</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 45px">
+                        <label class="col-sm-2 control-label font-bold"></label>
+                        <label class="checkbox-inline i-checks" style="padding-top: 0; margin-left: 15px">
+                            <input type="checkbox" value="1" name="vip" {% if user.vip==1%} checked{%endif%}><i></i>
+                            <a href="/admin/business/agreement" class="text-info" data-toggle="ajaxModal">点此查看用户协议（示例）</a>
+                        </label>
+                    </div>
+                    <div class="form-group form-submit">
+                        <div class="col-sm-4 col-sm-offset-2">
+                            <input type="hidden" name="groupid" value="{{info.groupid}}">
+                            <button class="btn btn-primary ajax-post" target-form="form-horizontal" type="submit">确定</button>
+                            <button class="btn btn-default" onclick="javascript:history.back(-1);return false;" type="submit">返回</button>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+        </div></div>
+    </section>
+</section>
+
+{% endblock %}
+
+{% block script%}
+<style>
+    .input-upload{
+        /* position: absolute;
+        top: 0;
+        left: 15px; */
+        display: inline-block;
+        /* cursor: pointer; */
+        background: #00b7ee;
+        padding: 10px 15px;
+        color: #fff;
+        text-align: center;
+        border-radius: 3px;
+        overflow: hidden;
+    }
+    .input-file{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 15px;
+        cursor: pointer;
+    }
+    .input-file:hover{
+        cursor: pointer;
+    }
+    input[type="file"] {
+        -moz-user-select: none;
+        background-color: #F5F5F5;
+        background-image: -moz-linear-gradient(center top , #F5F5F5, #F1F1F1);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 2px 2px 2px 2px;
+        color: #666666;
+        font-family: arial,sans-serif;
+        font-size: 11px;
+        font-weight: bold;
+        height: 38px;
+        line-height: 27px;
+        /* margin: 11px 6px; */
+        min-width: 54px;
+        padding: 0 8px;
+        text-align: center;
+    }
+    .flex-wrap{
+        display: flex;
+        align-items: center;
+    }
+    .ml10{
+        margin-left: 10px;
+    }
+    .icon{
+        margin-right: 5px;
+        font-size: 2px
+    }
+</style>
+<script src="/static/admin/js/parsley/parsley.min.js" type="text/javascript"></script>
+<script src="/static/admin/js/parsley/parsley.extend.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function(){
+        $('form').submit(evt=>{
+            
+            evt.preventDefault(); // 阻止表单默认提交
+            $.ajax({
+                url: '/user/personal/update', // 请求地址
+                type: 'POST', // 请求方法
+                dataType: 'json', // 请求的数据类型
+                data: $('form').serialize(), 
+                success:res=>{
+                    if(!res.errno) {
+                        alert('Update Successfully！');
+                        window.location.reload();
+                    }
+                    else alert(res.errmsg);
+                }
+            });
+        });
+    });
+    window.onload = function(){
+        // window.location.href = "/admin/user/edituser"
+    }
+    // $(document).on('click', ".recharge", function (e) {
+    //     var balance = $("input[name='balance']").val();
+    //     var name = $("input[name = 'name']").val();
+    //     var id = $("input[name = 'id']").val();
+    //     if(!isPriceNumber(balance)){
+    //         swal( "请填写正确的价格.");
+    //         return false;
+    //     }
+    //     swal({
+    //         title: "确认您的操作！",
+    //         text: "您将给 "+name+" 充值 "+balance+" 元！",
+    //         type: "warning",
+    //         showCancelButton: true,
+    //         confirmButtonColor: "#DD6B55",
+    //         confirmButtonText: "确定充值!",
+    //         cancelButtonText: "关闭!",
+    //         closeOnConfirm: false
+    //     }, function () {
+    //         $.ajax({
+    //             url:"/admin/user/recharge",
+    //             data:{balance:balance,id:id},
+    //             type:"POST",
+    //             success:function (res) {
+    //                 if(res.errno == 0){
+    //                     swal(res.data.name, "", "success");
+    //                     $('#ajaxModal').modal('hide');
+    //                     location.reload();
+    //                 }
+
+    //             }
+    //         })
+
+    //     });
+    // })
+    // $(function(){
+        let file = document.querySelector('#file');
+        file.onchange = function(e){
+            toastr.error('文本内容不能为空');
+            e = e || event;
+            let type= this.files[0].type.split('/')[1]
+            var reg = /\.(png|jpg|gif|jpeg|webp)$/;
+            console.log(reg.test(this.files[0].name))
+          
+            if(!reg.test(this.files[0].name)){
+                alert('请选择png/jpg/jpeg/webp格式的图片进行上传')
+            }
+        }
+    // });
+    
+    
+</script>
+{% endblock %}
