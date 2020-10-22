@@ -44,15 +44,15 @@ module.exports = class extends think.cmswing.admin {
     // console.log(modlist);
     this.assign('model', modlist);
     this.assign('count', await this.db.count());
-    this.meta_title = '一级审核';
+    this.meta_title = '内容审核';
     return this.display();
   }
 
   /**
-   * 二次审批
+   * 卖家审核
    */
-  async secondAction() {
-    // auto render template file approval_second.html
+  async shopAction() {
+    // auto render template file approval_shop.html
     const map = {};
     if (!think.isEmpty(this.get('model'))) {
       map.model = this.get('model');
@@ -73,7 +73,7 @@ module.exports = class extends think.cmswing.admin {
     this.assign('getModel', map.model);
     this.assign('model', modlist);
     this.assign('count', await this.db.count());
-    this.meta_title = '二级审核';
+    this.meta_title = '卖家审核';
     // if(1){
     // this.fail(modlist)
     // }
@@ -168,7 +168,7 @@ module.exports = class extends think.cmswing.admin {
   /**
    * 拒绝审核页面
    */
-  async refdialogAction() {
+  async editAction() {
     const ids = this.get('ids');
     this.assign('ids', ids);
     this.meta_title = '拒绝审核';

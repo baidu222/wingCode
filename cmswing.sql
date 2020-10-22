@@ -11,7 +11,7 @@
  Target Server Version : 80021
  File Encoding         : 65001
 
- Date: 21/10/2020 20:07:20
+ Date: 22/10/2020 20:56:35
 */
 
 SET NAMES utf8mb4;
@@ -165,14 +165,15 @@ CREATE TABLE `cmswing_approval` (
   KEY `uid` (`uid`),
   KEY `time` (`time`),
   KEY `model` (`model`)
-) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=MyISAM AUTO_INCREMENT=49 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of cmswing_approval
 -- ----------------------------
 BEGIN;
-INSERT INTO `cmswing_approval` VALUES (43, 3, '{\"group_id\":\"3\",\"name\":\"ksdad\",\"title\":\"test\",\"description\":\"sdfs\",\"cover_id\":\"963\",\"file\":\"\",\"fileimgs\":\"\",\"editor\":\"2_2\",\"content\":\"<p>请输入内容...</p><p>sdfsf</p>\",\"file_id\":\"0\",\"size\":\"0\",\"panurl\":\"\",\"pid\":\"0\",\"model_id\":\"3\",\"category_id\":\"63\",\"uid\":467,\"is_ajax\":\"true\",\"ip\":\"::ffff:127.0.0.1\"}', 467, 'test', 1603199419213);
+INSERT INTO `cmswing_approval` VALUES (45, 4, '{\"sort_id\":\"15\",\"sortid_shojipeijian\":\"2\",\"sortid_fuwujiage\":\"15\",\"title\":\"shoptitle\",\"description\":\"asdada\",\"pics\":\"\",\"file\":\"\",\"price\":\"\",\"weight\":\"0\",\"total_stock\":\"0\",\"editor\":\"2_1\",\"fare\":\"ads\",\"suk\":\"\",\"goods_no\":\"\",\"quota\":\"0\",\"join_level_discount\":\"1\",\"invoice\":\"0\",\"warranty\":\"0\",\"pid\":\"0\",\"model_id\":\"4\",\"category_id\":\"50\",\"uid\":1,\"content\":\"<p>请输入内容...sdadad</p>\",\"is_ajax\":\"true\",\"ip\":\"::ffff:127.0.0.1\"}', 1, 'shoptitle', 1603295335378);
 INSERT INTO `cmswing_approval` VALUES (44, 3, '{\"group_id\":\"0\",\"name\":\"w\",\"title\":\"test\",\"description\":\"eee\",\"cover_id\":\"964\",\"file\":\"\",\"fileimgs\":\"\",\"editor\":\"2_2\",\"content\":\"<p>请输入内容...</p><p>33333</p>\",\"file_id\":\"0\",\"size\":\"0\",\"panurl\":\"\",\"pid\":\"0\",\"model_id\":\"3\",\"category_id\":\"63\",\"uid\":467,\"is_ajax\":\"true\",\"ip\":\"::ffff:127.0.0.1\"}', 467, 'test', 1603210051791);
+INSERT INTO `cmswing_approval` VALUES (47, 4, '{\"sort_id\":\"15\",\"sortid_shojipeijian\":\"2.4\",\"sortid_fuwujiage\":\"26\",\"title\":\"固态硬盘\",\"description\":\"阿萨德卡的很\",\"pics\":\"966\",\"file\":\"\",\"price\":\"{\\\"present_price\\\":\\\"2314\\\",\\\"discount_price\\\":\\\"0\\\"}\",\"weight\":\"931\",\"total_stock\":\"20\",\"editor\":\"2_1\",\"fare\":\"卡乐芙扫\",\"suk\":\"\",\"goods_no\":\"\",\"quota\":\"0\",\"join_level_discount\":\"1\",\"invoice\":\"0\",\"warranty\":\"0\",\"pid\":\"0\",\"model_id\":\"4\",\"category_id\":\"50\",\"uid\":1,\"content\":\"<p>请输入内容...贾老师大家啊</p>\",\"is_ajax\":\"true\",\"ip\":\"::ffff:127.0.0.1\"}', 1, '固态硬盘', 1603295456375);
 COMMIT;
 
 -- ----------------------------
@@ -4673,7 +4674,7 @@ CREATE TABLE `cmswing_document` (
   KEY `idx_category_status` (`category_id`,`status`),
   KEY `idx_status_type_pid` (`status`,`uid`,`pid`),
   KEY `keyname` (`keyname`)
-) ENGINE=InnoDB AUTO_INCREMENT=314 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='文档模型基础表';
+) ENGINE=InnoDB AUTO_INCREMENT=317 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='文档模型基础表';
 
 -- ----------------------------
 -- Records of cmswing_document
@@ -4851,6 +4852,9 @@ INSERT INTO `cmswing_document` VALUES (309, 1, '', '本地上传测试', 63, 0, 
 INSERT INTO `cmswing_document` VALUES (310, 1, '', '七牛上传测试', 63, 0, '七牛上传测试', 0, 0, 0, 3, 2, 0, '0', 0, 1, 0, 0, 2, 0, 0, 0, 1509165661329, 1509165661332, -1, '', '', 0, NULL);
 INSERT INTO `cmswing_document` VALUES (312, 1, '', 'fdsafdsaf', 1, 0, 'fdsafdasfafdsaf', 0, 0, 0, 2, 2, 0, '0', 0, 1, 0, 0, 0, 0, 0, 0, 1509280694211, 1509280694218, -1, '', '', 0, '');
 INSERT INTO `cmswing_document` VALUES (313, 1, '', '公司新闻', 1, 0, '公司新闻', 0, 0, 0, 2, 2, 0, '0', 0, 1, 0, 0, 1, 0, 0, 0, 1531462819161, 1531462819165, -1, '', '', 0, '');
+INSERT INTO `cmswing_document` VALUES (314, 467, 'ksdad', 'test', 63, 3, 'sdfs', 0, 0, 0, 3, 2, 0, '0', 963, 1, 0, 0, 0, 0, 0, 0, 1603199419213, 1603293435584, 1, '', '', 0, NULL);
+INSERT INTO `cmswing_document` VALUES (315, 1, '', 'aaaaa', 50, 0, 'aaaaaaaa', 0, 0, 0, 4, 2, 0, '0', 0, 1, 0, 0, 0, 0, 0, 0, 1603295385553, 1603296269278, 1, '965', '{\"present_price\":\"11111\",\"discount_price\":\"0\"}', 15, NULL);
+INSERT INTO `cmswing_document` VALUES (316, 1, '', '奥德赛', 50, 0, '是sdvscds', 0, 0, 0, 4, 2, 0, '0', 0, 1, 0, 0, 0, 0, 0, 0, 1603295502658, 1603370973590, 1, '967,968', '{\"present_price\":\"11111\",\"discount_price\":\"0\"}', 15, NULL);
 COMMIT;
 
 -- ----------------------------
@@ -5002,6 +5006,7 @@ INSERT INTO `cmswing_document_download` VALUES (301, '2_2', '<p>请输入内容.
 INSERT INTO `cmswing_document_download` VALUES (305, '2_2', '<p>请输入内容...</p><p>fdsafsadfsadf</p><p>fdsaf</p><p>dsaf</p><p>sad</p>', '', 102, 0, 495183, '0,886', '');
 INSERT INTO `cmswing_document_download` VALUES (309, '2_2', '<p>本地上传测试</p>', '', 103, 5, 0, '', '360网盘下载|https://yunpan.cn/ckaUqFYLsAY6s|4819\r\n百度网盘下载|http://pan.baidu.com/s/1dFl0sPr|62y9');
 INSERT INTO `cmswing_document_download` VALUES (310, '2_2', '<p>七牛上传测试</p><p><br></p>', '', 104, 1, 376065, '', '');
+INSERT INTO `cmswing_document_download` VALUES (314, '2_2', '<p>请输入内容...</p><p>sdfsf</p>', '', 0, 0, 0, '', '');
 COMMIT;
 
 -- ----------------------------
@@ -5071,7 +5076,7 @@ CREATE TABLE `cmswing_document_shop` (
   `fare` varchar(100) NOT NULL DEFAULT '' COMMENT '运费模板',
   `editor` varchar(10) NOT NULL DEFAULT '0' COMMENT '内容解析类型',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=294 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=317 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of cmswing_document_shop
@@ -5104,6 +5109,8 @@ INSERT INTO `cmswing_document_shop` VALUES (243, '', '', 8, 0, '1', '0', '0', '<
 INSERT INTO `cmswing_document_shop` VALUES (244, '{\"type\":[\"选择版本\"],\"data\":[{\"name\":\"i5 4GB 500GB机械 定制版\",\"type\":\"选择版本\",\"sku_price\":\"6899.01\",\"sku_stock\":\"8\",\"sku_weight\":\"1000\",\"sku_code\":\"\"},{\"name\":\"i5 4GB 192GB固态 定制版\",\"type\":\"选择版本\",\"sku_price\":\"7399.01\",\"sku_stock\":\"10\",\"sku_weight\":\"1000\",\"sku_code\":\"\"},{\"name\":\"i5 8GB 256GB固态 定制版\",\"type\":\"选择版本\",\"sku_price\":\"8999.01\",\"sku_stock\":\"8\",\"sku_weight\":\"1000\",\"sku_code\":\"\"},{\"name\":\"i7 8GB 1TB机械 定制版\",\"type\":\"选择版本\",\"sku_price\":\"9999.01\",\"sku_stock\":\"10\",\"sku_weight\":\"1000\",\"sku_code\":\"\"},{\"name\":\"i7 8GB 256GB固态 定制版\",\"type\":\"选择版本\",\"sku_price\":\"11399.01\",\"sku_stock\":\"10\",\"sku_weight\":\"1000\",\"sku_code\":\"\"},{\"name\":\"i5 8GB 500GB机械 定制版\",\"type\":\"选择版本\",\"sku_price\":\"7299.01\",\"sku_stock\":\"10\",\"sku_weight\":\"1000\",\"sku_code\":\"\"}],\"is_pic\":0}', 'JS_20FNA03YCD', 56, 0, '1', '0', '0', '<p><img src=\"http://data.cmswing.com/B0PzBD74gpLAmzHG2GIRpYjM.jpg\" title=\"FuNxjEfFvJTh4QhWsAYO5WZEYIce\" alt=\"ThinkPad-T460-Landing-Page-完稿750_01_2.jpg\"/><img src=\"http://data.cmswing.com/WQ6Kz9OakX1Vq6yFllDMN5PE.jpg\" title=\"FraHFJsRPNg7MCePTOfOl7Q-HMUd\" alt=\"ThinkPad-T460-Landing-Page-完稿750_02_2.jpg\"/><img src=\"http://data.cmswing.com/za4WbnwICrlS5KW9hNxfARod.jpg\" title=\"FhlPFqesHY5xK2FCo6yL4spmYRV1\" alt=\"ThinkPad-T460-Landing-Page-完稿750_03_2.jpg\"/><img src=\"http://data.cmswing.com/OD8eCJQibXzASM0wVYTuumx9.jpg\" title=\"FmORHCnl2rP_abZgZP1MKffvxg5R\" alt=\"ThinkPad-T460-Landing-Page-完稿750_04_2.jpg\"/><img src=\"http://data.cmswing.com/cbbOMX3rxjw9MAob6JJGzcfH.jpg\" title=\"FihZ5WqsI9p-FFs5N4tYGZ-90pVV\" alt=\"ThinkPad-T460-Landing-Page-完稿750_05_2.jpg\"/><img src=\"http://data.cmswing.com/NRGlP0M-IynM6cdw8ZAfCY-X.jpg\" title=\"FtgbKvf1ZrIFEoQj08AaDRPWf_O0\" alt=\"ThinkPad-T460-Landing-Page-完稿750_06_2.jpg\"/><img src=\"http://data.cmswing.com/q_UE4tZqb2c59bYzTdOzfYzJ.jpg\" title=\"FhRzrwe3zT7nPjG3WubcR0pErrzV\" alt=\"ThinkPad-T460-Landing-Page-完稿750_07_2.jpg\"/><img src=\"http://data.cmswing.com/laDdTQ90upUalEvgZF9Eu1qK.jpg\" title=\"Fvm4TM13GarSnvdH6ts3EsCFuoiU\" alt=\"ThinkPad-T460-Landing-Page-完稿750_08_2.jpg\"/><img src=\"http://data.cmswing.com/qZAPJzJOA6-PqbreKeDqab5t.jpg\" title=\"FgQQkS7upj0yCZ8bCNqL7LXI1ILx\" alt=\"ThinkPad-T460-Landing-Page-完稿750_09_2.jpg\"/><img src=\"http://data.cmswing.com/BM8VFE7nbjtKduyvBVYlYx8N.jpg\" title=\"FnLb7b3HuJdKpbURiKnb2C03xSFc\" alt=\"ThinkPad-T460-Landing-Page-完稿750_10_1.jpg\"/><img src=\"http://data.cmswing.com/3VVUi4oAMZqUnsJSH_8WQLaR.jpg\" title=\"FkOhVl-AcAdLzRHnuwEMO55JgofD\" alt=\"ThinkPad-T460-Landing-Page-完稿750_11_1.jpg\"/></p>', '', 0, '6', '0');
 INSERT INTO `cmswing_document_shop` VALUES (292, '', '', 0, 0, '1', '0', '0', '<p>请填写内容...sfdsafdsafas<img src=\"//odhs9iog7.qnssl.com/upload_97a4b9973c354b202cebe470772e12eb.jpg\" title=\"FtNSzgb1GxnpEln2Djspwe4GbXPn\" alt=\"58f095a5N28e8beb8.jpg\"/></p>', '', 0, '', '0');
 INSERT INTO `cmswing_document_shop` VALUES (293, '{\"type\":[\"选择颜色\",\"套装\"],\"data\":[{\"name\":\"黑色\",\"type\":\"选择颜色\",\"ch\":[{\"name\":\"套装1\",\"type\":\"套装\",\"sku_price\":\"439\",\"sku_stock\":\"100\",\"sku_weight\":\"1000\",\"sku_code\":\"\"},{\"name\":\"套装2\",\"type\":\"套装\",\"sku_price\":\"439\",\"sku_stock\":\"100\",\"sku_weight\":\"1000\",\"sku_code\":\"\"}]},{\"name\":\"红色\",\"type\":\"选择颜色\",\"ch\":[{\"name\":\"套装1\",\"type\":\"套装\",\"sku_price\":\"439\",\"sku_stock\":\"100\",\"sku_weight\":\"1000\",\"sku_code\":\"\"},{\"name\":\"套装2\",\"type\":\"套装\",\"sku_price\":\"439\",\"sku_stock\":\"100\",\"sku_weight\":\"1000\",\"sku_code\":\"\"}]},{\"name\":\"白色\",\"type\":\"选择颜色\",\"ch\":[{\"name\":\"套装1\",\"type\":\"套装\",\"sku_price\":\"439\",\"sku_stock\":\"100\",\"sku_weight\":\"1000\",\"sku_code\":\"\"},{\"name\":\"套装2\",\"type\":\"套装\",\"sku_price\":\"439\",\"sku_stock\":\"100\",\"sku_weight\":\"1000\",\"sku_code\":\"\"}]}],\"is_pic\":0}', 'dy000009', 600, 0, '1', '0', '0', '<p><img src=\"//odhs9iog7.qnssl.com/upload_5bf706f2fadb3a1073772fdd7cbd0aa9.jpg\" title=\"FtNSzgb1GxnpEln2Djspwe4GbXPn\" alt=\"58f095a5N28e8beb8.jpg\"/></p>', '', 0, '', '0');
+INSERT INTO `cmswing_document_shop` VALUES (315, '', '', 1320, 0, '1', '0', '0', '<p>请输入内容...addddddasdaadda</p>', '', 6, '324', '2_1');
+INSERT INTO `cmswing_document_shop` VALUES (316, '', '', 50, 0, '1', '0', '0', '<p>请输入内容...jopfsdif</p>', '', 29, '22', '2_1');
 COMMIT;
 
 -- ----------------------------
@@ -5558,7 +5565,7 @@ CREATE TABLE `cmswing_ext_attachment_pic` (
   `type` int DEFAULT '0' COMMENT '图片来源，或模块区分 1:微信2:七牛',
   `source_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '' COMMENT '来源id，当关联其他平台时该平台生产的id',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=965 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=969 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of cmswing_ext_attachment_pic
@@ -6528,6 +6535,10 @@ INSERT INTO `cmswing_ext_attachment_pic` VALUES (961, '/upload/picture/2018-07-0
 INSERT INTO `cmswing_ext_attachment_pic` VALUES (962, '/upload/picture/2018-07-02/upload_566ee61e953260d6a07e8649a80b64a9.png', '', '', '', 1, 1530517613069, 0, '');
 INSERT INTO `cmswing_ext_attachment_pic` VALUES (963, '/upload/picture/2020-10-20/upload_1cb5465622531e5c23c915cd5c2c6d65.jpg', '', '', '', 1, 1603199409935, 0, '');
 INSERT INTO `cmswing_ext_attachment_pic` VALUES (964, '/upload/picture/2020-10-21/upload_fb7edb927736572f3b46b4788de864ff.jpg', '', '', '', 1, 1603210034223, 0, '');
+INSERT INTO `cmswing_ext_attachment_pic` VALUES (965, '/upload/picture/2020-10-21/upload_706873482c1b86415c15f01cb165ff36.jpg', '', '', '', 1, 1603295372382, 0, '');
+INSERT INTO `cmswing_ext_attachment_pic` VALUES (966, '/upload/picture/2020-10-21/upload_8e96c57fcebf1a8e05015ff90d66d0da.jpeg', '', '', '', 1, 1603295431787, 0, '');
+INSERT INTO `cmswing_ext_attachment_pic` VALUES (967, '/upload/picture/2020-10-21/upload_fe122a4a3adf62a1f787ba66e617c836.jpg', '', '', '', 1, 1603295483356, 0, '');
+INSERT INTO `cmswing_ext_attachment_pic` VALUES (968, '/upload/picture/2020-10-21/upload_3fefc5b587c543764dab5ea11edf4d96.jpg', '', '', '', 1, 1603295483371, 0, '');
 COMMIT;
 
 -- ----------------------------
@@ -6988,7 +6999,7 @@ CREATE TABLE `cmswing_member` (
 -- Records of cmswing_member
 -- ----------------------------
 BEGIN;
-INSERT INTO `cmswing_member` VALUES (1, 'admin', '7fe293a2a8994cca42668d5a37747d4f', 2364, 'arterli@qq.com', 1739, '', 1452513965683, 0, 1603281500777, 0, 0, 1, 1, 5, 10001.00, 0, 0, 0, 0, 0, 0, 120000, 120100, 120102, '', 1, 0, 0, 0, '');
+INSERT INTO `cmswing_member` VALUES (1, 'admin', '7fe293a2a8994cca42668d5a37747d4f', 2364, 'arterli@qq.com', 1745, '', 1452513965683, 0, 1603333571075, 0, 0, 1, 1, 5, 10001.00, 0, 0, 0, 0, 0, 0, 120000, 120100, 120102, '', 1, 0, 0, 0, '');
 INSERT INTO `cmswing_member` VALUES (2, 'cmswing', '877d01a63db292aadf94c7276a246781', 98, 'cmswing@cmswing.com', 302, '13571883578', 1458989485616, 0, 1530793108869, 0, 0, 1, 0, 2, 16.50, 0, 0, 0, 0, 0, 0, 110000, 110100, 110104, '111111', 1, 455587200000, 0, 0, '12344');
 INSERT INTO `cmswing_member` VALUES (3, 'test', '7fe293a2a8994cca42668d5a37747d4f', 10, 'test@cmswing.com', 5, '', 1458990106486, 0, 1505443722915, 0, 0, 1, 1, 2, 0.00, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, 1, NULL, 0, 0, NULL);
 INSERT INTO `cmswing_member` VALUES (4, 'test1', '7fe293a2a8994cca42668d5a37747d4f', 0, 'test1@cmswing.com', 0, '', 1458990176636, 0, 0, 0, 0, 1, 0, 2, 0.00, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, 1, NULL, 0, 0, NULL);
@@ -7834,7 +7845,7 @@ INSERT INTO `cmswing_menu` VALUES (267, '修改分类', 52, 0, 'ext/link/admin/t
 INSERT INTO `cmswing_menu` VALUES (268, '分类排序', 52, 0, 'ext/link/admin/typesort', 0, '', 0, 0, 1, '');
 INSERT INTO `cmswing_menu` VALUES (269, '添加', 138, 0, 'admin/ecom/addexpress', 0, '', 0, 0, 1, '');
 INSERT INTO `cmswing_menu` VALUES (270, '审核管理', 0, 4, 'approval', 0, '', 10, 0, 1, 'fa-umbrella');
-INSERT INTO `cmswing_menu` VALUES (271, '一级审核', 270, 0, 'admin/approval/index', 0, '', 10, 0, 1, '');
+INSERT INTO `cmswing_menu` VALUES (271, '内容审核', 270, 0, 'admin/approval/index', 0, '', 10, 0, 1, '');
 INSERT INTO `cmswing_menu` VALUES (272, '查看', 271, 0, 'admin/approval/details', 0, '', 0, 0, 1, '');
 INSERT INTO `cmswing_menu` VALUES (273, '通过审核', 271, 0, 'admin/approval/adopta', 0, '', 0, 0, 1, '');
 INSERT INTO `cmswing_menu` VALUES (274, '拒绝审核', 271, 0, 'admin/approval/refuse', 0, '', 0, 0, 1, '');
@@ -7843,8 +7854,8 @@ INSERT INTO `cmswing_menu` VALUES (276, '已安装插件后台', 2, 4, 'admin/ex
 INSERT INTO `cmswing_menu` VALUES (277, 'PC单页内容管理', 3, 0, 'admin/sp/index', 0, '', 0, 0, 1, '');
 INSERT INTO `cmswing_menu` VALUES (278, '手机单页内容管理', 3, 0, 'admin/sp/mobile', 0, '', 0, 0, 1, '');
 INSERT INTO `cmswing_menu` VALUES (279, '单页内容更新', 3, 0, 'admin/sp/update', 0, '', 0, 0, 1, '');
-INSERT INTO `cmswing_menu` VALUES (280, '二级审核', 270, 0, 'admin/approval/second', 0, '', 10, 0, 1, '');
-INSERT INTO `cmswing_menu` VALUES (281, '拒绝审核', 271, 0, 'admin/approval/refuse', 0, '', 0, 0, 1, '');
+INSERT INTO `cmswing_menu` VALUES (280, '卖家审核', 270, 0, 'admin/approval/shop', 0, '', 10, 0, 1, '');
+INSERT INTO `cmswing_menu` VALUES (281, '拒绝审核详情', 271, 0, 'admin/approval/refdialog', 0, '', 0, 0, 1, '');
 COMMIT;
 
 -- ----------------------------
@@ -7902,7 +7913,7 @@ INSERT INTO `cmswing_model` VALUES (5, 'picture', '图片', 1, '', 1, '{\"1\":[\
 INSERT INTO `cmswing_model` VALUES (6, 'video', '视频', 1, '', 1, '{\"1\":[\"2\",\"3\",\"5\",\"9\",\"12\",\"19\"],\"2\":[\"91\",\"96\"],\"3\":[\"10\",\"13\",\"14\",\"16\",\"17\",\"20\",\"93\"]}', '1:基础,2:资源,3:扩展', '91,93,96,2,3,5,9,10,12,13,14,16,17,19,20', 'level:集数', '', '', '', '', 10, '', '', 1465188045066, 1465555443764, 1, 'InnoDB', 1, 1, 1, 1, 1, NULL, NULL, 1, NULL, NULL, NULL, NULL, 0, '0');
 INSERT INTO `cmswing_model` VALUES (7, 'test', 'test', 1, '', 1, '{\"1\":[\"99\",\"132\"]}', '1:基础', '99,132', '', '', '', '', '', 10, '', '', 1474018905811, 1512553339570, 1, 'InnoDB', 0, 1, 1, 1, 1, NULL, NULL, 0, NULL, NULL, NULL, NULL, 0, '0');
 INSERT INTO `cmswing_model` VALUES (8, 'question', '社区', 0, '', 1, '{\"1\":[]}', '1:基础', NULL, '', '', '', '', '', 10, '', '', 1475621679496, 1507950865899, 1, 'InnoDB', 1, 0, 0, 1, 1, 'init:查看\r\nadd:添加\r\nedit:编辑\r\ndelete:删除\r\nexamine:审核', 'visit:访问\r\nadd:发布\r\naddexa:发布是否审核', 1, 'homelist,hometitle,homeright', '1.0', 'cmswing', 'question,question_answer,question_answer_comments,question_answer_thanks,question_answer_uninterested,question_answer_vote,question_focus,question_user', 1, '0');
-INSERT INTO `cmswing_model` VALUES (9, 'company', '商铺', 1, '', 1, '{\"1\":[\"3\",\"5\",\"65\",\"67\",\"85\",\"71\",\"81\",\"138\"],\"2\":[\"63\",\"69\"],\"3\":[\"73\",\"75\",\"77\",\"79\"],\"4\":[\"2\",\"9\",\"10\",\"16\",\"19\"]}', '1:基本信息,2:库存/规格,3:其它设置,4:高级信息', '63,69,71,73,75,77,79,81,85,138,2,3,5,9,10,16,19,65,67', 'title:商品名称\r\npics:商品图片\r\ndescription:商品简介', '', '', '', 'id:编号\r\npics:商品图\r\ntitle:商品名称:[EDIT]\r\nprice|formatprice:价格\r\ntype:类型\r\nupdate_time:最后更新\r\nstatus:状态\r\ntotal_stock:总库存\r\nview:浏览量\r\nid:操作:[EDIT]|编辑,[DELETE]|删除', 9, '', '', 1455680338771, 1498029529616, 1, 'InnoDB', 1, 1, 1, 1, 1, NULL, NULL, 1, NULL, NULL, NULL, NULL, 0, '0');
+INSERT INTO `cmswing_model` VALUES (9, 'company', '卖家', 1, '', 1, '{\"1\":[\"3\",\"5\",\"65\",\"67\",\"85\",\"71\",\"81\",\"138\"],\"2\":[\"63\",\"69\"],\"3\":[\"73\",\"75\",\"77\",\"79\"],\"4\":[\"2\",\"9\",\"10\",\"16\",\"19\"]}', '1:基本信息,2:库存/规格,3:其它设置,4:高级信息', '63,69,71,73,75,77,79,81,85,138,2,3,5,9,10,16,19,65,67', 'title:商品名称\r\npics:商品图片\r\ndescription:商品简介', '', '', '', 'id:编号\r\npics:商品图\r\ntitle:商品名称:[EDIT]\r\nprice|formatprice:价格\r\ntype:类型\r\nupdate_time:最后更新\r\nstatus:状态\r\ntotal_stock:总库存\r\nview:浏览量\r\nid:操作:[EDIT]|编辑,[DELETE]|删除', 9, '', '', 1455680338771, 1498029529616, 1, 'InnoDB', 1, 1, 1, 1, 1, NULL, NULL, 1, NULL, NULL, NULL, NULL, 0, '0');
 INSERT INTO `cmswing_model` VALUES (11, 'docs', '文档', 1, '', 1, '{\"1\":[\"3\",\"9\",\"149\",\"21\"],\"2\":[\"2\",\"5\",\"12\",\"19\",\"10\",\"11\",\"20\",\"16\"]}', '1:基础,2:扩展', '149,2,3,5,9,10,11,12,16,19,20,21', 'title:文档标题\r\ntype:文档类型', '', '', '', '', 10, '', '', 1508464623427, 1508863154134, 1, 'InnoDB', 1, 1, 1, 1, 1, NULL, NULL, 1, NULL, NULL, NULL, NULL, 0, '3');
 COMMIT;
 
@@ -8431,7 +8442,7 @@ CREATE TABLE `cmswing_search` (
   PRIMARY KEY (`search_id`),
   KEY `m_id` (`m_id`,`d_id`),
   FULLTEXT KEY `data` (`data`)
-) ENGINE=MyISAM AUTO_INCREMENT=3410 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=MyISAM AUTO_INCREMENT=3413 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of cmswing_search
@@ -8625,6 +8636,9 @@ INSERT INTO `cmswing_search` VALUES (3390, 8, 63, 1508673433477, 'fdsafdsafasf f
 INSERT INTO `cmswing_search` VALUES (3391, 8, 64, 1508673436182, 'dfafdsa dfafdsa');
 INSERT INTO `cmswing_search` VALUES (3396, 5, 308, 1508920763408, '清纯妹子琳琳ailin性感大片风情万种 0 清纯 妹子 琳琳 ailin 性感 大片 风情万种 0');
 INSERT INTO `cmswing_search` VALUES (3399, 5, 311, 1509271637598, '图集测试  图集 测试');
+INSERT INTO `cmswing_search` VALUES (3410, 3, 314, 1603199419213, 'test  test');
+INSERT INTO `cmswing_search` VALUES (3411, 4, 315, 1603295385553, 'aaaaa  aaaaa');
+INSERT INTO `cmswing_search` VALUES (3412, 4, 316, 1603295502658, '奥德赛  奥德赛');
 COMMIT;
 
 -- ----------------------------
@@ -9107,6 +9121,14 @@ CREATE TABLE `cmswing_type_optionvalue15` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
+-- Records of cmswing_type_optionvalue15
+-- ----------------------------
+BEGIN;
+INSERT INTO `cmswing_type_optionvalue15` VALUES (315, 50, 0, 0, '2', 4);
+INSERT INTO `cmswing_type_optionvalue15` VALUES (316, 50, 0, 0, '2', 2);
+COMMIT;
+
+-- ----------------------------
 -- Table structure for cmswing_type_optionvalue7
 -- ----------------------------
 DROP TABLE IF EXISTS `cmswing_type_optionvalue7`;
@@ -9420,6 +9442,10 @@ INSERT INTO `cmswing_typeoptionvar` VALUES (7, 307, 83, 17, 0, '');
 INSERT INTO `cmswing_typeoptionvar` VALUES (7, 307, 83, 23, 0, '');
 INSERT INTO `cmswing_typeoptionvar` VALUES (7, 307, 83, 24, 0, '');
 INSERT INTO `cmswing_typeoptionvar` VALUES (7, 307, 83, 25, 0, '');
+INSERT INTO `cmswing_typeoptionvar` VALUES (15, 315, 50, 49, 0, '2');
+INSERT INTO `cmswing_typeoptionvar` VALUES (15, 315, 50, 50, 0, '4');
+INSERT INTO `cmswing_typeoptionvar` VALUES (15, 316, 50, 49, 0, '2');
+INSERT INTO `cmswing_typeoptionvar` VALUES (15, 316, 50, 50, 0, '2');
 COMMIT;
 
 -- ----------------------------
