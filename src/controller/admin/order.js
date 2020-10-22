@@ -22,7 +22,6 @@ module.exports = class extends think.cmswing.admin {
 
     return this.display();
   }
-
   // 订单导出
   async exportAction() {
     const status = this.get('status');
@@ -39,9 +38,94 @@ module.exports = class extends think.cmswing.admin {
     map.is_del = 0;
     map.type = 0;
     const data = await this.model('order').where(map).page(this.get('page') || 1, 20).order('create_time DESC').countSelect();   // 导出还分页吗
-    console.log('订单导出----',map,data);
-    
+    for (const val of data.data) {
+      switch (val.payment) {
+        case 100:
+          val.channel = '预付款支付';
+          break;
+        case 1001:
+          val.channel = '货到付款';
+          break;
+        case 1002:
+          val.channel = '银行汇款';
+          break;
+        default:
+          val.channel = await this.model('pingxx').where({id: val.payment}).getField('title', true);
+      }
 
+      if(val['user_id']){
+        val['user_id'] = await get_nickname(val['user_id'])
+      }
+    }
+    // console.log('订单导出----',map,data);
+    
+    const column = [
+      {
+        name: '订单号',
+        value: 'order_no'
+      },
+      {
+        name: '订单总额',
+        value: 'order_amount',
+        format: (val) => {
+          return '¥ '+ formatCurrency(val)
+        }
+      },
+      {
+        name: '会员账号',
+        value: 'user_id'
+      },
+      {
+        name: '收货人',
+        value: 'accept_name'
+      },
+      {
+        name: '收货人电话',
+        value: 'mobile'
+      },
+      {
+        name: '支付方式',
+        value: 'channel'
+      },
+      {
+        name: '支付状态',
+        value: 'pay_status',
+        format: (val)=>{
+          return val === 0 ? '未支付': '已支付'
+        }
+      },
+      {
+        name: '配送状态',
+        value: 'delivery_status',
+        format: (val)=>{
+          return val == 0 ? '未发货':'已发货'
+        }
+      },
+      {
+        name: '订单状态',
+        value: 'status',
+        format: (val)=>{
+          val = val - 0;
+          let res = '';
+          switch(val){
+            case 2:
+              res = '等待审核';
+              break;
+            case 3:
+              res = '已审核';
+              break;
+            case 4:
+              res = '已完成';
+              break;
+            case 6:
+              res = '已作废';
+              break;
+          }
+          return res
+        }
+      }
+    ];
+    this.json2Excel(data.data, column, '订单列表')
   }
 
   // 订单列表

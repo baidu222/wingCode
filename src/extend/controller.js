@@ -5,6 +5,9 @@ const moment = require('moment');
 moment.locale('zh-cn');
 const pagination = require('think-pagination');
 const path = require('path');
+const fs = require('fs')
+const json2xls = require('json2xls');
+
 module.exports = {
   get isMobile() {
     return this.ctx.isMobile;
@@ -149,5 +152,29 @@ module.exports = {
   },
   async extConfig(extname, key) {
     return await this.model('cmswing/ext').extcache(extname, key);
+  },
+
+  json2Excel(arr,column,name){
+    const jsonArray = [];
+    arr.forEach(function(item){
+      let temp = {}
+      for(let obj of column){
+        if(obj.format){
+          temp[obj.name] = obj.format(item[obj.value])
+        }else{
+          temp[obj.name] = item[obj.value]
+        }
+      }
+
+      jsonArray.push(temp);
+    });
+    
+    let xls = json2xls(jsonArray);
+    
+    fs.copyFileSync('a.xlsx', name+'.xlsx');
+    fs.writeFileSync(name+'.xlsx', xls, 'binary');
+    const filepath = path.join(think.ROOT_PATH, name+'.xlsx');
+    this.ctx.download(filepath);
+    // fs.rmSync(filepath);
   }
 };

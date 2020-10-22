@@ -6,12 +6,61 @@
 // +----------------------------------------------------------------------
 // | Author: arterli <arterli@qq.com>
 // +----------------------------------------------------------------------
-
+const path = require('path');
 module.exports = class extends think.cmswing.admin {
   constructor(ctx) {
     super(ctx); // 调用父级的 constructor 方法，并把 ctx 传递进去
     // 其他额外的操作
     this.tactive = 'article';
+  }
+
+  async exportAction() {
+    let cate_id = this.get('cate_id') || null;
+    let model_id = this.get('model_id') || null;
+    const position = this.get('position') || null;
+    const group_id = this.get('group_id') || 0;
+    let sortid = this.get('sortid') || 0;
+    const sortval = this.get('sortval') || null;
+    // let models;
+    // let groups;
+    // let model;
+    // let _model;// 解析列表规则
+    let fields = [];
+    
+    let list = await this.getDocumentList(cate_id, model_id, position, fields, group_id, sortval, sortid);
+    for (const val of list) {
+      if (val.pics) {
+        val.pics = await get_pic(val.pics.split(',')[0], 1, 100);
+      } else {
+        val.pics = '/static/noimg.jpg';
+      }
+    }
+    // console.log(list);
+    list = await this.parseDocumentList(list, model_id);
+    
+    const column = [
+      {
+        name: '编号',
+        value: 'id'
+      },
+      {
+        name: '标题',
+        value: 'title'
+      },
+      {
+        name: '最后更新',
+        value: 'update_time'
+      },
+      {
+        name: '状态',
+        value: 'type'
+      },
+      {
+        name: '浏览',
+        value: 'view'
+      }
+    ];
+    this.json2Excel(list, column, '商品列表')
   }
 
   /**
@@ -29,8 +78,8 @@ module.exports = class extends think.cmswing.admin {
     let groups;
     let model;
     let _model;
-    // console.log(2222);
-    // console.log(cate_id);
+    console.log(2222);
+    console.log(cate_id);
     if (!think.isEmpty(cate_id)) {
       // 权限验证
       const priv = await this.admin_priv('init', cate_id, '您没有权限查看本栏目！');
