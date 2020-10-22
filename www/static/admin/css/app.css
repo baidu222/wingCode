@@ -4615,3 +4615,24 @@ textarea.parsley-error {
 .nomargin{
   margin: 0 !important;
 }
+
+
+
+/*保证金*/
+.margin-money {
+  display: flex;
+  align-items: center;
+  margin-top: 40px;
+}
+.margin-money-item {
+  width: 200px;
+  padding: 0 20px;
+}
+.margin-money-item.money {
+  font-size: 20px;
+  text-align: center;
+}
+.margin-money-item.money  span {
+  font-size: 38px;
+  font-weight: 700;
+}

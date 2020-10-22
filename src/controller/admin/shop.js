@@ -43,6 +43,61 @@ module.exports = class extends think.cmswing.admin {
     return this.display();
   }
 
+  // 保证金
+  async marginAction() {
+    const status = this.get('status');
+    const map = {};
+    if (!think.isEmpty(status)) {
+      map.status = status;
+      this.assign('status', status);
+    }
+    const q = this.get('q');
+    if (!think.isEmpty(q)) {
+      map['order_no|user_id|accept_name|mobile'] = ['like', q];
+    }
+    map.is_del = 0;
+    const data = await this.model('shop').where(map).page(this.get('page') || 1, 20).order('create_time DESC').countSelect();
+    const html = this.pagination(data);
+    this.assign('pagerData', html); // 分页展示使用
+    this.active = 'admin/shop/margin';
+    this.assign('list', data.data);
+    this.meta_title = '保证金';
+    this.meta_title_sub = '保证金管理'
+    return this.display();
+  }
+  // 立即缴纳
+  async moneyAction() {
+    this.active = 'admin/shop/money';
+    this.meta_title = '保证金缴纳';
+    return this.display();
+  }
+
+  // 立即缴纳
+  async wxpayAction() {
+    this.active = 'admin/shop/wxpay';
+    this.meta_title = '微信支付';
+    return this.display();
+  }
+
+  // 立即缴纳
+  async successAction() {
+    this.active = 'admin/shop/success';
+    this.meta_title = '支付成功';
+    return this.display();
+  }
+  // 申请解冻
+  async thawAction() {
+    this.active = 'admin/shop/thaw';
+    this.meta_title = '申请解冻';
+    return this.display();
+  }
+  // 立即缴纳
+  async thawsuccessAction() {
+    this.active = 'admin/shop/thawsuccess';
+    this.meta_title = '申请解冻';
+    return this.display();
+  }
+
   /**
    * 新增店铺装修
    */

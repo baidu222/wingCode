@@ -75,7 +75,7 @@
                           <a href="javascript:;" class="btn btn-success btn-xs todo"><i class="fa fa-edit"></i> 
                             页面装修
                           </a>
-                          <a href="/admin/shop/copy" class="btn btn-info btn-xs ajax-post" target-form="shop_url">
+                          <a href="#" class="btn btn-info btn-xs ajax-post copy-btn" data-path="{{item.shop_url}}">
                             <i class="fa fa-trash-o"></i> 复制地址
                           </a>
                           <a href="/admin/shop/editdecoration/?id={{item.id}}" class="btn btn-warning btn-xs" data-toggle="ajaxModal"><i class="fa fa-trash-o"></i> 编辑</a>
@@ -114,8 +114,24 @@
 <script src="/static/admin/js/parsley/parsley.min.js"></script>
 <script src="/static/admin/js/parsley/parsley.extend.js"></script>
 <script>
-    $(function () {
-      console.log('12222')
-    })
+   // 复制文本内容
+  function CopyText(content) {
+    var oInput = document.createElement('input');
+    oInput.value = content;
+    document.body.appendChild(oInput);
+    oInput.select(); // 选择对象
+    document.execCommand("Copy"); // 执行浏览器复制命令
+    oInput.style.display = 'none';
+    toastr.success('复制成功: ' + content);
+  }
+
+  // 初始化copy
+  $(function () {
+    $('.copy-btn').click(function () {
+      var _this = $(this);
+      var content = _this.attr('data-path');
+      CopyText(content);
+    });
+  })
 </script>
 {% endblock%}
