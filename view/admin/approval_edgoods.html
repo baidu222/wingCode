@@ -1,0 +1,50 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">{{controller.meta_title}}</h4>
+        </div>
+        <div class="modal-body" style="padding: 0">
+            <div class="table-responsive">
+                <table class="table table-striped b-t b-light">
+                    <thead>
+                        <tr>
+
+                            <th>字段</th>
+                            <th>内容</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%for k,v in info%}
+                        <tr>
+
+                            <td>{{k}}</td>
+                            <!-- {{v|safe}}展示带标签的内容 -->
+                            <td>{% if k =='content'%}{{v|safe}}{%else%}{{v}}{%endif%}</td>
+
+                        </tr>
+                        {%endfor%}
+                    </tbody>
+                </table>
+
+                <label class="col-sm-2 control-label">
+                    拒绝原因:
+                </label>
+                <div class="col-sm-10">
+                    <textarea name="" class="form-control"></textarea>
+                </div>
+                <div style="clear:both"></div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <!-- <a href="#" class="btn btn-default" data-dismiss="modal">关闭</a> -->
+            <a class="btn btn-danger ajax-get" target-form="ids" href="/{{ctx.controller}}/refuse/?ids={{ids}}">
+                拒绝
+            </a>
+            <a class="btn btn-success ajax-post" target-form="ids" href="/{{ctx.controller}}/adopta?ids={{ids}}">
+                通过
+            </a>
+
+        </div>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->

@@ -11,7 +11,7 @@
  Target Server Version : 80021
  File Encoding         : 65001
 
- Date: 22/10/2020 20:56:35
+ Date: 23/10/2020 02:55:59
 */
 
 SET NAMES utf8mb4;
@@ -173,7 +173,6 @@ CREATE TABLE `cmswing_approval` (
 BEGIN;
 INSERT INTO `cmswing_approval` VALUES (45, 4, '{\"sort_id\":\"15\",\"sortid_shojipeijian\":\"2\",\"sortid_fuwujiage\":\"15\",\"title\":\"shoptitle\",\"description\":\"asdada\",\"pics\":\"\",\"file\":\"\",\"price\":\"\",\"weight\":\"0\",\"total_stock\":\"0\",\"editor\":\"2_1\",\"fare\":\"ads\",\"suk\":\"\",\"goods_no\":\"\",\"quota\":\"0\",\"join_level_discount\":\"1\",\"invoice\":\"0\",\"warranty\":\"0\",\"pid\":\"0\",\"model_id\":\"4\",\"category_id\":\"50\",\"uid\":1,\"content\":\"<p>请输入内容...sdadad</p>\",\"is_ajax\":\"true\",\"ip\":\"::ffff:127.0.0.1\"}', 1, 'shoptitle', 1603295335378);
 INSERT INTO `cmswing_approval` VALUES (44, 3, '{\"group_id\":\"0\",\"name\":\"w\",\"title\":\"test\",\"description\":\"eee\",\"cover_id\":\"964\",\"file\":\"\",\"fileimgs\":\"\",\"editor\":\"2_2\",\"content\":\"<p>请输入内容...</p><p>33333</p>\",\"file_id\":\"0\",\"size\":\"0\",\"panurl\":\"\",\"pid\":\"0\",\"model_id\":\"3\",\"category_id\":\"63\",\"uid\":467,\"is_ajax\":\"true\",\"ip\":\"::ffff:127.0.0.1\"}', 467, 'test', 1603210051791);
-INSERT INTO `cmswing_approval` VALUES (47, 4, '{\"sort_id\":\"15\",\"sortid_shojipeijian\":\"2.4\",\"sortid_fuwujiage\":\"26\",\"title\":\"固态硬盘\",\"description\":\"阿萨德卡的很\",\"pics\":\"966\",\"file\":\"\",\"price\":\"{\\\"present_price\\\":\\\"2314\\\",\\\"discount_price\\\":\\\"0\\\"}\",\"weight\":\"931\",\"total_stock\":\"20\",\"editor\":\"2_1\",\"fare\":\"卡乐芙扫\",\"suk\":\"\",\"goods_no\":\"\",\"quota\":\"0\",\"join_level_discount\":\"1\",\"invoice\":\"0\",\"warranty\":\"0\",\"pid\":\"0\",\"model_id\":\"4\",\"category_id\":\"50\",\"uid\":1,\"content\":\"<p>请输入内容...贾老师大家啊</p>\",\"is_ajax\":\"true\",\"ip\":\"::ffff:127.0.0.1\"}', 1, '固态硬盘', 1603295456375);
 COMMIT;
 
 -- ----------------------------
@@ -7604,7 +7603,7 @@ CREATE TABLE `cmswing_menu` (
   PRIMARY KEY (`id`),
   KEY `pid` (`pid`),
   KEY `status` (`status`)
-) ENGINE=InnoDB AUTO_INCREMENT=282 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=283 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of cmswing_menu
@@ -7855,7 +7854,8 @@ INSERT INTO `cmswing_menu` VALUES (277, 'PC单页内容管理', 3, 0, 'admin/sp/
 INSERT INTO `cmswing_menu` VALUES (278, '手机单页内容管理', 3, 0, 'admin/sp/mobile', 0, '', 0, 0, 1, '');
 INSERT INTO `cmswing_menu` VALUES (279, '单页内容更新', 3, 0, 'admin/sp/update', 0, '', 0, 0, 1, '');
 INSERT INTO `cmswing_menu` VALUES (280, '卖家审核', 270, 0, 'admin/approval/shop', 0, '', 10, 0, 1, '');
-INSERT INTO `cmswing_menu` VALUES (281, '拒绝审核详情', 271, 0, 'admin/approval/refdialog', 0, '', 0, 0, 1, '');
+INSERT INTO `cmswing_menu` VALUES (281, '审核卖家', 271, 0, 'admin/approval/edshop', 0, '', 0, 0, 1, '');
+INSERT INTO `cmswing_menu` VALUES (282, '审核商品', 271, 0, 'admin/approval/edgoods', 0, '', 0, 0, 1, '');
 COMMIT;
 
 -- ----------------------------

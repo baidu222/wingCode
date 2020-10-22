@@ -1,0 +1,247 @@
+{% block style %}
+<style type="text/css">
+    .refuse-content {
+        position: relative;
+        margin-top: 15px;
+    }
+
+    .clear {
+        clear: both;
+    }
+
+    .form-horizontal .form-group {
+        margin: 0 0 15px 0;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #e5e5e5;
+    }
+</style>
+{% endblock %}
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">{{controller.meta_title}}</h4>
+        </div>
+        <div class="modal-body refuse-content" style="padding: 0">
+            <div class="table-responsive">
+                <form id="ajaxForm" method="post" class="form-horizontal" action="{{http.url}}" data-validate="parsley">
+                    <!-- 公司全名 -->
+                    <div class="form-group" style="margin-top: 25px">
+                        <label class="col-sm-3 control-label font-bold">公司全名</label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <!-- <input type="text" class="form-control" name="name"
+                                        value="{{info.name if info.name else null}}" data-required="true"
+                                        placeholder="支持中文、英文、数字、标点符号输入"> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 公司介绍 -->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label font-bold">公司介绍</label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <!-- <textarea class="form-control" name="description" data-required="true"
+                                        placeholder="支持中文、英文、数字、标点符号输入">{{ info.description }}</textarea> -->
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 公司经营方式 -->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label font-bold">经营方式</label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <!-- <textarea class="form-control" name="operation" data-required="true"
+                                        placeholder="支持中文、英文、数字、标点符号输入">{{ info.operation }}</textarea> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 公司经营范围 -->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label font-bold">经营范围</label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <!-- <textarea class="form-control" name="range" data-required="true"
+                                        placeholder="支持中文、英文、数字、标点符号输入">{{ info.range }}</textarea> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 公司法人 -->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label font-bold">法人</label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <!-- <input type="text" class="form-control" name="legalPerson"
+                                        value="{{info.legalPerson if info.legalPerson else null}}"
+                                        placeholder="支持中文、英文、数字、标点符号输入" data-required="true"> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 公司电话 -->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label font-bold">电话</label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <!-- <input type="text" class="form-control" name="tel"
+                                        value="{{info.tel if info.tel else null}}" placeholder="支持数字、标点符号输入"
+                                        data-required="true"> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 公司邮箱 -->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label font-bold">邮箱</label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <!-- <input type="text" class="form-control" name="email"
+                                        value="{{info.email if info.email else null}}" placeholder="支持英文、数字、标点符号输入"
+                                        data-required="true"> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 公司地址 -->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label font-bold">公司地址</label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <!-- <input type="text" class="form-control" name="address"
+                                        value="{{info.address if info.address else null}}" placeholder="支持英文、数字、标点符号输入"
+                                        data-required="true"> -->
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 图片1上传-->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label font-bold">logo</label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    {{HOOKS@adminUpPic.icon|safe}}
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <!-- 图片1上传-->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label font-bold">企业营业执照</label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <!-- <div class="col-sm-9">
+                                    {{HOOKS@adminUpPicss.icon|safe}}
+                                </div>
+                                <div class="col-md-12 hide">
+                                    <span class="help-block m-b-none text-muted"><i class="fa fa-info-circle text-info"></i> 图片上传</span>
+                                </div> -->
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 图片1上传-->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label font-bold">银行开户许可证</label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-md-5 flex-wrap">
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 图片1上传-->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label font-bold" style="padding-left: 7px;">医疗器械生产许可证</label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-md-5 flex-wrap">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 图片1上传-->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label font-bold">生产备案凭证</label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-md-5 flex-wrap">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 图片1上传-->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label font-bold">网络销售许可证</label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-md-5 flex-wrap">
+                                    <!-- <div class="input-upload">选择文件</div>
+                                    <input type="file" class="input-file" style="opacity: 0;" id="file"
+                                        accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" />
+                                    <span class="ml10">请上传文件</span> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 图片1上传-->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label font-bold">法人身份证复印件</label>
+                        <div class="col-sm-9" style="margin-top:6px">
+                            <div class="row">
+                                <div class="col-md-5 flex-wrap">
+                                    <span class="ml10">身份证正面（国徽面）</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 45px">
+                        <label class="col-sm-3 control-label font-bold"></label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-md-5 flex-wrap">
+                                    <span class="ml10">身份证反面（人像面）</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <label class="col-sm-2 control-label">
+                    拒绝原因:
+                </label>
+                <div class="col-sm-10">
+                    <textarea name="" class="form-control"></textarea>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a class="btn btn-danger ajax-get" target-form="ids" href="/{{ctx.controller}}/refuse/?ids={{ids}}">
+                拒绝
+            </a>
+            <a class="btn btn-success ajax-post" target-form="ids" href="/{{ctx.controller}}/adopta?ids={{ids}}">
+                通过
+            </a>
+        </div>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->

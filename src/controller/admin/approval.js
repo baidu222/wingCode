@@ -24,7 +24,6 @@ module.exports = class extends think.cmswing.admin {
     if (!think.isEmpty(this.get('model'))) {
       map.model = this.get('model');
     }
-    // 原数据
     const list = await this.db.where(map).page(this.get('page') || 1, 20).order('time DESC').countSelect();
     const html = this.pagination(list);
 
@@ -57,26 +56,25 @@ module.exports = class extends think.cmswing.admin {
     if (!think.isEmpty(this.get('model'))) {
       map.model = this.get('model');
     }
-    const list = await this.db.where(map).page(this.get('page') || 1, 20).order('time DESC').countSelect();
+    const list = await this.db.where(map).page(this.get('page') || 1, 20).where('model = 4 OR model = 9').order('time DESC').countSelect();
+    // const list = await this.model('cmswing/approval').page(this.get('page') || 1, 20).where('model = 4 OR model = 9').order('time DESC').countSelect();
     const html = this.pagination(list);
     this.assign('pagerData', html); // 分页展示使用
     this.assign('list', list);
-    const modlist = await this.model('cmswing/model').get_model(null, null, {
-      is_approval: 1
-    });
+    
+    const modlist = await this.model('cmswing/model').where('id = 4 OR id = 9').select();
+    
     for (const val of modlist) {
       val.count = await this.db.where({
         model: val.id
       }).count();
     }
+
     // console.log(modlist);
     this.assign('getModel', map.model);
     this.assign('model', modlist);
-    this.assign('count', await this.db.count());
+    this.assign('count', await this.db.where('model = 4 OR model = 9').count());
     this.meta_title = '卖家审核';
-    // if(1){
-    // this.fail(modlist)
-    // }
     return this.display();
   }
   /**
@@ -87,22 +85,6 @@ module.exports = class extends think.cmswing.admin {
     const details = await this.db.find(id);
     const info = JSON.parse(details.data);
 
-    const showdata = [];
-    let index = 0;
-    const labelList = ['公司全名', '公司介绍', '经营方式', '经营范围', '法人', '电话', '邮箱', '功能公司地址', 'logo', '企业营业执照', '银行开户许可证', '医疗器械生产许可证', '生产备案凭证', '网络销售许可证', '法人身份复印件', '销售授权委托书'];
-    for (const key in info) {
-      showdata[index] = {
-        label: labelList[index],
-        key: key,
-        value: info[key]
-      }
-      index ++ ;
-    }
-
-    // if (1) {
-    //   return console.log(showdata.length);
-    // }
-    // console.log(info);
     this.assign('info', info);
     this.meta_title = '查看详情';
     return this.display();
@@ -116,9 +98,6 @@ module.exports = class extends think.cmswing.admin {
     if (think.isEmpty(ids)) {
       return this.fail('参数错误！');
     }
-    // else{
-    //   this.fail(ids)
-    // }
 
     const datalist = await this.db.where({
       id: ['IN', ids]
@@ -166,12 +145,25 @@ module.exports = class extends think.cmswing.admin {
   }
 
   /**
-   * 拒绝审核页面
+   * 编辑商家审核
    */
-  async editAction() {
+  async edshopAction() {
     const ids = this.get('ids');
     this.assign('ids', ids);
-    this.meta_title = '拒绝审核';
+    this.meta_title = '审核详情';
+    return this.display();
+  }
+
+   /**
+   * 编辑商品审核
+   */
+  async edgoodsAction() {
+    const ids = this.get('ids');
+    const details = await this.db.find(ids);
+    const info = JSON.parse(details.data);
+    this.assign('ids', ids);
+    this.assign('info', info);
+    this.meta_title = '审核详情';
     return this.display();
   }
 
@@ -179,28 +171,18 @@ module.exports = class extends think.cmswing.admin {
    * 拒绝审核
    */
   async refuseAction() {
-    // 获取当前参数
+    // 获取控制台最新请求地址参数
     const ids = this.para('ids');
-
     if (think.isEmpty(ids)) {
-      return this.fail('参数错误！', ids);
-    } else {
-      // return this.fail(ids);
-      return this.success({name: '操作成功！'});
+      return this.fail('参数错误！');
     }
-    debugger;
-    // console.log(ids);
-    const res = await this.db.where({
-      id: ['IN', ids]
-    }).delete();
+    const res = await this.db.where({id: ['IN', ids]}).delete();
     if (res) {
-      return this.success({
-        name: '操作成功！'
-      });
+      return this.success({name: '操作成功！'});
     } else {
       return this.fail('操作失败！');
     }
-    return this.display();
+  
   }
 
   /**
