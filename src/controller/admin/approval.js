@@ -99,9 +99,9 @@ module.exports = class extends think.cmswing.admin {
       index ++ ;
     }
 
-    if (1) {
-      return console.log(showdata.length);
-    }
+    // if (1) {
+    //   return console.log(showdata.length);
+    // }
     // console.log(info);
     this.assign('info', info);
     this.meta_title = '查看详情';
