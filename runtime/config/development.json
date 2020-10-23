@@ -1,0 +1,85 @@
+{
+  "port": 8360,
+  "workers": 0,
+  "stickyCluster": false,
+  "startServerTimeout": 3000,
+  "reloadSignal": "SIGUSR2",
+  "processKillTimeout": 10000,
+  "jsonpCallbackField": "callback",
+  "jsonContentType": "application/json",
+  "jsonpContentType": "application/javascript",
+  "errnoField": "errno",
+  "errmsgField": "errmsg",
+  "defaultErrno": 1000,
+  "validateDefaultErrno": 1001,
+  "http_": 1,
+  "document_model_type": {
+    "1": "目录",
+    "2": "主题",
+    "3": "段落"
+  },
+  "user_administrator": [
+    1
+  ],
+  "cache": {
+    "type": "file",
+    "file": {
+      "timeout": 86400000,
+      "cachePath": "/Users/rr/Desktop/pj/wingCode/runtime/cache",
+      "pathDepth": 1,
+      "gcInterval": 86400000
+    }
+  },
+  "model": {
+    "type": "mysql",
+    "mysql": {
+      "logConnect": true,
+      "logSql": true,
+      "user": "root",
+      "password": "12345678",
+      "database": "cmswing",
+      "host": "127.0.0.1",
+      "port": 3306,
+      "connectionLimit": 1,
+      "prefix": "cmswing_",
+      "cache": {
+        "type": "file",
+        "cachePath": "/Users/rr/Desktop/pj/wingCode/runtime/cache"
+      }
+    }
+  },
+  "session": {
+    "type": "file",
+    "file": {
+      "cookie": {
+        "name": "thinkjs"
+      },
+      "sessionPath": "/Users/rr/Desktop/pj/wingCode/runtime/session"
+    }
+  },
+  "view": {
+    "type": "nunjucks",
+    "nunjucks": {
+      "viewPath": "/Users/rr/Desktop/pj/wingCode/view",
+      "sep": "_",
+      "extname": ".html"
+    }
+  },
+  "logger": {
+    "type": "console",
+    "console": {},
+    "file": {
+      "backups": 10,
+      "absolute": true,
+      "maxLogSize": 51200,
+      "filename": "/Users/rr/Desktop/pj/wingCode/logs/app.log"
+    },
+    "dateFile": {
+      "level": "ALL",
+      "absolute": true,
+      "pattern": "-yyyy-MM-dd",
+      "alwaysIncludePattern": true,
+      "filename": "/Users/rr/Desktop/pj/wingCode/logs/app.log"
+    }
+  }
+}

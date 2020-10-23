@@ -106,6 +106,8 @@ module.exports = class extends think.cmswing.admin {
        */
       async informationAction() {
         const list = await this.model('member_group').order('sort ASC').select();
+        let formData = this.post();//获取所有传进来的表单数据
+        console.log(formData)
         for (const v of list) {
           
           v.count = await this.model('member').where({groupid: v.groupid, status: 1}).count('id');
@@ -115,11 +117,10 @@ module.exports = class extends think.cmswing.admin {
         this.assign('list', list);
         this.meta_title = '商家认证信息';
         await this.hook('adminUpPic', 'icon', info.icon, {$hook_key: 'icon'});
-        await this.hook('adminUpPicss', 'icon', info2.icon, {$hook_key: 'icon'});
        
       
   
-        return this.display();
+        return this.fail();
         
       };
 
@@ -128,23 +129,12 @@ module.exports = class extends think.cmswing.admin {
        * 权限管理首页ajax角色列表
        * @returns {Promise|*}
        */
-      async agreementAction() {
-        // const list = await this.model('member_group').order('sort ASC').select();
-        // for (const v of list) {
-          
-        //   v.count = await this.model('member').where({groupid: v.groupid, status: 1}).count('id');
-        // }
-        // let info = {'icon': ''}
-        // let info2 = {'icon': ''}
-        // this.assign('list', list);
-        // this.meta_title = '商家认证信息';
-        // await this.hook('adminUpPic', 'icon', info.icon, {$hook_key: 'icon'});
-        // await this.hook('adminUpPicss', 'icon', info2.icon, {$hook_key: 'icon'});
-       
-      
-  
-        return this.display();
-        
-      };
+      async updateAction(){//通过post的方式来获取值即可
+        let userList = this.model('user');
+        let userInfo = await this.session('userInfo');
+        let formData = this.post();//获取所有传进来的表单数据
+        let affectedRows = await userList.where({user_loginname: userInfo.login}).update({user_name: this.post('inputNickname'),user_mailbox:this.post('inputEmail'),user_tellphone:this.post('inputTell'),user_city:this.post('inputCity')});
+        this.success();//此接口的返回值
+      }
   };
   
