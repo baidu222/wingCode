@@ -154,7 +154,7 @@ module.exports = {
     return await this.model('cmswing/ext').extcache(extname, key);
   },
 
-  json2Excel(arr,column,name){
+  async json2Excel(arr,column,name) {
     const jsonArray = [];
     arr.forEach(function(item){
       let temp = {}
@@ -171,10 +171,11 @@ module.exports = {
     
     let xls = json2xls(jsonArray);
     
-    fs.copyFileSync('a.xlsx', name+'.xlsx');
+    // fs.copyFileSync('a.xlsx', name+'.xlsx');
     fs.writeFileSync(name+'.xlsx', xls, 'binary');
     const filepath = path.join(think.ROOT_PATH, name+'.xlsx');
-    this.ctx.download(filepath);
-    // fs.rmSync(filepath);
+    await this.ctx.download(filepath);
+    // fs.rmSync(filepath); // node 14.14以上支持
+    await fs.unlinkSync(filepath);
   }
 };
