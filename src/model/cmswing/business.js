@@ -1,18 +1,5 @@
-/* eslint-disable indent */
-// +----------------------------------------------------------------------
-// | CmsWing [ 网站内容管理框架 ]
-// +----------------------------------------------------------------------
-// | Copyright (c) 2015-2115 http://www.cmswing.com All rights reserved.
-// +----------------------------------------------------------------------
-// | Author: arterli <arterli@qq.com>
-// +----------------------------------------------------------------------
 module.exports = class extends think.Model {
-  /**
-     * 获取行为数据
-     * @param string id 行为id
-     * @param string field 需要获取的字段
-     * @author arterli <arterli@qq.com>
-     */
+
   async applyAdd(data) {
     await this.model('business').add(data);
   }
@@ -32,14 +19,14 @@ module.exports = class extends think.Model {
     return applydata;
   }
 
-  async applyFirstQuery(){
-    const applydata = await this.model('business').where('status = 0 OR status = 1').select();
-    return applydata;
+  async applyFirstQuery(page){
+    const list = await this.model('business').where('status = 0 OR status = 1').page(page).countSelect()
+    return list;
   }
 
-  async applySecondQuery(){
-    const applydata = await this.model('business').where({status: 10}).select();
-    return applydata;
+  async applySecondQuery(page){
+    const list = await this.model('business').where({status: 10}).page(page).countSelect();
+    return list;
   }
 
 };

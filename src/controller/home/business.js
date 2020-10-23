@@ -305,6 +305,7 @@ module.exports = class extends think.cmswing.home {
     async updateAction(){
         const data = this.post();
         const biz_id = data.biz_id;
+        const user_id = data.user_id;
         if (!think.isNullOrUndefined(data.action_type)){
             const action_type = data.action_type;
             if (action_type == "first_pass"){
@@ -312,19 +313,21 @@ module.exports = class extends think.cmswing.home {
                     "id":biz_id
                 };
                 const  updatedata = {
-                    "status":10
+                    "status":10,
+                    "first_pass_user":user_id
                 };
-                const applydata = await this.model('cmswing/business').applyUpdate(condition,updatedata);
-                return this.success({code:200,applydata:applydata});
+                await this.model('cmswing/business').applyUpdate(condition,updatedata);
+                return this.success({code:200});
             }else if(action_type == "second_pass"){
                 const  condition = {
                     "id":biz_id
                 };
                 const  updatedata = {
-                    "status":20
+                    "status":20,
+                    "second_pass_user":user_id
                 };
-                const applydata = await this.model('cmswing/business').applyUpdate(condition,updatedata);
-                return this.success({code:200,applydata:applydata});
+                await this.model('cmswing/business').applyUpdate(condition,updatedata);
+                return this.success({code:200});
             }else if(action_type == "first_reject"){
                 if (!think.isNullOrUndefined(data.reject)){
                     var reject = data.reject;
@@ -338,8 +341,8 @@ module.exports = class extends think.cmswing.home {
                     "status":11,
                     "first_reject":reject
                 };
-                const applydata = await this.model('cmswing/business').applyUpdate(condition,updatedata);
-                return this.success({code:200,applydata:applydata});
+                await this.model('cmswing/business').applyUpdate(condition,updatedata);
+                return this.success({code:200,reject:reject});
             }else if(action_type == "second_reject"){
                 if (!think.isNullOrUndefined(data.reject)){
                     var reject = data.reject;
@@ -353,8 +356,8 @@ module.exports = class extends think.cmswing.home {
                     "status":21,
                     "second_reject":reject
                 };
-                const applydata = await this.model('cmswing/business').applyUpdate(condition,updatedata);
-                return this.success({code:200,applydata:applydata});
+                await this.model('cmswing/business').applyUpdate(condition,updatedata);
+                return this.success({code:200,reject:reject});
             }else{
                 return this.fail({code:500,msg:"error param"});
             }
@@ -385,24 +388,30 @@ module.exports = class extends think.cmswing.home {
         }
     }
 
-    async applyFirstQueryAction(){
-        const data = this.post();
-        const user_id = data.user_id;
+    async applyFirstListAction(){
+        if (think.isNullOrUndefined(this.get('page'))){
+            var page = 1;
+        }else{
+            var page = this.get('page')
+        }
         try {
-            const applydata = await this.model('cmswing/business').applyFirstQuery();
-            return this.success({code:200,applydatas:applydata});
+            const list = await this.model('cmswing/business').applyFirstQuery(page);
+            return this.success({code:200,list:list});
         }catch (e) {
             console.log(e);
             return this.fail({code:500});
         }
     }
 
-    async applySecondQueryAction(){
-        const data = this.post();
-        const user_id = data.user_id;
+    async applySecondListAction(){
+        if (think.isNullOrUndefined(this.get('page'))){
+            var page = 1;
+        }else{
+            var page = this.get('page')
+        }
         try {
-            const applydata = await this.model('cmswing/business').applySecondQuery();
-            return this.success({code:200,applydatas:applydata});
+            const list = await this.model('cmswing/business').applySecondQuery(page);
+            return this.success({code:200,list:list});
         }catch (e) {
             console.log(e);
             return this.fail({code:500});
