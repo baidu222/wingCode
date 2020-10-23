@@ -4297,7 +4297,7 @@ CREATE TABLE `cmswing_category` (
 -- ----------------------------
 -- Records of cmswing_category
 -- ----------------------------
-INSERT INTO `cmswing_category` VALUES ('1', 'wenzhangceshi', '文章测试', '0', '1', '0', '', 'fsf,犯得上发射点,', 'fdsfdsafdsafas', '', '', '', '', '2,3,4,5,6,11', '2', '1,2,3', '0', '1', '1', '0', '0', '1', '', '1379474947', '1530501692894', '1', '0', '1:人物\r\n2: 电商\r\n3: 投创\r\n4:智能硬件\r\n5:互联网＋\r\n6:巨头', '', '0', '1', '', '', '');
+INSERT INTO `cmswing_categcmswing_orderory` VALUES ('1', 'wenzhangceshi', '文章测试', '0', '1', '0', '', 'fsf,犯得上发射点,', 'fdsfdsafdsafas', '', '', '', '', '2,3,4,5,6,11', '2', '1,2,3', '0', '1', '1', '0', '0', '1', '', '1379474947', '1530501692894', '1', '0', '1:人物\r\n2: 电商\r\n3: 投创\r\n4:智能硬件\r\n5:互联网＋\r\n6:巨头', '', '0', '1', '', '', '');
 INSERT INTO `cmswing_category` VALUES ('40', 'tupianceshi', '图片测试', '0', '2', '12', '', '', '', '', 'picture', '', '', '5', '5', '1,2,3', '0', '1', '1', '0', '0', '1', null, '4294967295', '1530184055807', '1', '0', '', '', '0', '1', '', '', '');
 INSERT INTO `cmswing_category` VALUES ('45', 'shangchengceshi', '商城测试', '0', '5', '20', '', '', '', '', 'shop', '', '', '4', '4', '1,2,3', '0', '1', '1', '0', '0', '', null, '4294967295', '1506747141603', '1', '0', '', '', '0', '1', '', 'shop', '');
 INSERT INTO `cmswing_category` VALUES ('50', '', '我要服务', '45', '7', '0', '', '', '', '', 'shop', '', '', '4', '4', '1,2,3', '0', '1', '1', '0', '0', '', null, '4294967295', '1474140160549', '1', '0', '', '{\"required\":0,\"prefix\":0,\"default\":\"1\",\"defaultshow\":\"15\",\"types\":[{\"enable\":\"15\",\"name\":\"服务搜索内容\",\"description\":\"服务搜索内容\",\"show\":0}]}', '0', '1', '', '', '');
@@ -9668,3 +9668,43 @@ INSERT INTO `cmswing_zoning` VALUES ('16', '东北', '210000,220000,230000');
 INSERT INTO `cmswing_zoning` VALUES ('17', '西北', '610000,620000,630000,640000,650000');
 INSERT INTO `cmswing_zoning` VALUES ('18', '西南', '500000,510000,520000,530000,540000');
 INSERT INTO `cmswing_zoning` VALUES ('20', '港澳台', '710000,810000,820000');
+
+
+-- ----------------------------
+-- Table structure for cmswing_business
+-- `market_author` varchar(100) NOT NULL DEFAULT '' COMMENT '销售授权委托书路径',
+-- ----------------------------
+DROP TABLE IF EXISTS `cmswing_business`;
+CREATE TABLE `cmswing_business` (
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '执行用户id',
+  `biz_name` varchar(100) NOT NULL DEFAULT '' COMMENT '企业全称',
+  `biz_type` tinyint(2) unsigned NOT NULL DEFAULT '1' COMMENT '企业类型。生产企业:0,经销商:1',
+  `address` varchar(100) NOT NULL DEFAULT '' COMMENT '企业地址',
+  `store_name` varchar(100) NOT NULL DEFAULT '' COMMENT '店铺全称',
+  `store_type` tinyint(2) unsigned NOT NULL DEFAULT '1' COMMENT '店铺类型。旗舰店:0,专卖店:1,专营店:2',
+  `store_manager` varchar(30) NOT NULL DEFAULT '' COMMENT '店铺负责人姓名',
+  `manager_phone` varchar(20) NOT NULL DEFAULT '' COMMENT '店铺负责人电话',
+  `manager_email` varchar(20) NOT NULL DEFAULT '' COMMENT '店铺负责人邮箱',
+  `status` tinyint(2) unsigned NOT NULL DEFAULT '2' COMMENT '商户申请状态。待审核(提交):0,一审通过:10,一审驳回:11,二审通过:20,二审驳回:21,超时:30,重新提交:1,创建:2',
+  `contact` varchar(40) NOT NULL DEFAULT '' COMMENT '联系方式',
+  `introduction` varchar(255) NOT NULL DEFAULT '' COMMENT '企业介绍',
+  `biz_scope` varchar(255) NOT NULL DEFAULT '' COMMENT '企业经营范围',
+  `biz_prac` varchar(255) NOT NULL DEFAULT '' COMMENT '企业经营方式',
+  `expire_date` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '到期日期',
+  `first_pass_user` int NOT NULL DEFAULT 0 COMMENT '一审用户id',
+  `first_reject` varchar(255) NOT NULL DEFAULT '' COMMENT '一审驳回原因',
+  `second_pass_user` int NOT NULL DEFAULT 0 COMMENT '二审用户id',
+  `second_reject` varchar(255) NOT NULL DEFAULT '' COMMENT '二审驳回原因',
+  `logo` varchar(100) NOT NULL COMMENT '企业log路径',
+  `license` varchar(100) NOT NULL COMMENT '企业营业执照路径',
+  `account` varchar(100) NOT NULL DEFAULT '' COMMENT '银行开户许可证路径',
+  `prod_cert` varchar(100) NOT NULL DEFAULT '' COMMENT '医疗器械生产许可证路径',
+  `registration` varchar(100) NOT NULL DEFAULT '' COMMENT '生产备案凭证路径',
+  `online_sales` varchar(100) NOT NULL DEFAULT '' COMMENT '网络销售许可证路径',
+  `legal_person_front` varchar(100) NOT NULL DEFAULT '' COMMENT '法人身份证正面复印件路径',
+  `legal_person_back` varchar(100) NOT NULL DEFAULT '' COMMENT '法人身份证背面复印件路径',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT;
+
