@@ -10,13 +10,13 @@
         <section class="panel panel-default">
             <header class="panel-heading clearfix">
                 <ul class="nav nav-tabs pull-left">
-                    <li class="{{controller.get('model')|default('active', true)}}"><a href="/admin/approval/shop"> 全部
-                            <span class="badge bg-info">{{count}}</span></a></li>
+                    <!-- <li class="{{controller.get('model')|default('active', true)}}"><a href="/admin/approval/shop"> 全部
+                            <span class="badge bg-info">{{count}}</span></a></li> -->
                     {%for m in model%}
                     <li class="{%if controller.get('model')==m.id%}active{%endif%}"><a
-                            href="/admin/approval/shop/?model={{m.id}}">{{m.title}} {%if m.count > 0%}<span
-                                class="badge bg-info">{{m.count}}</span>{%endif%}</a>
-                        {%endfor%}
+                        href="/admin/approval/shop/?model={{m.id}}">{{m.title}}审核 {%if m.count > 0%}<span
+                            class="badge bg-info">{{m.count}}</span>{%endif%}</a>
+                    {%endfor%}
                     </li>
                 </ul>
                 <i title="" data-original-title="" class="fa fa-info-sign text-muted pull-right" data-toggle="tooltip"
@@ -39,7 +39,7 @@
 
             </div>
             <div class="table-responsive">
-
+                {%if btn != 4%}
                 <table class="table table-hover b-t b-light treetable" id="category">
                     <thead>
                         <tr>
@@ -55,7 +55,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for item in list.data %}
+                        {% for item in listshops.data %}
                         <tr>
                             <td><label class="checkbox m-n i-checks"><input class="ids" type="checkbox" name="ids"
                                         value="{{item.id}}"><i></i></label></td>
@@ -70,14 +70,10 @@
 
                             <td>
                                 <!-- <a href="/{{ctx.controller}}/adopta/?ids={{item.id}}" class="btn btn-rounded btn-xs btn-icon btn-success ajax-get" data-toggle="tooltip" data-placement="top" title="" data-original-title="通过审核"><i class="fa fa-check"></i></a> -->
-                                {%if item.model == 4%}
-                                <a href="/admin/approval/edgoods/?ids={{item.id}}" data-toggle="ajaxModal"
-                                    title="">编辑</a>
-                                {% elif item.model == 9%}
+                              
                                 <a href="/admin/approval/edshop/?ids={{item.id}}" data-toggle="ajaxModal"
                                     title="">编辑</a>
 
-                                {%endif%}
                             </td>
                         </tr>
                         {% else %}
@@ -95,6 +91,62 @@
 
                     </tbody>
                 </table>
+                
+                {% else %}
+                <table class="table table-hover b-t b-light treetable" id="category">
+                    <thead>
+                        <tr>
+                            <th style="width:20px;"><label class="checkbox m-n i-checks"><input
+                                        type="checkbox"><i></i></label></th>
+                            <th> 编号 </th>
+                            <th> 商铺名称 </th>
+                            <th>卖家id</th>
+                            <th>最后更新</th>
+                            <th>状态</th>
+                            <th>浏览</th>
+                            <th>操作</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in listgoods.data %}
+                        <tr>
+                            <td><label class="checkbox m-n i-checks"><input class="ids" type="checkbox" name="ids"
+                                        value="{{item.id}}"><i></i></label></td>
+                            <td>{{item.id}}</td>
+                            <td><a href="/admin/user/showuser/?id={{item.uid}}" class="text-info"
+                                    data-toggle="ajaxModal">{{item.uid|get_nickname}}</a></td>
+                            <td>{{item.uid}}</td>
+                            <td>{{item.time | moment('YYYY-MM-DD HH:mm:ss')}}</td>
+                            <!-- <td>{{item.state}}</td> -->
+                            <td>状态</td>
+                            <td>浏览</td>
+
+
+                            <td>
+                                <!-- <a href="/{{ctx.controller}}/adopta/?ids={{item.id}}" class="btn btn-rounded btn-xs btn-icon btn-success ajax-get" data-toggle="tooltip" data-placement="top" title="" data-original-title="通过审核"><i class="fa fa-check"></i></a> -->
+
+                                <a href="/admin/approval/edgoods/?ids={{item.id}}" data-toggle="ajaxModal"
+                                    title="">编辑</a>
+                            </td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="7">
+                                <div class="alert alert-warning alert-block">
+                                    <button data-dismiss="alert" class="close" type="button">×</button>
+                                    <p>This would display if the 'item' collection were empty</p>
+                                </div>
+                            </td>
+                        </tr>
+
+                        {% endfor %}
+
+
+                    </tbody>
+                </table>
+
+                {% endif %}
             </div>
 
             <footer class="panel-footer">
@@ -102,7 +154,11 @@
 
 
                     <div class="col-sm-12 text-right text-center-xs">
-                        {{pagerData | safe}}
+                        {%if btn == 4%}
+                            {{ pagerDataGoods | safe}}
+                        {%else%}
+                            {{ pagerDataShops | safe}}
+                        {% endif%}
                     </div>
                 </div>
             </footer>

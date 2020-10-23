@@ -1,3 +1,4 @@
+
 <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
@@ -6,6 +7,7 @@
         </div>
         <div class="modal-body" style="padding: 0">
             <div class="table-responsive">
+                <!-- <p>{{detailsInfostr}}</p> -->
                 <table class="table table-striped b-t b-light">
                     <thead>
                         <tr>
@@ -15,7 +17,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {%for k,v in info%}
+                        {%for k,v in detailsInfo%}
                         <tr>
 
                             <td>{{k}}</td>
@@ -26,6 +28,12 @@
                         {%endfor%}
                     </tbody>
                 </table>
+                <div class="row">
+                    <div class="col-lg-12">
+           
+                        <section></section>
+                    </div>
+                </div>
 
                 <label class="col-sm-2 control-label">
                     拒绝原因:
