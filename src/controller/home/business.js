@@ -388,7 +388,28 @@ module.exports = class extends think.cmswing.home {
         }
     }
 
-    async applyFirstListAction(){
+
+    async applyListAction(){
+        if (think.isNullOrUndefined(this.get('page'))){
+            var page = 1;
+        }else{
+            var page = this.get('page')
+        }
+        try {
+            const list = await this.model('cmswing/business').applyListQuery(page);
+            return this.success({code:200,list:list});
+        }catch (e) {
+            console.log(e);
+            return this.fail({code:500});
+        }
+    }
+
+
+    /**
+     *
+     * 原一审待审和二审待审的列表分开展示，改为合并展示。备份
+     *
+     * async applyFirstListAction(){
         if (think.isNullOrUndefined(this.get('page'))){
             var page = 1;
         }else{
@@ -403,7 +424,7 @@ module.exports = class extends think.cmswing.home {
         }
     }
 
-    async applySecondListAction(){
+     async applySecondListAction(){
         if (think.isNullOrUndefined(this.get('page'))){
             var page = 1;
         }else{
@@ -416,6 +437,15 @@ module.exports = class extends think.cmswing.home {
             console.log(e);
             return this.fail({code:500});
         }
+    }
+     *
+     */
+
+
+    async pollingAction(){
+        if(!this.isCli)
+            return this.fail(1000, 'deny');
+        await this.model('cmswing/business').expireCheck();
     }
 
     async uploadAction(){

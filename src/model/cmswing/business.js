@@ -19,14 +19,41 @@ module.exports = class extends think.Model {
     return applydata;
   }
 
-  async applyFirstQuery(page){
+  async applyListQuery(page){
+    const list = await this.model('business').where({status: ['IN', [0, 1, 10]]}).page(page).countSelect()
+    return list;
+  }
+
+  /**
+   * 暂时不提供一审，二审分开查询
+   *
+   async applyFirstQuery(page){
     const list = await this.model('business').where('status = 0 OR status = 1').page(page).countSelect()
     return list;
   }
 
-  async applySecondQuery(page){
+   async applySecondQuery(page){
     const list = await this.model('business').where({status: 10}).page(page).countSelect();
     return list;
+  }
+   */
+
+
+  async expireCheck(){
+    const applydatas = await this.model('business').where({status: 20}).select();
+    for (const itme of applydatas) {
+      const warningtime = think.ms('90 days');
+      const checktime = new Date(new Date().toLocaleDateString()).getTime();
+      //商户注册到期，该商户商品全部下架
+      if (checktime >= itme.expire_date){
+
+      }
+      //距离商户注册90天，进行报警提醒
+      if (checktime >= (itme.expire_date + warningtime)){
+
+      }
+    }
+    return applydatas;
   }
 
 };
