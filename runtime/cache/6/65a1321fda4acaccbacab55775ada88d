@@ -1,0 +1,1 @@
+{"content":{"content":"\n\n\n<script src=\"/static/assets/plugins/share/js/social-share.min.js\"></script>\n<script>\n    uParse('#contentcmswing', {\n        rootPath: '/static/admin/js/udeitor/'\n    })\n</script>\n\n\n"},"expire":1603610583646}

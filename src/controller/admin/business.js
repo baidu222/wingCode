@@ -106,21 +106,46 @@ module.exports = class extends think.cmswing.admin {
        */
       async informationAction() {
         const list = await this.model('member_group').order('sort ASC').select();
-        let formData = this.post();//获取所有传进来的表单数据
-        console.log(formData)
         for (const v of list) {
-          
           v.count = await this.model('member').where({groupid: v.groupid, status: 1}).count('id');
         }
-        let info = {'icon': ''}
-        let info2 = {'icon': ''}
+        
         this.assign('list', list);
         this.meta_title = '商家认证信息';
-        await this.hook('adminUpPic', 'icon', info.icon, {$hook_key: 'icon'});
-       
-      
+        await this.hook('adminUpPic', 'logo', 0, {$hook_key: 'logo'});
+        await this.hook('adminUpPic', 'license', 0, {$hook_key: 'license'});
+        await this.hook('adminUpPic', 'account', 0, {$hook_key: 'account'});
+        await this.hook('adminUpPic', 'prod_cert', 0, {$hook_key: 'prod_cert'});
+        await this.hook('adminUpPic', 'registration', 0, {$hook_key: 'registration'});
+        await this.hook('adminUpPic', 'online_sales', 0, {$hook_key: 'online_sales'});
+        await this.hook('adminUpPic', 'legal_person_front', 0, {$hook_key: 'legal_person_front'});
+        await this.hook('adminUpPic', 'legal_person_back', 0, {$hook_key: 'legal_person_back'});
+
+        // await this.hook('adminUpPic', 'logo2', 0, {$hook_key: 'logo2'});
+        
+      if(this.isPost){
+        $.ajax({
+            url: '/home/business/applysubmit',
+            type: 'POST', 
+            contentType: false,
+            // 告诉jQuery不要去设置Content-Type请求头
+            processData: false,
+            data: d, 
+            success:res=>{
+                console.log(res)
+                if(!res.errno) {
+                    alert('Update Successfully！');
+                    window.location.reload();
+                }
+                else alert(res.errmsg);
+            }
+        });
+        const data = this.post();
+        return this.fail('23333')
+        
+      }
   
-        return this.fail();
+        return this.display();
         
       };
 
@@ -135,6 +160,19 @@ module.exports = class extends think.cmswing.admin {
         let formData = this.post();//获取所有传进来的表单数据
         let affectedRows = await userList.where({user_loginname: userInfo.login}).update({user_name: this.post('inputNickname'),user_mailbox:this.post('inputEmail'),user_tellphone:this.post('inputTell'),user_city:this.post('inputCity')});
         this.success();//此接口的返回值
+      }
+
+    /**
+       * role
+       * 权限管理首页ajax角色列表
+       * @returns {Promise|*}
+       */
+      async applysubmitAction(){//通过post的方式来获取值即可
+        if(this.isPost){
+          const data = this.post();
+          return this.fail('23333')
+          
+        }
       }
   };
   

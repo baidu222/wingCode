@@ -52,7 +52,7 @@ module.exports = class extends think.cmswing.admin {
       }
       const res = this.model('keyword').add(data);
       if (res) {
-        return this.success({name: '添加成功！', url: '/admin/keyword/index'});
+        // return this.success({name: '添加成功！', url: '/admin/keyword/index'});
       } else {
         return this.fail('添加失败！');
       }
