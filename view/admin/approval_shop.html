@@ -14,9 +14,9 @@
                             <span class="badge bg-info">{{count}}</span></a></li> -->
                     {%for m in model%}
                     <li class="{%if controller.get('model')==m.id%}active{%endif%}"><a
-                        href="/admin/approval/shop/?model={{m.id}}">{{m.title}}审核 {%if m.count > 0%}<span
-                            class="badge bg-info">{{m.count}}</span>{%endif%}</a>
-                    {%endfor%}
+                            href="/admin/approval/shop/?model={{m.id}}">{{m.title}}审核 {%if m.count > 0%}<span
+                                class="badge bg-info">{{m.count}}</span>{%endif%}</a>
+                        {%endfor%}
                     </li>
                 </ul>
                 <i title="" data-original-title="" class="fa fa-info-sign text-muted pull-right" data-toggle="tooltip"
@@ -60,17 +60,15 @@
                             <td><label class="checkbox m-n i-checks"><input class="ids" type="checkbox" name="ids"
                                         value="{{item.id}}"><i></i></label></td>
                             <td>{{item.id}}</td>
-                            <td><a href="/admin/user/showuser/?id={{item.uid}}" class="text-info"
-                                    data-toggle="ajaxModal">{{item.uid|get_nickname}}</a></td>
-                            <td>{{item.time | moment('YYYY-MM-DD HH:mm:ss')}}</td>
-                            <!-- <td>{{item.state}}</td> -->
-                            <td>状态</td>
+                            <td><a href="/admin/user/showuser/?id={{item.user_id}}" class="text-info"
+                                    data-toggle="ajaxModal">{{item.user_id|get_nickname}}</a></td>
+                            <td>{{item.expire_date | moment('YYYY-MM-DD HH:mm:ss')}}</td>
+                            <td>{%if item.status == 0 %}待审核{%elif item.status== 1%}重新提交{%elif item.status == 10 %}一审通过{%endif%}</td>
                             <td>浏览</td>
-
 
                             <td>
                                 <!-- <a href="/{{ctx.controller}}/adopta/?ids={{item.id}}" class="btn btn-rounded btn-xs btn-icon btn-success ajax-get" data-toggle="tooltip" data-placement="top" title="" data-original-title="通过审核"><i class="fa fa-check"></i></a> -->
-                              
+
                                 <a href="/admin/approval/edshop/?ids={{item.id}}" data-toggle="ajaxModal"
                                     title="">编辑</a>
 
@@ -91,7 +89,7 @@
 
                     </tbody>
                 </table>
-                
+
                 {% else %}
                 <table class="table table-hover b-t b-light treetable" id="category">
                     <thead>
@@ -126,7 +124,7 @@
                             <td>
                                 <!-- <a href="/{{ctx.controller}}/adopta/?ids={{item.id}}" class="btn btn-rounded btn-xs btn-icon btn-success ajax-get" data-toggle="tooltip" data-placement="top" title="" data-original-title="通过审核"><i class="fa fa-check"></i></a> -->
 
-                                <a href="/admin/approval/edgoods/?ids={{item.id}}" data-toggle="ajaxModal"
+                                <a href="/admin/approval/edgoods/?ids={{item.id}}&model={{btn}}" data-toggle="ajaxModal"
                                     title="">编辑</a>
                             </td>
                         </tr>
@@ -155,9 +153,9 @@
 
                     <div class="col-sm-12 text-right text-center-xs">
                         {%if btn == 4%}
-                            {{ pagerDataGoods | safe}}
+                        {{ pagerDataGoods | safe}}
                         {%else%}
-                            {{ pagerDataShops | safe}}
+                        {{ pagerDataShops | safe}}
                         {% endif%}
                     </div>
                 </div>
@@ -171,7 +169,30 @@
 
 {% block script %}
 <script type="text/javascript">
+    function applyList(page) {
+        debugger
+        $.ajax({
+            type: "post",
+            // /ext/changyan/index/signin
+            url: "/home/business/applyList",
+            data: {
+                'page': page,
+            },
+            // data:{username:'username',password:'password'},
 
+            success: function (data) {
+                if (data.errno == 1000) {
+                    debugger
+                    alert(data.errmsg)
+                } else {
+                    debugger
+                    // window.close();
+                    alert('成功')
+                }
+            }
+        })
+    };
+    // applyList(1);
 </script>
 
 {% endblock %}
