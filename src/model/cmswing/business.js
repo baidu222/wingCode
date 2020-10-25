@@ -10,7 +10,7 @@ module.exports = class extends think.Model {
   }
 
   async applyQueryByUser(user_id) {
-    const applydata = await this.model('business').where({user_id: user_id}).select();
+    const applydata = await this.model('business').where({user_id: user_id}).find();
     return applydata;
   }
 
@@ -19,24 +19,20 @@ module.exports = class extends think.Model {
     return applydata;
   }
 
-  async applyListQuery(page){
-    const list = await this.model('business').where({status: ['IN', [0, 1, 10]]}).page(page).countSelect()
-    return list;
-  }
-
-  /**
-   * 暂时不提供一审，二审分开查询
-   *
-   async applyFirstQuery(page){
+  async applyFirstQuery(page){
     const list = await this.model('business').where('status = 0 OR status = 1').page(page).countSelect()
     return list;
   }
 
-   async applySecondQuery(page){
+  async applySecondQuery(page){
     const list = await this.model('business').where({status: 10}).page(page).countSelect();
     return list;
   }
-   */
+
+  async applyConditionQuery(condition){
+    const list = await this.model('business').where(condition).select();
+    return list;
+  }
 
 
   async expireCheck(){

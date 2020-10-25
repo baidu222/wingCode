@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2018-07-20 16:56:54
+Date: 2020-10-25 16:56:54
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -9672,7 +9672,6 @@ INSERT INTO `cmswing_zoning` VALUES ('20', '港澳台', '710000,810000,820000');
 
 -- ----------------------------
 -- Table structure for cmswing_business
--- `market_author` varchar(100) NOT NULL DEFAULT '' COMMENT '销售授权委托书路径',
 -- ----------------------------
 DROP TABLE IF EXISTS `cmswing_business`;
 CREATE TABLE `cmswing_business` (
@@ -9692,9 +9691,9 @@ CREATE TABLE `cmswing_business` (
   `biz_scope` varchar(255) NOT NULL DEFAULT '' COMMENT '企业经营范围',
   `biz_prac` varchar(255) NOT NULL DEFAULT '' COMMENT '企业经营方式',
   `expire_date` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '到期日期',
-  `first_pass_user` int NOT NULL DEFAULT 0 COMMENT '一审用户id',
+  `first_pass_user` int NOT NULL DEFAULT '0' COMMENT '一审用户id',
   `first_reject` varchar(255) NOT NULL DEFAULT '' COMMENT '一审驳回原因',
-  `second_pass_user` int NOT NULL DEFAULT 0 COMMENT '二审用户id',
+  `second_pass_user` int NOT NULL DEFAULT '0 'COMMENT '二审用户id',
   `second_reject` varchar(255) NOT NULL DEFAULT '' COMMENT '二审驳回原因',
   `logo` varchar(100) NOT NULL COMMENT '企业log路径',
   `license` varchar(100) NOT NULL COMMENT '企业营业执照路径',
@@ -9706,5 +9705,32 @@ CREATE TABLE `cmswing_business` (
   `legal_person_back` varchar(100) NOT NULL DEFAULT '' COMMENT '法人身份证背面复印件路径',
   PRIMARY KEY (`id`),
   UNIQUE KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT;
+
+-- ----------------------------
+-- Table structure for cmswing_goods
+-- ----------------------------
+DROP TABLE IF EXISTS `cmswing_goods`;
+CREATE TABLE `cmswing_goods` (
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `batch_number` varchar(100) NOT NULL DEFAULT '' COMMENT '生产批号',
+  `user_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加用户id',
+  `biz_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '商户开户id(business表id)',
+  `name` varchar(100) NOT NULL DEFAULT '' COMMENT '商品名称',
+  `remarks` varchar(100) NOT NULL DEFAULT '' COMMENT '商品备注',
+  `num` int(10) NOT NULL DEFAULT '0' COMMENT '商品数量',
+  `price` double NOT NULL DEFAULT '0.0' COMMENT '商品单价',
+  `status` tinyint(2) unsigned NOT NULL DEFAULT '2' COMMENT '商品申请状态。待审核(添加):0,一审通过:10,一审驳回:11,二审通过:20,二审驳回:21,超时:30,重新提交:1,创建:2',
+  `withdraw` tinyint(2) unsigned NOT NULL DEFAULT '1' COMMENT '商品是否下架，在架:0,下架:1',
+  `first_pass_user` int NOT NULL DEFAULT '0' COMMENT '一审用户id',
+  `first_reject` varchar(255) NOT NULL DEFAULT '' COMMENT '一审驳回原因',
+  `second_pass_user` int NOT NULL DEFAULT '0 'COMMENT '二审用户id',
+  `second_reject` varchar(255) NOT NULL DEFAULT '' COMMENT '二审驳回原因',
+  `picture` varchar(100) NOT NULL DEFAULT '' COMMENT '商品图片路径',
+  `picture1` varchar(100) NOT NULL DEFAULT '' COMMENT '商品图片路径',
+  `picture2` varchar(100) NOT NULL DEFAULT '' COMMENT '商品图片路径',
+  `market_author` varchar(100) NOT NULL DEFAULT '' COMMENT '销售授权委托书路径',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY (`batch_number`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT;
 
