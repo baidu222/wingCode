@@ -7,6 +7,7 @@
 
     label {
         text-align: right;
+        padding-top: 0 !important;
     }
 
     .clear {
@@ -27,7 +28,7 @@
             <h4 class="modal-title">{{controller.meta_title}}</h4>
         </div>
 
-        <form method="post" class="form-horizontal" action="/admin/approval/edshop" data-validate="parsley" target="/admin/approval/index">
+        <form method="post" class="form-horizontal" action="/admin/approval/edshop" data-validate="parsley">
             <div class="modal-body refuse-content" style="padding: 0">
                 <div class="table-responsive">
                     <!-- <p style="background-color: aqua;">{{detailsxx}}</p> -->
@@ -267,7 +268,7 @@
                     </div>
                     <div class="clear"></div> 
                     
-                    {%if details.status != 10 and details.status != 20 %}
+                    {%if details.status !=20 %}
                     <label class="col-sm-2 control-label">
                         拒绝原因:
                     </label>
@@ -283,20 +284,19 @@
                 <input type="hidden" name="biz_id" value="{{details.id}}">
                 <input type="hidden" name="user_id" value="{{userinfo.uid}}">
 
-                {%if details.status == 0%}
+                {%if details.status == 0 or details.status == 1%}
                     <button class="btn btn-danger ajax-post" type="submit" name="action_type" value="first_reject" target-form="form-horizontal">拒绝</button>
                     <button class="btn btn-success ajax-post" type="submit" target-form="form-horizontal" name="action_type" value="first_pass">通过</button>
                     <a href="#" class="btn btn-default" data-dismiss="modal">关闭</a>
 
-                {%elif details.status == 1 or details.status == 11 or details.status == 21%}
+                {%elif details.status == 10%}
                     <button class="btn btn-danger ajax-post" type="submit" target-form="form-horizontal" name="action_type" value="second_reject">拒绝</button>
                     <button class="btn btn-success ajax-post" type="submit" target-form="form-horizontal" name="action_type" value="second_pass">通过</button>
                     <a href="#" class="btn btn-default" data-dismiss="modal">关闭</a>
 
-                {%elif details.status == 10 or details.status == 20%}
+                {%elif or details.status == 20%}
                     <a href="#" class="btn btn-default" data-dismiss="modal">关闭</a>
                 {%endif%}
-                <!-- <iframe name="myIframe" style="display:none"></iframe> -->
             </div>
         </form>
 

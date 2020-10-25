@@ -12,7 +12,7 @@ module.exports = class extends think.Model {
   async goodsUpdate(condition,updatedata){
     const goodsdata = await this.model('goods').where(condition).update(updatedata);
     return goodsdata;
-  }
+  } 
 
    async goodsFirstQuery(page){
     const list = await this.model('goods').where('status = 0 OR status = 1').page(page).countSelect()

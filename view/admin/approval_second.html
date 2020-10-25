@@ -13,9 +13,18 @@
                     <li class="{{controller.get('model')|default('active', true)}}"><a href="/admin/approval/second"> 全部
                             <span class="badge bg-info">{{count}}</span></a></li>
                     {%for m in model%}
-                    <li class="{%if controller.get('model')==m.id%}active{%endif%}"><a
-                            href="/admin/approval/second/?model={{m.id}}">{{m.title}}审核 {%if m.count > 0%}<span
-                                class="badge bg-info">{{m.count}}</span>{%endif%}</a>
+                    <li class="{%if controller.get('model')==m.id%}active{%endif%}">
+                        <a href="/admin/approval/second/?model={{m.id}}">{{m.title}}审核 
+                            {%if btn==m.id and btn == 9 and countshop > 0%}
+                                <span class="badge bg-info">
+                                    {{countshop}}
+                                </span>
+                            {%elif btn==m.id and btn == 4 and countgoods > 0%}
+                                <span class="badge bg-info">
+                                    {{countgoods}}
+                                </span>
+                            {%endif%}
+                        </a>
                         {%endfor%}
                     </li>
                 </ul>
@@ -26,7 +35,7 @@
 
                 <div class="col-sm-9 m-b-xs">
                     <div class="">
-<!-- 
+                    <!-- 
                         <a class="btn btn-sm btn-success ajax-post" target-form="ids" href="/{{ctx.controller}}/adopta">
                             通过审核
                         </a>
@@ -55,7 +64,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for item in listshops.data %}
+                        {% for item in listshop.data %}
                         <tr>
                             <td><label class="checkbox m-n i-checks"><input class="ids" type="checkbox" name="ids"
                                         value="{{item.id}}"><i></i></label></td>
@@ -63,14 +72,13 @@
                             <td><a href="/admin/user/showuser/?id={{item.user_id}}" class="text-info"
                                     data-toggle="ajaxModal">{{item.user_id|get_nickname}}</a></td>
                             <td>{{item.expire_date | moment('YYYY-MM-DD HH:mm:ss')}}</td>
-                            <td>{%if item.status == 1 %}待二审{%elif item.status== 11%}待二审{%elif item.status == 20 %}二审通过{%elif item.status == 21 %}二审驳回{%endif%}</td>
-                            <!-- <td>浏览</td> -->
+                            <td>{%if item.status == 0 %}待审核{%elif item.status== 1%}重新提交{%elif item.status == 10 %}一审通过{%endif%}
+                            </td>
 
                             <td>
                                 <!-- <a href="/{{ctx.controller}}/adopta/?ids={{item.id}}" class="btn btn-rounded btn-xs btn-icon btn-success ajax-get" data-toggle="tooltip" data-placement="top" title="" data-original-title="通过审核"><i class="fa fa-check"></i></a> -->
 
-                                <a href="/admin/approval/edshop/?ids={{item.id}}" data-toggle="ajaxModal"
-                                    title="">编辑</a>
+                                <a href="/admin/approval/edshop/?ids={{item.id}}&model={{btn}}" class="text-info" data-toggle="ajaxModal">编辑</a>
 
                             </td>
                         </tr>
@@ -97,11 +105,11 @@
                             <th style="width:20px;"><label class="checkbox m-n i-checks"><input
                                         type="checkbox"><i></i></label></th>
                             <th> 编号 </th>
-                            <th> 商铺名称 </th>
+                            <th> 商品名称 </th>
                             <th>卖家id</th>
                             <th>最后更新</th>
                             <th>状态</th>
-                            <th>浏览</th>
+                            <!-- <th>浏览</th> -->
                             <th>操作</th>
 
                         </tr>
@@ -112,18 +120,25 @@
                             <td><label class="checkbox m-n i-checks"><input class="ids" type="checkbox" name="ids"
                                         value="{{item.id}}"><i></i></label></td>
                             <td>{{item.id}}</td>
-                            <td><a href="/admin/user/showuser/?id={{item.uid}}" class="text-info"
-                                    data-toggle="ajaxModal">{{item.uid|get_nickname}}</a></td>
-                            <td>{{item.uid}}</td>
+                            <td>{{item.name}}</td>
+                            <td><a href="/admin/user/showuser/?id={{item.biz_id}}" class="text-info"
+                                    data-toggle="ajaxModal">{{item.biz_id|get_nickname}}</a></td>
                             <td>{{item.time | moment('YYYY-MM-DD HH:mm:ss')}}</td>
-                            <!-- <td>{{item.state}}</td> -->
-                            <td>状态</td>
-                            <td>浏览</td>
-                            <td>
-                                <!-- <a href="/{{ctx.controller}}/adopta/?ids={{item.id}}" class="btn btn-rounded btn-xs btn-icon btn-success ajax-get" data-toggle="tooltip" data-placement="top" title="" data-original-title="通过审核"><i class="fa fa-check"></i></a> -->
+                            <td>{%if item.status == 0 %}待审核
+                                {%elif item.status== 10%}一审通过
+                                {%elif item.status == 11 %}待二审
+                                {%elif item.status == 20 %}二审通过
+                                {%elif item.status == 21 %}二审驳回
+                                {%elif item.status == 30 %}超时
+                                {%elif item.status == 1 %}重新提交
+                                {%elif item.status == 2 %}创建
+                                {%endif%}
+                            
+                            <!-- <td>浏览</td> -->
 
+                            <td>
                                 <a href="/admin/approval/edgoods/?ids={{item.id}}&model={{btn}}" data-toggle="ajaxModal"
-                                    title="">编辑</a>
+                                    >编辑</a>
                             </td>
                         </tr>
                         {% else %}
@@ -135,22 +150,80 @@
                                 </div>
                             </td>
                         </tr>
+
                         {% endfor %}
+
+                    </tbody>
+                </table>
+                {%else%}
+                <table class="table table-hover b-t b-light treetable" id="category">
+                    <thead>
+                        <tr>
+                            <th style="width:20px;"><label class="checkbox m-n i-checks"><input
+                                        type="checkbox"><i></i></label></th>
+                            <th> 用户 </th>
+                            <th>标题</th>
+                            <th>发布时间</th>
+                            <th>操作</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in listgoods.data %}
+                        <tr>
+                            <td><label class="checkbox m-n i-checks"><input class="ids" type="checkbox" name="ids"
+                                        value="{{item.id}}"><i></i></label></td>
+                            <td><a href="/admin/user/showuser/?id={{item.uid}}" class="text-info"
+                                    data-toggle="ajaxModal">{{item.uid|get_nickname}}</a></td>
+                            <td><a href="/admin/approval/details/?id={{item.id}}" class="text-info"
+                                    data-toggle="ajaxModal">{{item.title}} <i class="fa fa-search-plus"></i> </a> </td>
+                            <td>{{item.time | moment('YYYY-MM-DD HH:mm:ss')}}</td>
+
+                            <td>
+                                <a href="/admin/approval/details/?id={{item.id}}"
+                                    class="btn btn-rounded btn-xs btn-icon btn-default" data-toggle="ajaxModal"
+                                    title=""><i class="fa fa-search-plus"></i></a>
+                                <a href="#" class="btn btn-rounded btn-xs btn-icon btn-default" data-toggle="tooltip"
+                                    data-placement="top" title="" data-original-title="编辑"><i
+                                        class="fa fa-pencil-square-o"></i></a>
+                                <a href="/{{ctx.controller}}/adopta/?ids={{item.id}}"
+                                    class="btn btn-rounded btn-xs btn-icon btn-success ajax-get" data-toggle="tooltip"
+                                    data-placement="top" title="" data-original-title="通过审核"><i
+                                        class="fa fa-check"></i></a>
+                                <a href="/{{ctx.controller}}/refuse/?ids={{item.id}}"
+                                    class="btn btn-rounded btn-xs btn-icon btn-danger ajax-get" data-toggle="tooltip"
+                                    data-placement="top" title="" data-original-title="拒绝审核"><i
+                                        class="fa fa-minus-circle"></i></a>
+                            </td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="7">
+                                <div class="alert alert-warning alert-block">
+                                    <button data-dismiss="alert" class="close" type="button">×</button>
+                                    <p>This would display if the 'item' collection were empty</p>
+                                </div>
+                            </td>
+                        </tr>
+
+                        {% endfor %}
+
+
                     </tbody>
                 </table>
                 {% endif %}
-            </div>
 
+            </div>
             <footer class="panel-footer">
                 <div class="row">
-
-
                     <div class="col-sm-12 text-right text-center-xs">
-                        {%if btn == 4%}
-                        {{ pagerDataGoods | safe}}
+                        {%if btn == 9%}
+                        {{pagerDataShop | safe}}
+                        {%elif btn == 4%}
+                        {{pagerDataGoods | safe}}
                         {%else%}
-                        {{ pagerDataShops | safe}}
-                        {% endif%}
+                        {{pagerData | safe}}
+                        {%endif%}
                     </div>
                 </div>
             </footer>

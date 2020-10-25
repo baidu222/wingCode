@@ -226,7 +226,7 @@ module.exports = class extends think.cmswing.home {
         if (think.isNullOrUndefined(this.get('page'))){
             var page = 1;
         }else{
-            var page = this.get('page');
+            var page = this.get('page'); 
         }
         try {
             const list = await this.model('cmswing/goods').goodsFirstQuery(page);

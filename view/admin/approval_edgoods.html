@@ -1,69 +1,204 @@
+{% block style %}
+<style type="text/css">
+    .refuse-content {
+        position: relative;
+        margin-top: 15px;
+    }
+
+    label {
+        text-align: right;
+        padding-top: 0 !important;
+    }
+
+    .clear {
+        clear: both;
+    }
+
+    .form-horizontal .form-group {
+        margin: 0 0 15px 0;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #e5e5e5;
+    }
+</style>
+{% endblock %}
 <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">{{controller.meta_title}} {{ids}}</h4>
+            <h4 class="modal-title">{{controller.meta_title}}</h4>
         </div>
-        <div class="modal-body" style="padding: 0">
-            <div class="table-responsive">
-                <!-- <p>{{detailsInfostr}}</p> -->
-
-                <table class="table table-striped b-t b-light">
-                    <thead>
-                        <tr>
-
-                            <th>字段</th>
-                            <th>内容</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {%for k,v in detailsInfo%}
-                        <tr>
-
-                            <td>{{k}}</td>
-                            <!-- {{v|safe}}展示带标签的内容 -->
-                            <td>{% if k =='content'%}{{v|safe}}{%else%}{{v}}{%endif%}</td>
-
-                        </tr>
-                        {%endfor%}
-                    </tbody>
-                </table>
-                {#
-                <div class="row">
-                    <div class="col-lg-12">
-                        <ul class="nav nav-tabs ">
-                            {% set mm = model.field_group | parse_config_attr|length %}
-                            {% for key ,group in model.field_group | parse_config_attr %}
-                            {%if loop.index != mm%}
-                            <li {% if 1 == key %} class="active" {% endif %}><a data-toggle="tab"
-                                    href="#tabl-{{key}}"><i class="fa fa-comments text-muted"></i> {{group}}</a></li>
-                            {%endif%}
-                            {% endfor %}
-                        </ul>
-                        
+        <form method="post" class="form-horizontal" action="/admin/approval/edgoods" data-validate="parsley">
+            <div class="modal-body refuse-content" style="padding: 0">
+                <div class="table-responsive">
+                    <!-- <p style="background-color: aqua;">{{detailsxx}}</p> -->
+                    <!-- 商品名称 -->
+                    <div class="form-group" style="margin-top: 25px">
+                        <label class="col-sm-3 control-label font-bold">商品名称</label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    {{details.name}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
                     </div>
-                </div>
-                #}
-                <label class="col-sm-2 control-label">
-                    拒绝原因:
-                </label>
-                <div class="col-sm-10">
-                    <textarea name="reject" class="form-control"></textarea>
-                </div>
-                <div style="clear:both"></div>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <!-- <a href="#" class="btn btn-default" data-dismiss="modal">关闭</a> -->
-            
-            
-            <a class="btn btn-danger ajax-get" target-form="ids" href="/{{ctx.controller}}/refuse/?ids={{ids}}">
-                拒绝
-            </a>
-            <a class="btn btn-success ajax-post" target-form="ids" href="/{{ctx.controller}}/adopta?ids={{ids}}">
-                通过
-            </a>
+                    <!-- 商品批号 -->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label font-bold">商品批号</label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    {{details.batch_number}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <!-- 商品数量 -->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label font-bold">商品数量</label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    {{details.num}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <!-- 商品单价 -->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label font-bold">商品单价</label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    {{details.price}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <!-- 上下架 -->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label font-bold">上下架</label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    {%if details.withdraw == 0 %}在架{%elif details.withdraw== 1%}下架
+                                    {%endif%}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <!-- 商品备注 -->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label font-bold">备注</label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    {{details.remarks}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
 
-        </div>
+                    <!-- 图片1上传-->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label font-bold">商品图片</label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    <a href="{{details.picture}}" class="pull-left thumb-md avatar b-3x m-r" target="_blank>
+                                        <img src=" {{details.picture}}">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <!-- 图片1上传-->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label font-bold">商品图片1</label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    <a href="{{details.picture1}}" class="pull-left thumb-md avatar b-3x m-r" target="_blank>
+                                        <img src=" {{details.picture1}}">
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <!-- 图片1上传-->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label font-bold">商品图片2</label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-md-5 flex-wrap">
+                                    <a href="{{details.picture2}}" class="pull-left thumb-md avatar b-3x m-r" target="_blank>
+                                        <img src=" {{details.picture2}}">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <!-- 图片1上传-->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label font-bold" style="padding-left: 7px;">销售授权委托书</label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-md-5 flex-wrap">
+                                    <a href="{{details.market_author}}" class="pull-left thumb-md avatar b-3x m-r"
+                                        target="_blank>
+                                        <img src=" {{details.market_author}}">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="clear"></div>
+
+                    {%if details.status != 20 %}
+                    <label class="col-sm-2 control-label">
+                        拒绝原因:
+                    </label>
+                    <div class="col-sm-10">
+                        <textarea name="reject" class="form-control"></textarea>
+                    </div>
+                    {%endif%}
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="hidden" name="goods_id" value="{{details.id}}">
+                <input type="hidden" name="user_id" value="{{userinfo.uid}}">
+
+                {%if details.status == 0 or details.status == 1%}
+                    <button class="btn btn-danger ajax-post" type="submit" name="action_type" value="first_reject"
+                        target-form="form-horizontal">拒绝</button>
+                    <button class="btn btn-success ajax-post" type="submit" target-form="form-horizontal" name="action_type"
+                        value="first_pass">通过</button>
+                    <a href="#" class="btn btn-default" data-dismiss="modal">关闭</a>
+
+                {%elif details.status == 10%}
+                    <button class="btn btn-danger ajax-post" type="submit" target-form="form-horizontal" name="action_type"
+                        value="second_reject">拒绝</button>
+                    <button class="btn btn-success ajax-post" type="submit" target-form="form-horizontal" name="action_type"
+                        value="second_pass">通过</button>
+                    <a href="#" class="btn btn-default" data-dismiss="modal">关闭</a>
+
+                {%elif details.status == 20%}
+                    <a href="#" class="btn btn-default" data-dismiss="modal">关闭</a>
+                {%endif%}
+            </div>
+        </form>
     </div><!-- /.modal-content -->
 </div><!-- /.modal-dialog -->

@@ -14,8 +14,17 @@
                             <span class="badge bg-info">{{count}}</span></a></li>
                     {%for m in model%}
                     <li class="{%if controller.get('model')==m.id%}active{%endif%}"><a
-                            href="/admin/approval/index/?model={{m.id}}">{{m.title}} {%if m.count > 0%}<span
-                                class="badge bg-info">{{m.count}}</span>{%endif%}</a>
+                            href="/admin/approval/index/?model={{m.id}}">{{m.title}} 审核
+                            {%if btn==m.id and btn == 9 and countshop > 0%}
+                                <span class="badge bg-info">
+                                    {{countshop}}
+                                </span>
+                            {%elif btn==m.id and btn == 4 and countgoods > 0%}
+                                <span class="badge bg-info">
+                                    {{countgoods}}
+                                </span>
+                            {%endif%}
+                        </a>
                         {%endfor%}
                     </li>
                 </ul>
@@ -96,7 +105,7 @@
                             <th style="width:20px;"><label class="checkbox m-n i-checks"><input
                                         type="checkbox"><i></i></label></th>
                             <th> 编号 </th>
-                            <th> 商铺名称 </th>
+                            <th> 商品名称 </th>
                             <th>卖家id</th>
                             <th>最后更新</th>
                             <th>状态</th>
@@ -111,11 +120,20 @@
                             <td><label class="checkbox m-n i-checks"><input class="ids" type="checkbox" name="ids"
                                         value="{{item.id}}"><i></i></label></td>
                             <td>{{item.id}}</td>
-                            <td><a href="/admin/user/showuser/?id={{item.uid}}" class="text-info"
-                                    data-toggle="ajaxModal">{{item.uid|get_nickname}}</a></td>
-                            <td>{{item.uid}}</td>
+                            <td>{{item.name}}</td>
+                            <td><a href="/admin/user/showuser/?id={{item.biz_id}}" class="text-info"
+                                    data-toggle="ajaxModal">{{item.biz_id|get_nickname}}</a></td>
                             <td>{{item.time | moment('YYYY-MM-DD HH:mm:ss')}}</td>
-                            <td>状态</td>
+                            <td>{%if item.status == 0 %}待审核
+                                {%elif item.status== 10%}一审通过
+                                {%elif item.status == 11 %}待二审
+                                {%elif item.status == 20 %}二审通过
+                                {%elif item.status == 21 %}二审驳回
+                                {%elif item.status == 30 %}超时
+                                {%elif item.status == 1 %}重新提交
+                                {%elif item.status == 2 %}创建
+                                {%endif%}
+                            
                             <!-- <td>浏览</td> -->
 
                             <td>
@@ -160,7 +178,6 @@
                             <td><a href="/admin/approval/details/?id={{item.id}}" class="text-info"
                                     data-toggle="ajaxModal">{{item.title}} <i class="fa fa-search-plus"></i> </a> </td>
                             <td>{{item.time | moment('YYYY-MM-DD HH:mm:ss')}}</td>
-
 
                             <td>
                                 <a href="/admin/approval/details/?id={{item.id}}"

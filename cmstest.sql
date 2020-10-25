@@ -11,7 +11,7 @@
  Target Server Version : 80021
  File Encoding         : 65001
 
- Date: 25/10/2020 00:00:41
+ Date: 25/10/2020 17:43:04
 */
 
 SET NAMES utf8mb4;
@@ -4307,13 +4307,42 @@ CREATE TABLE `cmswing_business` (
   `legal_person_back` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '法人身份证背面复印件路径',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE KEY `user_id` (`user_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of cmswing_business
 -- ----------------------------
 BEGIN;
-INSERT INTO `cmswing_business` VALUES (1, 1, '111', 1, 'ads', '卖家名称', 1, 'manager', '131111111111', '1333333@gmail.com', 0, '1', 'xxxxxx', '', '', 0, 0, '', 0, '2222', '2222', '2422', '24', '4', '234', '43', '23423', '423');
+INSERT INTO `cmswing_business` VALUES (1, 1, '111', 1, 'ads', '商铺名称', 1, '法人1', '131111111111', '1333333@gmail.com', 21, '1', 'xxxxxx', '', '', 0, 0, 'adsada', 0, 'adsadddd', '2222', '2422', '24', '4', '234', '43', '23423', '423');
+INSERT INTO `cmswing_business` VALUES (2, 2, '111', 1, 'ads', '商铺名称', 0, '法人2', '131111111111', '1333333@gmail.com', 1, '1', 'xxxxxx', '', '', 1, 0, '', 0, '2222', '2222', '2422', '24', '4', '234', '43', '23423', '423');
+INSERT INTO `cmswing_business` VALUES (3, 3, '111', 1, 'ads', '商铺名称', 1, '法人3', '131111111111', '1333333@gmail.com', 10, '1', 'xxxxxx', '', '', 0, 3, '', 0, '2222', '2222', '2422', '24', '4', '234', '43', '23423', '423');
+INSERT INTO `cmswing_business` VALUES (4, 4, '111', 1, 'ads', '商铺名称', 1, '法人4', '131111111111', '1333333@gmail.com', 10, '1', 'xxxxxx', '', '', 0, 0, '', 0, '2222', '2222', '2422', '24', '4', '234', '43', '23423', '423');
+INSERT INTO `cmswing_business` VALUES (5, 5, '111', 1, 'ads', '商铺名称', 0, '法人5', '131111111111', '1333333@gmail.com', 21, '1', 'xxxxxx', '', '', 1, 0, '', 0, '', '2222', '2422', '24', '4', '234', '43', '23423', '423');
+INSERT INTO `cmswing_business` VALUES (6, 6, '111', 1, 'ads', '商铺名称', 1, '法人6', '131111111111', '1333333@gmail.com', 10, '1', 'xxxxxx', '', '', 0, 0, '', 0, '2222', '2222', '2422', '24', '4', '234', '43', '23423', '423');
+INSERT INTO `cmswing_business` VALUES (7, 7, '111', 1, 'ads', '商铺名称', 1, '法人7', '131111111111', '1333333@gmail.com', 0, '1', 'xxxxxx', '', '', 0, 0, '', 0, '2222', '2222', '2422', '24', '4', '234', '43', '23423', '423');
+INSERT INTO `cmswing_business` VALUES (8, 8, '111', 1, 'ads', '商铺名称', 0, '法人8', '131111111111', '1333333@gmail.com', 21, '1', 'xxxxxx', '', '', 1, 0, '', 0, '', '2222', '2422', '24', '4', '234', '43', '23423', '423');
+INSERT INTO `cmswing_business` VALUES (9, 9, '111', 1, 'ads', '商铺名称', 1, '法人9', '131111111111', '1333333@gmail.com', 10, '1', 'xxxxxx', '', '', 0, 9, '', 0, '2222', '2222', '2422', '24', '4', '234', '43', '23423', '423');
+INSERT INTO `cmswing_business` VALUES (10, 10, '111', 1, 'ads', '商铺名称', 1, '法人10', '131111111111', '1333333@gmail.com', 20, '1', 'xxxxxx', '', '', 0, 0, 'asd', 10, '2222', '2222', '2422', '24', '4', '234', '43', '23423', '423');
+INSERT INTO `cmswing_business` VALUES (11, 11, '111', 1, 'ads', '商铺名称', 0, '法人11', '131111111111', '1333333@gmail.com', 1, '1', 'xxxxxx', '', '', 1, 0, '', 0, '2222', '2222', '2422', '24', '4', '234', '43', '23423', '423');
+INSERT INTO `cmswing_business` VALUES (12, 12, '111', 1, 'ads', '商铺名称', 1, '法人12', '131111111111', '1333333@gmail.com', 11, '1', 'xxxxxx', '', '', 0, 0, '', 0, '2222', '2222', '2422', '24', '4', '234', '43', '23423', '423');
+INSERT INTO `cmswing_business` VALUES (13, 13, '111', 1, 'ads', '商铺名称', 1, '法人3', '131111111111', '1333333@gmail.com', 10, '1', 'xxxxxx', '', '', 0, 1, '', 0, '2222', '2222', '2422', '24', '4', '234', '43', '23423', '423');
+INSERT INTO `cmswing_business` VALUES (14, 14, '111', 1, 'ads', '商铺名称', 1, '法人3', '131111111111', '1333333@gmail.com', 11, '1', 'xxxxxx', '', '', 0, 0, 'adads', 0, '2222', '2222', '2422', '24', '4', '234', '43', '23423', '423');
+INSERT INTO `cmswing_business` VALUES (15, 15, '111', 1, 'ads', '商铺名称', 1, '法人3', '131111111111', '1333333@gmail.com', 0, '1', 'xxxxxx', '', '', 0, 0, '66', 0, '2222', '2222', '2422', '24', '4', '234', '43', '23423', '423');
+INSERT INTO `cmswing_business` VALUES (16, 16, '111', 1, 'ads', '商铺名称', 1, '法人3', '131111111111', '1333333@gmail.com', 11, '1', 'xxxxxx', '', '', 0, 0, 'sdad', 0, '2222', '2222', '2422', '24', '4', '234', '43', '23423', '423');
+INSERT INTO `cmswing_business` VALUES (17, 17, '111', 1, 'ads', '商铺名称', 1, '法人3', '131111111111', '1333333@gmail.com', 0, '1', 'xxxxxx', '', '', 0, 1, '', 0, '2222', '2222', '2422', '24', '4', '234', '43', '23423', '423');
+INSERT INTO `cmswing_business` VALUES (18, 18, '111', 1, 'ads', '商铺名称', 1, '法人3', '131111111111', '1333333@gmail.com', 11, '1', 'xxxxxx', '', '', 0, 0, 'wqq', 0, '2222', '2222', '2422', '24', '4', '234', '43', '23423', '423');
+INSERT INTO `cmswing_business` VALUES (19, 19, '111', 1, 'ads', '商铺名称', 1, '法人3', '131111111111', '1333333@gmail.com', 11, '1', 'xxxxxx', '', '', 0, 0, 'sfad', 0, '2222', '2222', '2422', '24', '4', '234', '43', '23423', '423');
+INSERT INTO `cmswing_business` VALUES (20, 20, '111', 1, 'ads', '商铺名称', 1, '法人3', '131111111111', '1333333@gmail.com', 11, '1', 'xxxxxx', '', '', 0, 0, '', 0, '2222', '2222', '2422', '24', '4', '234', '43', '23423', '423');
+INSERT INTO `cmswing_business` VALUES (21, 21, '111', 1, 'ads', '商铺名称', 1, '法人3', '131111111111', '1333333@gmail.com', 10, '1', 'xxxxxx', '', '', 0, 1, '', 0, '2222', '2222', '2422', '24', '4', '234', '43', '23423', '423');
+INSERT INTO `cmswing_business` VALUES (22, 22, '111', 1, 'ads', '商铺名称', 1, '法人3', '131111111111', '1333333@gmail.com', 11, '1', 'xxxxxx', '', '', 0, 0, '', 0, '2222', '2222', '2422', '24', '4', '234', '43', '23423', '423');
+INSERT INTO `cmswing_business` VALUES (23, 23, '111', 1, 'ads', '商铺名称', 1, '法人3', '131111111111', '1333333@gmail.com', 10, '1', 'xxxxxx', '', '', 0, 1, '', 0, '2222', '2222', '2422', '24', '4', '234', '43', '23423', '423');
+INSERT INTO `cmswing_business` VALUES (24, 24, '111', 1, 'ads', '商铺名称', 1, '法人3', '131111111111', '1333333@gmail.com', 0, '1', 'xxxxxx', '', '', 0, 0, '', 0, '2222', '2222', '2422', '24', '4', '234', '43', '23423', '423');
+INSERT INTO `cmswing_business` VALUES (25, 25, '111', 1, 'ads', '商铺名称', 1, '法人3', '131111111111', '1333333@gmail.com', 0, '1', 'xxxxxx', '', '', 0, 1, '', 0, '2222', '2222', '2422', '24', '4', '234', '43', '23423', '423');
+INSERT INTO `cmswing_business` VALUES (26, 26, '111', 1, 'ads', '商铺名称', 1, '法人3', '131111111111', '1333333@gmail.com', 0, '1', 'xxxxxx', '', '', 0, 0, 'adsadad', 0, '2222', '2222', '2422', '24', '4', '234', '43', '23423', '423');
+INSERT INTO `cmswing_business` VALUES (27, 27, '111', 1, 'ads', '商铺名称', 1, '法人3', '131111111111', '1333333@gmail.com', 11, '1', 'xxxxxx', '', '', 0, 0, 'sdad', 0, '2222', '2222', '2422', '24', '4', '234', '43', '23423', '423');
+INSERT INTO `cmswing_business` VALUES (28, 28, '111', 1, 'ads', '商铺名称', 1, '法人3', '131111111111', '1333333@gmail.com', 11, '1', 'xxxxxx', '', '', 0, 0, '', 0, '2222', '2222', '2422', '24', '4', '234', '43', '23423', '423');
+INSERT INTO `cmswing_business` VALUES (29, 29, '111', 1, 'ads', '商铺名称', 1, '法人3', '131111111111', '1333333@gmail.com', 0, '1', 'xxxxxx', '', '', 0, 0, 'adsaddddd', 0, '2222', '2222', '2422', '24', '4', '234', '43', '23423', '423');
+INSERT INTO `cmswing_business` VALUES (30, 30, '111', 1, 'ads', '商铺名称', 1, '法人3', '131111111111', '1333333@gmail.com', 0, '1', 'xxxxxx', '', '', 0, 0, '', 0, '2222', '2222', '2422', '24', '4', '234', '43', '23423', '423');
 COMMIT;
 
 -- ----------------------------
@@ -5677,7 +5706,7 @@ CREATE TABLE `cmswing_express_company` (
 -- Records of cmswing_express_company
 -- ----------------------------
 BEGIN;
-INSERT INTO `cmswing_express_company` VALUES (1, 'CNEMS', 'ems', '中国邮政', 'http://www.ems.com.cn', 0);
+INSERT INTO `cmswing_express_company` VALUES (1, 'CNEMSaa', 'ems', '中国邮政', 'http://www.ems.com.cn', 0);
 INSERT INTO `cmswing_express_company` VALUES (2, 'CNST', 'shentong', '申通快递', 'http://www.sto.cn', 0);
 INSERT INTO `cmswing_express_company` VALUES (3, 'CNTT', 'tiantian', '天天快递', 'http://www.ttkd.cn', 0);
 INSERT INTO `cmswing_express_company` VALUES (4, 'CNYT', 'yuantong', '圆通速递', 'http://www.yto.net.cn', 0);
@@ -7256,6 +7285,33 @@ INSERT INTO `cmswing_fare` VALUES (6, '测试模板2', 1000, 1000, 55.00, 6.00, 
 COMMIT;
 
 -- ----------------------------
+-- Table structure for cmswing_goods
+-- ----------------------------
+DROP TABLE IF EXISTS `cmswing_goods`;
+CREATE TABLE `cmswing_goods` (
+  `id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `batch_number` varchar(100) NOT NULL DEFAULT '' COMMENT '生产批号',
+  `user_id` int unsigned NOT NULL DEFAULT '0' COMMENT '添加用户id',
+  `biz_id` int unsigned NOT NULL DEFAULT '0' COMMENT '商户开户id(business表id)',
+  `name` varchar(100) NOT NULL DEFAULT '' COMMENT '商品名称',
+  `remarks` varchar(100) NOT NULL DEFAULT '' COMMENT '商品备注',
+  `num` int NOT NULL DEFAULT '0' COMMENT '商品数量',
+  `price` double NOT NULL DEFAULT '0' COMMENT '商品单价',
+  `status` tinyint unsigned NOT NULL DEFAULT '2' COMMENT '商品申请状态。待审核(添加):0,一审通过:10,一审驳回:11,二审通过:20,二审驳回:21,超时:30,重新提交:1,创建:2',
+  `withdraw` tinyint unsigned NOT NULL DEFAULT '1' COMMENT '商品是否下架，在架:0,下架:1',
+  `first_pass_user` int NOT NULL DEFAULT '0' COMMENT '一审用户id',
+  `first_reject` varchar(255) NOT NULL DEFAULT '' COMMENT '一审驳回原因',
+  `second_pass_user` int NOT NULL DEFAULT '0' COMMENT '二审用户id',
+  `second_reject` varchar(255) NOT NULL DEFAULT '' COMMENT '二审驳回原因',
+  `picture` varchar(100) NOT NULL DEFAULT '' COMMENT '商品图片路径',
+  `picture1` varchar(100) NOT NULL DEFAULT '' COMMENT '商品图片路径',
+  `picture2` varchar(100) NOT NULL DEFAULT '' COMMENT '商品图片路径',
+  `market_author` varchar(100) NOT NULL DEFAULT '' COMMENT '销售授权委托书路径',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `batch_number` (`batch_number`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=COMPACT;
+
+-- ----------------------------
 -- Table structure for cmswing_hooks
 -- ----------------------------
 DROP TABLE IF EXISTS `cmswing_hooks`;
@@ -7468,7 +7524,7 @@ CREATE TABLE `cmswing_member` (
 -- Records of cmswing_member
 -- ----------------------------
 BEGIN;
-INSERT INTO `cmswing_member` VALUES (1, 'admin', '7fe293a2a8994cca42668d5a37747d4f', 2364, 'arterli@qq.com', 1756, '', 1452513965683, 0, 1603549078828, 0, 0, 1, 1, 5, 10001.00, 0, 0, 0, 0, 0, 0, 120000, 120100, 120102, '', 1, 0, 0, 0, '');
+INSERT INTO `cmswing_member` VALUES (1, 'admin', '7fe293a2a8994cca42668d5a37747d4f', 2364, 'arterli@qq.com', 1768, '', 1452513965683, 0, 1603611526636, 0, 0, 1, 1, 5, 10001.00, 0, 0, 0, 0, 0, 0, 120000, 120100, 120102, '', 1, 0, 0, 0, '');
 INSERT INTO `cmswing_member` VALUES (2, 'cmswing', '877d01a63db292aadf94c7276a246781', 98, 'cmswing@cmswing.com', 302, '13571883578', 1458989485616, 0, 1530793108869, 0, 0, 1, 0, 2, 16.50, 0, 0, 0, 0, 0, 0, 110000, 110100, 110104, '111111', 1, 455587200000, 0, 0, '12344');
 INSERT INTO `cmswing_member` VALUES (3, 'test', '7fe293a2a8994cca42668d5a37747d4f', 10, 'test@cmswing.com', 5, '', 1458990106486, 0, 1505443722915, 0, 0, 1, 1, 2, 0.00, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, 1, NULL, 0, 0, NULL);
 INSERT INTO `cmswing_member` VALUES (4, 'test1', '7fe293a2a8994cca42668d5a37747d4f', 0, 'test1@cmswing.com', 0, '', 1458990176636, 0, 0, 0, 0, 1, 0, 2, 0.00, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, 1, NULL, 0, 0, NULL);
@@ -8323,7 +8379,7 @@ INSERT INTO `cmswing_menu` VALUES (276, '已安装插件后台', 2, 4, 'admin/ex
 INSERT INTO `cmswing_menu` VALUES (277, 'PC单页内容管理', 3, 0, 'admin/sp/index', 0, '', 0, 0, 1, '');
 INSERT INTO `cmswing_menu` VALUES (278, '手机单页内容管理', 3, 0, 'admin/sp/mobile', 0, '', 0, 0, 1, '');
 INSERT INTO `cmswing_menu` VALUES (279, '单页内容更新', 3, 0, 'admin/sp/update', 0, '', 0, 0, 1, '');
-INSERT INTO `cmswing_menu` VALUES (280, '二级审核', 270, 0, 'admin/approval/shop', 0, '', 10, 0, 1, '');
+INSERT INTO `cmswing_menu` VALUES (280, '二级审核', 270, 0, 'admin/approval/second', 0, '', 10, 0, 1, '');
 INSERT INTO `cmswing_menu` VALUES (281, '审核卖家', 271, 0, 'admin/approval/edshop', 0, '', 0, 0, 1, '');
 INSERT INTO `cmswing_menu` VALUES (282, '审核商品', 271, 0, 'admin/approval/edgoods', 0, '', 0, 0, 1, '');
 COMMIT;
@@ -8378,12 +8434,12 @@ BEGIN;
 INSERT INTO `cmswing_model` VALUES (1, 'document', '基础模型', 0, '', 1, '{\"1\":[\"2\",\"3\",\"101\",\"5\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"16\",\"17\",\"19\",\"20\"]}', '1:基础', '2,3,101,5,9,10,11,12,13,14,16,17,19,20', '', '', '', '', 'id:编号\r\ntitle:标题:[EDIT]\r\ntype:类型\r\nupdate_time:最后更新\r\nstatus:状态\r\nview:浏览\r\nid:操作:[EDIT]|编辑,[DELETE]|删除', 0, '', '', 1449340764453, 1455680364521, 1, 'InnoDB', 0, 0, 0, 0, 0, NULL, NULL, 1, NULL, NULL, NULL, NULL, 0, '0');
 INSERT INTO `cmswing_model` VALUES (2, 'article', '文章', 1, '', 1, '{\"1\":[\"3\",\"5\",\"12\",\"24\"],\"2\":[\"2\",\"9\",\"101\",\"10\",\"11\",\"13\",\"14\",\"16\",\"17\",\"19\",\"20\",\"26\",\"25\"]}', '1:基础,2:扩展', '24,25,26,2,3,5,9,10,11,12,13,14,16,17,19,20,101', '', '', '', '', 'id:编号\r\ntitle:标题:[EDIT]\r\ntype:类型\r\nupdate_time:最后更新\r\nstatus:状态\r\nview:浏览\r\nid:操作:[EDIT]|编辑,[DELETE]|删除', 0, '', '', 1449340764453, 1508421241816, 1, 'InnoDB', 1, 1, 1, 1, 1, NULL, NULL, 1, NULL, NULL, NULL, NULL, 0, '0');
 INSERT INTO `cmswing_model` VALUES (3, 'download', '下载', 1, '', 1, '{\"1\":[\"2\",\"3\",\"5\",\"12\",\"87\",\"28\"],\"2\":[\"30\",\"32\",\"100\"],\"3\":[\"9\",\"10\",\"11\",\"13\",\"14\",\"16\",\"17\",\"19\",\"20\",\"29\",\"31\"]}', '1:基础,2:文件,3:扩展', '28,29,30,31,32,87,100,2,3,5,9,10,11,12,13,14,16,17,19,20', 'cover_id:软件logo', '', '', '', '', 0, '', '', 1449340764453, 1508506884902, 1, 'InnoDB', 1, 1, 1, 1, 1, NULL, NULL, 1, NULL, NULL, NULL, NULL, 0, '2_2');
-INSERT INTO `cmswing_model` VALUES (4, 'shop', '商品', 1, '', 1, '{\"1\":[\"3\",\"5\",\"65\",\"67\",\"85\",\"71\",\"81\",\"138\"],\"2\":[\"63\",\"69\"],\"3\":[\"73\",\"75\",\"77\",\"79\"],\"4\":[\"2\",\"9\",\"10\",\"16\",\"19\"]}', '1:基本信息,2:库存/规格,3:其它设置,4:高级信息', '63,69,71,73,75,77,79,81,85,138,2,3,5,9,10,16,19,65,67', 'title:商品名称\r\npics:商品图片\r\ndescription:商品简介', '', '', '', 'id:编号\r\npics:商品图\r\ntitle:商品名称:[EDIT]\r\nprice|formatprice:价格\r\ntype:类型\r\nupdate_time:最后更新\r\nstatus:状态\r\ntotal_stock:总库存\r\nview:浏览量\r\nid:操作:[EDIT]|编辑,[DELETE]|删除', 9, '', '', 1455680338771, 1498029529616, 1, 'InnoDB', 1, 1, 1, 1, 1, NULL, NULL, 1, NULL, NULL, NULL, NULL, 0, '0');
+INSERT INTO `cmswing_model` VALUES (4, 'goods', '商品', 1, '', 1, '{\"1\":[\"3\",\"5\",\"65\",\"67\",\"85\",\"71\",\"81\",\"138\"],\"2\":[\"63\",\"69\"],\"3\":[\"73\",\"75\",\"77\",\"79\"],\"4\":[\"2\",\"9\",\"10\",\"16\",\"19\"]}', '1:基本信息,2:库存/规格,3:其它设置,4:高级信息', '63,69,71,73,75,77,79,81,85,138,2,3,5,9,10,16,19,65,67', 'title:商品名称\r\npics:商品图片\r\ndescription:商品简介', '', '', '', 'id:编号\r\npics:商品图\r\ntitle:商品名称:[EDIT]\r\nprice|formatprice:价格\r\ntype:类型\r\nupdate_time:最后更新\r\nstatus:状态\r\ntotal_stock:总库存\r\nview:浏览量\r\nid:操作:[EDIT]|编辑,[DELETE]|删除', 9, '', '', 1455680338771, 1498029529616, 1, 'InnoDB', 1, 1, 1, 1, 1, NULL, NULL, 1, NULL, NULL, NULL, NULL, 0, '0');
 INSERT INTO `cmswing_model` VALUES (5, 'picture', '图片', 1, '', 1, '{\"1\":[\"2\",\"3\",\"12\",\"5\",\"150\"],\"2\":[\"9\",\"10\",\"11\",\"13\",\"14\",\"16\",\"17\",\"19\",\"20\",\"90\"]}', '1:基础,2:扩展', '90,150,2,3,5,9,10,11,12,13,14,16,17,19,20', '', '', '', '', '', 10, '', '', 1464580586395, 1509274424122, 1, 'InnoDB', 1, 1, 1, 1, 1, NULL, NULL, 1, NULL, NULL, NULL, NULL, 0, '0');
 INSERT INTO `cmswing_model` VALUES (6, 'video', '视频', 1, '', 1, '{\"1\":[\"2\",\"3\",\"5\",\"9\",\"12\",\"19\"],\"2\":[\"91\",\"96\"],\"3\":[\"10\",\"13\",\"14\",\"16\",\"17\",\"20\",\"93\"]}', '1:基础,2:资源,3:扩展', '91,93,96,2,3,5,9,10,12,13,14,16,17,19,20', 'level:集数', '', '', '', '', 10, '', '', 1465188045066, 1465555443764, 1, 'InnoDB', 1, 1, 1, 1, 1, NULL, NULL, 1, NULL, NULL, NULL, NULL, 0, '0');
 INSERT INTO `cmswing_model` VALUES (7, 'test', 'test', 1, '', 1, '{\"1\":[\"99\",\"132\"]}', '1:基础', '99,132', '', '', '', '', '', 10, '', '', 1474018905811, 1512553339570, 1, 'InnoDB', 0, 1, 1, 1, 1, NULL, NULL, 0, NULL, NULL, NULL, NULL, 0, '0');
 INSERT INTO `cmswing_model` VALUES (8, 'question', '社区', 0, '', 1, '{\"1\":[]}', '1:基础', NULL, '', '', '', '', '', 10, '', '', 1475621679496, 1507950865899, 1, 'InnoDB', 1, 0, 0, 1, 1, 'init:查看\r\nadd:添加\r\nedit:编辑\r\ndelete:删除\r\nexamine:审核', 'visit:访问\r\nadd:发布\r\naddexa:发布是否审核', 1, 'homelist,hometitle,homeright', '1.0', 'cmswing', 'question,question_answer,question_answer_comments,question_answer_thanks,question_answer_uninterested,question_answer_vote,question_focus,question_user', 1, '0');
-INSERT INTO `cmswing_model` VALUES (9, 'company', '卖家', 1, '', 1, '{\"1\":[\"3\",\"5\",\"65\",\"67\",\"85\",\"71\",\"81\",\"138\"],\"2\":[\"63\",\"69\"],\"3\":[\"73\",\"75\",\"77\",\"79\"],\"4\":[\"2\",\"9\",\"10\",\"16\",\"19\"]}', '1:基本信息,2:库存/规格,3:其它设置,4:高级信息', '63,69,71,73,75,77,79,81,85,138,2,3,5,9,10,16,19,65,67', 'title:商品名称\r\npics:商品图片\r\ndescription:商品简介', '', '', '', 'id:编号\r\npics:商品图\r\ntitle:商品名称:[EDIT]\r\nprice|formatprice:价格\r\ntype:类型\r\nupdate_time:最后更新\r\nstatus:状态\r\ntotal_stock:总库存\r\nview:浏览量\r\nid:操作:[EDIT]|编辑,[DELETE]|删除', 9, '', '', 1455680338771, 1498029529616, 1, 'InnoDB', 1, 1, 1, 1, 1, NULL, NULL, 1, NULL, NULL, NULL, NULL, 0, '0');
+INSERT INTO `cmswing_model` VALUES (9, 'shop', '卖家', 1, '', 1, '{\"1\":[\"3\",\"5\",\"65\",\"67\",\"85\",\"71\",\"81\",\"138\"],\"2\":[\"63\",\"69\"],\"3\":[\"73\",\"75\",\"77\",\"79\"],\"4\":[\"2\",\"9\",\"10\",\"16\",\"19\"]}', '1:基本信息,2:库存/规格,3:其它设置,4:高级信息', '63,69,71,73,75,77,79,81,85,138,2,3,5,9,10,16,19,65,67', 'title:商品名称\r\npics:商品图片\r\ndescription:商品简介', '', '', '', 'id:编号\r\npics:商品图\r\ntitle:商品名称:[EDIT]\r\nprice|formatprice:价格\r\ntype:类型\r\nupdate_time:最后更新\r\nstatus:状态\r\ntotal_stock:总库存\r\nview:浏览量\r\nid:操作:[EDIT]|编辑,[DELETE]|删除', 9, '', '', 1455680338771, 1498029529616, 1, 'InnoDB', 1, 1, 1, 1, 1, NULL, NULL, 1, NULL, NULL, NULL, NULL, 0, '0');
 INSERT INTO `cmswing_model` VALUES (11, 'docs', '文档', 1, '', 1, '{\"1\":[\"3\",\"9\",\"149\",\"21\"],\"2\":[\"2\",\"5\",\"12\",\"19\",\"10\",\"11\",\"20\",\"16\"]}', '1:基础,2:扩展', '149,2,3,5,9,10,11,12,16,19,20,21', 'title:文档标题\r\ntype:文档类型', '', '', '', '', 10, '', '', 1508464623427, 1508863154134, 1, 'InnoDB', 1, 1, 1, 1, 1, NULL, NULL, 1, NULL, NULL, NULL, NULL, 0, '3');
 COMMIT;
 
