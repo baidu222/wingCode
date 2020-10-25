@@ -27,6 +27,7 @@ module.exports = class extends think.Model {
   /**
    * 暂时不提供一审，二审分开查询
    *
+   *  */
    async applyFirstQuery(page){
     const list = await this.model('business').where('status = 0 OR status = 1').page(page).countSelect()
     return list;
@@ -36,7 +37,7 @@ module.exports = class extends think.Model {
     const list = await this.model('business').where({status: 10}).page(page).countSelect();
     return list;
   }
-   */
+  
 
 
   async expireCheck(){

@@ -244,7 +244,7 @@ module.exports = class extends think.cmswing.admin {
     //         return think.statusAction(702, this.http);
     //     }
     //
-    // }
+    // } 
     this.assign('user', user);
     // console.log(user);
     // 所属管理组

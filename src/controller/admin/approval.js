@@ -15,46 +15,61 @@ module.exports = class extends think.cmswing.admin {
   }
 
   /**
-   * index action
+   * index action 一级审核
    * @return {Promise} []
    */
   async indexAction() {
     // auto render template file approval_index.html
-    const map = {};
-    if (!think.isEmpty(this.get('model'))) {
-      map.model = this.get('model');
-    }
-    // where({model: ['NOTIN', [1, 4, 9]]}).
-    const list = await this.db.where(map).page(this.get('page') || 1, 10).where('model = 4 OR model = 9').order('time DESC').countSelect();
-    const html = this.pagination(list);
-
-    this.assign('pagerData', html); // 分页展示使用
-    this.assign('list', list);
-    // const modlist = await this.model('cmswing/model').get_model(null, null, {
-    //   is_approval: 1,
-    //   // id:['NOTIN', [1, 4, 9]]
-    // });
+    let page = this.get('page');
+    const btn = this.get('model');
+    this.assign('btn', btn)
+    // tab切换栏
     const modlist = await this.model('cmswing/model').where('id = 4 OR id = 9').order('id DESC').select();
-
     for (const val of modlist) {
+      // 查两张表 （改）
       val.count = await this.db.where({
         model: val.id
       }).count();
     }
-
     this.assign('model', modlist);
+    // 全部一级审核数量（改）
     this.assign('count', await this.db.where({
       model: ['IN', [4, 9]]
     }).count());
+
+    // 获取数据
+    const map = {};
+    if (!think.isEmpty(btn)) {
+      map.model = btn;
+    }
+    // where({model: ['NOTIN', [1, 4, 9]]}).
+    // const list = await this.db.where(map).page(this.get('page') || 1, 10).where('model = 4 OR model = 9').order('time DESC').countSelect();
+    // 获取卖家一级审核
+    let listshop = await this.model('cmswing/business').where('status = 0 OR status = 10').page(page).countSelect();
+    const htmlShop = await this.pagination(listshop);
+    this.assign('pagerDataShop', htmlShop); // 分页展示使用
+    this.assign('listshop', listshop);
+
+    // 获取商品一级审核
+    const listgoods = await this.model('cmswing/business').where('status = 0 OR status = 10').page(page).countSelect();
+    const htmlgoods = await this.pagination(listgoods);
+    this.assign('pagerDataGoods', htmlgoods); // 分页展示使用
+    this.assign('listgoods', listgoods);
+
+    const list = [];
+    const html = await this.pagination(list);
+    this.assign('pagerData', html); // 分页展示使用
+    this.assign('list', list);
+
     this.meta_title = '一级审核';
     return this.display();
   }
 
   /**
-   * 卖家审核
+   * 二级审核
    */
-  async shopAction() {
-    // auto render template file approval_shop.html
+  async secondAction() {
+    // auto render template file approval_second.html
     const map = {};
     if (!think.isEmpty(this.get('model'))) {
       map.model = this.get('model');
@@ -68,9 +83,10 @@ module.exports = class extends think.cmswing.admin {
 
     // const listshops = await this.db.where(map).page(this.get('page') || 1, 10).where('model = 9').order('time DESC').countSelect();
     // const listshops = await this.model('cmswing/business').where(map).page(this.get('page') || 1, 10).where('model = 9').order('time DESC').countSelect();
-    const listshops = await this.model('cmswing/business').page(this.get('page') || 1, 10).order('id DESC').countSelect();
-    
-    
+    // const listshops = await this.model('cmswing/business').page(this.get('page') || 1, 10).order('id DESC').countSelect();
+    let listshops = await this.model('cmswing/business').where('status = 1 OR status = 11 OR status = 20 OR status = 21').page(this.get('page') || 1, 10).countSelect();
+
+
     const htmlshops = this.pagination(listshops);
     this.assign('pagerDataShops', htmlshops); // 分页展示使用
     this.assign('listshops', listshops);
@@ -84,7 +100,6 @@ module.exports = class extends think.cmswing.admin {
       }).count();
     }
 
-    // console.log(modlist);
     const btn = this.para('model');
 
     this.assign('getModel', map.model);
@@ -109,7 +124,7 @@ module.exports = class extends think.cmswing.admin {
   }
 
   /**
-   * 通过审核
+   * 通过一审审核
    */
   async adoptaAction() {
     const ids = this.para('ids');
@@ -160,20 +175,130 @@ module.exports = class extends think.cmswing.admin {
             }
       }
     }
+
+    // 一级审核卖家
+    // {
+    //   "biz_id":int,//获取商户申请信息
+    //   "user_id":int,//当前提交用户id
+    //   "action_type":"first_pass"
+    // }
+    // think.Controller('cmswing/business').update();
+
   }
+
+   /**
+   * 拒绝一审卖家
+   */
+
 
   /**
    * 编辑商家审核
    */
   async edshopAction() {
+    if(this.isPost){
+        const data = this.post();
+        const biz_id = data.biz_id;
+        const user_id = data.user_id;
+        if (!think.isNullOrUndefined(data.action_type)){
+            const action_type = data.action_type;
+
+            if (action_type == "first_pass"){
+                const  condition = {
+                    "id":biz_id
+                };
+                const  updatedata = {
+                    "status":10,
+                    "first_pass_user":user_id
+                };
+                const res = await this.model('cmswing/business').where(condition).update(updatedata);
+                if (res) {
+                  return this.success({name: '更新成功!'});
+                  // return this.display();
+
+                } else {
+                  return this.fail('更新失败!');
+                }
+            }else if(action_type == "second_pass"){
+                const  condition = {
+                    "id":biz_id
+                };
+                const  updatedata = {
+                    "status":20,
+                    "second_pass_user":user_id
+                };
+                const res = await this.model('cmswing/business').where(condition).update(updatedata);
+                if (res) {
+                  return this.success({name: '更新成功!'});
+                  // return this.display();
+
+                } else {
+                  return this.fail('更新失败!');
+                }
+            }else if(action_type == "first_reject"){
+                if (!think.isNullOrUndefined(data.reject)){
+                    var reject = data.reject;
+                }else{
+                    var reject = "";
+                }
+                const  condition = {
+                    "id":biz_id
+                };
+                const  updatedata = {
+                    "status":11,
+                    "first_reject":reject
+                };
+                const res = await this.model('cmswing/business').where(condition).update(updatedata);
+                if (res) {
+                  return this.success({name: '更新成功!'});
+                  // return this.display();
+
+                } else {
+                  return this.fail('更新失败!');
+                }
+                // await this.model('cmswing/business').where(condition).update(updatedata);
+                // return applydata;
+                // await this.model('cmswing/business').applyUpdate(condition,updatedata);
+                // return this.success({code:200,reject:reject});
+            }else if(action_type == "second_reject"){
+                if (!think.isNullOrUndefined(data.reject)){
+                    var reject = data.reject;
+                }else{
+                    var reject = "";
+                }
+                const  condition = {
+                    "id":biz_id
+                };
+                const  updatedata = {
+                    "status":21,
+                    "second_reject":reject
+                };
+                const res = await this.model('cmswing/business').where(condition).update(updatedata);
+                if (res) {
+                  return this.success({name: '更新成功!'});
+                  // return this.display();
+
+                } else {
+                  return this.fail('更新失败!');
+                }
+            }else{
+                return this.fail({code:500,msg:"error param"});
+            }
+        }
+    }else{
+
     const ids = this.get('ids');
     this.assign('ids', ids);
     this.meta_title = '审核详情';
-    const details = await this.model('cmswing/business').where({id:ids}).select();
-    this.assign('detailsxx',JSON.stringify(details));
-    this.assign('details',details[0]);
-
+    const details = await this.model('cmswing/business').where({
+      id: ids
+    }).select();
+    // this.assign('detailsxx', JSON.stringify(details));
+    this.assign('details', details[0]);
+    this.assign('biz_id',details[0].id);
+    this.assign('user_id',details[0].user_id);
     return this.display();
+    }
+   
   }
 
   /**
@@ -232,65 +357,78 @@ module.exports = class extends think.cmswing.admin {
     //   return this.fail('操作失败！');
     // }
 
-      const data = this.post();
-      const biz_id = data.biz_id;
-      const user_id = data.user_id;
-      if (!think.isNullOrUndefined(data.action_type)){
-          const action_type = data.action_type;
-          if (action_type == "first_pass"){
-              const  condition = {
-                  "id":biz_id
-              };
-              const  updatedata = {
-                  "status":10,
-                  "first_pass_user":user_id
-              };
-              await this.model('cmswing/business').applyUpdate(condition,updatedata);
-              return this.success({code:200});
-          }else if(action_type == "second_pass"){
-              const  condition = {
-                  "id":biz_id
-              };
-              const  updatedata = {
-                  "status":20,
-                  "second_pass_user":user_id
-              };
-              await this.model('cmswing/business').applyUpdate(condition,updatedata);
-              return this.success({code:200});
-          }else if(action_type == "first_reject"){
-              if (!think.isNullOrUndefined(data.reject)){
-                  var reject = data.reject;
-              }else{
-                  var reject = "";
-              }
-              const  condition = {
-                  "id":biz_id
-              };
-              const  updatedata = {
-                  "status":11,
-                  "first_reject":reject
-              };
-              await this.model('cmswing/business').applyUpdate(condition,updatedata);
-              return this.success({code:200,reject:reject});
-          }else if(action_type == "second_reject"){
-              if (!think.isNullOrUndefined(data.reject)){
-                  var reject = data.reject;
-              }else{
-                  var reject = "";
-              }
-              const  condition = {
-                  "id":biz_id
-              };
-              const  updatedata = {
-                  "status":21,
-                  "second_reject":reject
-              };
-              await this.model('cmswing/business').applyUpdate(condition,updatedata);
-              return this.success({code:200,reject:reject});
-          }else{
-              return this.fail({code:500,msg:"error param"});
-          }
+    const data = this.post();
+    const biz_id = data.biz_id;
+    const user_id = data.user_id;
+    if (!think.isNullOrUndefined(data.action_type)) {
+      const action_type = data.action_type;
+      if (action_type == "first_pass") {
+        const condition = {
+          "id": biz_id
+        };
+        const updatedata = {
+          "status": 10,
+          "first_pass_user": user_id
+        };
+        await this.model('cmswing/business').applyUpdate(condition, updatedata);
+        return this.success({
+          code: 200
+        });
+      } else if (action_type == "second_pass") {
+        const condition = {
+          "id": biz_id
+        };
+        const updatedata = {
+          "status": 20,
+          "second_pass_user": user_id
+        };
+        await this.model('cmswing/business').applyUpdate(condition, updatedata);
+        return this.success({
+          code: 200
+        });
+      } else if (action_type == "first_reject") {
+        if (!think.isNullOrUndefined(data.reject)) {
+          var reject = data.reject;
+        } else {
+          var reject = "";
+        }
+        const condition = {
+          "id": biz_id
+        };
+        const updatedata = {
+          "status": 11,
+          "first_reject": reject
+        };
+        await this.model('cmswing/business').applyUpdate(condition, updatedata);
+        return this.success({
+          code: 200,
+          reject: reject
+        });
+      } else if (action_type == "second_reject") {
+        if (!think.isNullOrUndefined(data.reject)) {
+          var reject = data.reject;
+        } else {
+          var reject = "";
+        }
+        const condition = {
+          "id": biz_id
+        };
+        const updatedata = {
+          "status": 21,
+          "second_reject": reject
+        };
+        await this.model('cmswing/business').applyUpdate(condition, updatedata);
+        return this.success({
+          code: 200,
+          reject: reject
+        });
+      } else {
+        return this.fail({
+          code: 500,
+          msg: "error param"
+        });
       }
+    }
 
   }
 

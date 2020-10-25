@@ -488,8 +488,6 @@
                                         {% endfor %}
                                         <div class="line line-dashed b-b line-lg pull-in"></div>
                                     </div>
-
-
                                
                             </div>
                         </section>
@@ -500,13 +498,15 @@
                     拒绝原因:
                 </label>
                 <div class="col-sm-10">
-                    <textarea name="" class="form-control"></textarea>
+                    <textarea name="reject" class="form-control"></textarea>
                 </div>
                 <div style="clear:both"></div>
             </div>
         </div>
         <div class="modal-footer">
             <!-- <a href="#" class="btn btn-default" data-dismiss="modal">关闭</a> -->
+            
+            
             <a class="btn btn-danger ajax-get" target-form="ids" href="/{{ctx.controller}}/refuse/?ids={{ids}}">
                 拒绝
             </a>

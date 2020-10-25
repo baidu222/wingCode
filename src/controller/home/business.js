@@ -1,6 +1,6 @@
 var fs = require('fs');
 var path = require('path');
-module.exports = class extends think.cmswing.home {
+module.exports = class extends think.Controller {
 
     async applyAction(){
         const data = this.post();
@@ -408,8 +408,8 @@ module.exports = class extends think.cmswing.home {
     /**
      *
      * 原一审待审和二审待审的列表分开展示，改为合并展示。备份
-     *
-     * async applyFirstListAction(){
+     */
+     async applyFirstListAction(){
         if (think.isNullOrUndefined(this.get('page'))){
             var page = 1;
         }else{
@@ -438,8 +438,7 @@ module.exports = class extends think.cmswing.home {
             return this.fail({code:500});
         }
     }
-     *
-     */
+    
 
 
     async pollingAction(){

@@ -322,7 +322,7 @@ module.exports = class extends think.cmswing.admin {
      * @returns {Promise.<void>}
      */
   async editexpressAction() {
-    if (this.isPost) {
+    if (this.isPost) { 
       const data = this.post();
       const res = await this.model('express_company').update(data);
       if (res) {

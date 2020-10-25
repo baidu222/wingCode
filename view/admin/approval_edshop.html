@@ -4,9 +4,11 @@
         position: relative;
         margin-top: 15px;
     }
+
     label {
         text-align: right;
     }
+
     .clear {
         clear: both;
     }
@@ -24,241 +26,267 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
             <h4 class="modal-title">{{controller.meta_title}}</h4>
         </div>
-        <div class="modal-body refuse-content" style="padding: 0">
-            <div class="table-responsive">
-                <p style="background-color: aqua;">{{detailsxx}}</p>
-                <!-- 公司全名 -->
-                <div class="form-group" style="margin-top: 25px">
-                    <label class="col-sm-3 control-label font-bold">公司全名</label>
-                    <div class="col-sm-9">
-                        <div class="row">
-                            <div class="col-md-5">
-                                {{details.biz_name}}
+
+        <form method="post" class="form-horizontal" action="/admin/approval/edshop" data-validate="parsley" target="myIframe">
+            <div class="modal-body refuse-content" style="padding: 0">
+                <div class="table-responsive">
+                    <!-- <p style="background-color: aqua;">{{detailsxx}}</p> -->
+                    <!-- 公司全名 -->
+                     <div class="form-group" style="margin-top: 25px">
+                        
+                        <label class="col-sm-3 control-label font-bold">公司全名</label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    {{details.biz_name}}
+                                </div>
                             </div>
                         </div>
+                        <div class="clear"></div>
+
                     </div>
+                    <!-- 公司介绍 -->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label font-bold">公司介绍</label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    {{details.introduction}}
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+
+                    </div>
+                    <!-- 公司经营方式 -->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label font-bold">经营方式</label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    {{details.biz_prac}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+
+                    </div>
+                    <!-- 公司经营范围 -->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label font-bold">经营范围</label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    {{details.biz_scope}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+
+                    </div>
+                    <!-- 公司法人 -->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label font-bold">法人</label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    {{details.store_manager}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+
+                    </div>
+                    <!-- 公司电话 -->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label font-bold">电话</label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    {{details.manager_phone}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+
+                    </div>
+                    <!-- 公司邮箱 -->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label font-bold">邮箱</label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    {{details.manager_email}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+
+                    </div>
+                    <!-- 公司地址 -->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label font-bold">公司地址</label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    {{details.address}}
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+
+                    </div>
+                    <!-- 图片1上传-->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label font-bold">logo</label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    {{details.logo}}
+                                    <!-- {{HOOKS@adminUpPic.icon|safe}} -->
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="clear"></div>
+
+                    </div>
+                    <!-- 图片1上传-->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label font-bold">企业营业执照</label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    <!-- {{HOOKS@adminUpPicss.icon|safe}} -->
+                                    {{details.license}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+
+                    </div>
+                    <!-- 图片1上传-->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label font-bold">银行开户许可证</label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-md-5 flex-wrap">
+                                    {{details.account}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+
+                    </div>
+                    <!-- 图片1上传-->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label font-bold" style="padding-left: 7px;">医疗器械生产许可证</label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-md-5 flex-wrap">
+                                    {{details.prod_cert}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+
+                    </div>
+                    <!-- 图片1上传-->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label font-bold">生产备案凭证</label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-md-5 flex-wrap">
+                                    {{details.registration}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+
+                    </div>
+                    <!-- 图片1上传-->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label font-bold">网络销售许可证</label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-md-5 flex-wrap">
+                                    {{details.online_sales}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+
+                    </div>
+                    <!-- 图片1上传-->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label font-bold">法人身份证复印件</label>
+                        <div class="col-sm-9" style="margin-top:6px">
+                            <div class="row">
+                                <div class="col-md-5 flex-wrap">
+                                    <span class="ml10">身份证正面（国徽面）</span>
+                                    {{details.legal_person_front}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+
+                    </div>
+                    <div class="form-group" style="margin-bottom: 45px">
+                        <label class="col-sm-3 control-label font-bold"></label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-md-5 flex-wrap">
+                                    <span class="ml10">身份证反面（人像面）</span>
+                                    {{details.legal_person_back}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+
+                    </div>
+                    <div class="clear"></div> 
+                    
+                    {%if details.status != 10 %}
+                    <label class="col-sm-2 control-label">
+                        拒绝原因:
+                    </label>
+                    <div class="col-sm-10">
+                        <textarea name="reject" class="form-control"></textarea>
+                    </div>
+                    {%endif%}
                     <div class="clear"></div>
-
                 </div>
-                <!-- 公司介绍 -->
-                <div class="form-group">
-                    <label class="col-sm-3 control-label font-bold">公司介绍</label>
-                    <div class="col-sm-9">
-                        <div class="row">
-                            <div class="col-md-5">
-                                {{details.introduction}}
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-
-                </div>
-                <!-- 公司经营方式 -->
-                <div class="form-group">
-                    <label class="col-sm-3 control-label font-bold">经营方式</label>
-                    <div class="col-sm-9">
-                        <div class="row">
-                            <div class="col-md-5">
-                                {{details.biz_prac}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-
-                </div>
-                <!-- 公司经营范围 -->
-                <div class="form-group">
-                    <label class="col-sm-3 control-label font-bold">经营范围</label>
-                    <div class="col-sm-9">
-                        <div class="row">
-                            <div class="col-md-5">
-                                {{details.biz_scope}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-
-                </div>
-                <!-- 公司法人 -->
-                <div class="form-group">
-                    <label class="col-sm-3 control-label font-bold">法人</label>
-                    <div class="col-sm-9">
-                        <div class="row">
-                            <div class="col-md-5">
-                                {{details.store_manager}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-
-                </div>
-                <!-- 公司电话 -->
-                <div class="form-group">
-                    <label class="col-sm-3 control-label font-bold">电话</label>
-                    <div class="col-sm-9">
-                        <div class="row">
-                            <div class="col-md-5">
-                                {{details.manager_phone}}
-                            </div>
-                        </div>
-                    </div>
-                <div class="clear"></div>
-
-                </div>
-                <!-- 公司邮箱 -->
-                <div class="form-group">
-                    <label class="col-sm-3 control-label font-bold">邮箱</label>
-                    <div class="col-sm-9">
-                        <div class="row">
-                            <div class="col-md-5">
-                                {{details.manager_email}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-
-                </div>
-                <!-- 公司地址 -->
-                <div class="form-group">
-                    <label class="col-sm-3 control-label font-bold">公司地址</label>
-                    <div class="col-sm-9">
-                        <div class="row">
-                            <div class="col-md-5">
-                                {{details.address}}
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-
-                </div>
-                <!-- 图片1上传-->
-                <div class="form-group">
-                    <label class="col-sm-3 control-label font-bold">logo</label>
-                    <div class="col-sm-9">
-                        <div class="row">
-                            <div class="col-sm-9">
-                                {{details.logo}}
-                                <!-- {{HOOKS@adminUpPic.icon|safe}} -->
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="clear"></div>
-
-                </div>
-                <!-- 图片1上传-->
-                <div class="form-group">
-                    <label class="col-sm-3 control-label font-bold">企业营业执照</label>
-                    <div class="col-sm-9">
-                        <div class="row">
-                            <div class="col-sm-9">
-                                <!-- {{HOOKS@adminUpPicss.icon|safe}} -->
-                                {{details.license}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-
-                </div>
-                <!-- 图片1上传-->
-                <div class="form-group">
-                    <label class="col-sm-3 control-label font-bold">银行开户许可证</label>
-                    <div class="col-sm-9">
-                        <div class="row">
-                            <div class="col-md-5 flex-wrap">
-                                {{details.account}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-
-                </div>
-                <!-- 图片1上传-->
-                <div class="form-group">
-                    <label class="col-sm-3 control-label font-bold" style="padding-left: 7px;">医疗器械生产许可证</label>
-                    <div class="col-sm-9">
-                        <div class="row">
-                            <div class="col-md-5 flex-wrap">
-                                {{details.prod_cert}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-
-                </div>
-                <!-- 图片1上传-->
-                <div class="form-group">
-                    <label class="col-sm-3 control-label font-bold">生产备案凭证</label>
-                    <div class="col-sm-9">
-                        <div class="row">
-                            <div class="col-md-5 flex-wrap">
-                                {{details.registration}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-
-                </div>
-                <!-- 图片1上传-->
-                <div class="form-group">
-                    <label class="col-sm-3 control-label font-bold">网络销售许可证</label>
-                    <div class="col-sm-9">
-                        <div class="row">
-                            <div class="col-md-5 flex-wrap">
-                                {{details.online_sales}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-
-                </div>
-                <!-- 图片1上传-->
-                <div class="form-group">
-                    <label class="col-sm-3 control-label font-bold">法人身份证复印件</label>
-                    <div class="col-sm-9" style="margin-top:6px">
-                        <div class="row">
-                            <div class="col-md-5 flex-wrap">
-                                <span class="ml10">身份证正面（国徽面）</span>
-                                {{details.legal_person_front}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-
-                </div>
-                <div class="form-group" style="margin-bottom: 45px">
-                    <label class="col-sm-3 control-label font-bold"></label>
-                    <div class="col-sm-9">
-                        <div class="row">
-                            <div class="col-md-5 flex-wrap">
-                                <span class="ml10">身份证反面（人像面）</span>
-                                {{details.legal_person_back}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-
-                </div>
-                <div class="clear"></div>
-
-                <label class="col-sm-2 control-label">
-                    拒绝原因:
-                </label>
-                <div class="col-sm-10">
-                    <textarea name="" class="form-control" value=""></textarea>
-                </div>
-                <div class="clear"></div>
             </div>
-        </div>
-        <div class="modal-footer">
-            <a class="btn btn-danger ajax-post" target-form="ids" href="/home/bussiness/update/?biz_id={{ids}}&user_id={{details.user_id}}&action_type=first_reject&reject=xxx">
-                拒绝
-            </a>
-            <a class="btn btn-success ajax-post" target-form="ids" href="/{{ctx.controller}}/adopta?ids={{ids}}">
-                通过
-            </a>
-        </div>
+            <div class="modal-footer">
+                <!-- {{details.id}} -->
+                <br>
+                <!-- {{details.user_id}} -->
+
+                <input type="hidden" name="biz_id" value="{{details.id}}">
+                <input type="hidden" name="user_id" value="{{details.user_id}}">
+
+                {%if details.status == 0%}
+                    <!-- <button class="btn btn-primary btn-s-md ajax-post" type="submit" target-form="form-horizontal">
+                        拒绝
+                    </button> -->
+                
+                    <button class="btn btn-danger ajax-post" type="submit" name="action_type" value="first_reject" target-form="form-horizontal">拒绝</button>
+                    <button class="btn btn-success ajax-post" type="submit" target-form="form-horizontal" name="action_type" value="first_pass">通过</button>
+                    <a href="#" class="btn btn-default" data-dismiss="modal">关闭</a>
+
+                {%elif details.status == 1 or details.status == 11 or details.status == 21%}
+                    <button class="btn btn-danger ajax-post" type="submit" target-form="form-horizontal" name="action_type" value="second_reject">拒绝</button>
+                    <button class="btn btn-success ajax-post" type="submit" target-form="form-horizontal" name="action_type" value="second_pass">通过</button>
+                    <a href="#" class="btn btn-default" data-dismiss="modal">关闭</a>
+
+                {%elif details.status == 10 or details.status == 20%}
+                    <a href="#" class="btn btn-default" data-dismiss="modal">关闭</a>
+                {%endif%}
+                <iframe name="myIframe" style="display:none"></iframe>
+            </div>
+        </form>
+
     </div><!-- /.modal-content -->
 </div><!-- /.modal-dialog -->
