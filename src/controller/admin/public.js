@@ -34,9 +34,10 @@ module.exports = class extends think.Controller {
         await this.session('userInfo', res);
         const applydata = await this.model('cmswing/business').applyQueryByUser(res.uid);
         if (think.isEmpty(applydata)){
-            return this.success({name: '登陆成功!', url: '/admin/index'});
-        }else{
             return this.success({name: '登陆成功!', url: '/admin/business/applysubmit'});
+        }else{
+            return this.success({name: '登陆成功!', url: '/admin/index'});
+
         }
         // TODO 用户密钥
         // this.redirect('/admin/index');

@@ -18,7 +18,7 @@ module.exports = class extends think.cmswing.admin {
         await this.hook('adminUpPic', 'logo', 0, {$hook_key: 'logo'});
         this.meta_title = '商家认证信息';
         
-        this.assign('userInfo', userInfo);
+        
         if (this.isPost) {
             const data = this.post();
             if (think.isEmpty(data.biz_name)) {
@@ -300,6 +300,7 @@ module.exports = class extends think.cmswing.admin {
             try {
                 await this.model('cmswing/business').applyAdd(applyData);
                 const applydata = await this.model('cmswing/business').applyQueryByUser(user_id);
+                return this.redirect('/center/index');
                 return this.success({code:200,applydata:applydata});
                 // return this.assign('info', res.data.applydata[0])
             }catch (e) {

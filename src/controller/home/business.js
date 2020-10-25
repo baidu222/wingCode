@@ -1,5 +1,6 @@
 var fs = require('fs');
 var path = require('path');
+const session = require('think-session');
 module.exports = class extends think.cmswing.home {
 
     async applyAction(){
@@ -14,8 +15,15 @@ module.exports = class extends think.cmswing.home {
     }
 
     async applysubmitAction() {
+        await this.hook('adminUpPic', 'logo', 0, {$hook_key: 'logo'});
+        this.meta_title = '商家认证信息';
+        
+        this.assign('userInfo', userInfo);
         if (this.isPost) {
             const data = this.post();
+            if (think.isEmpty(data.biz_name)) {
+                return this.fail('用户昵称不能为空！');
+            }
             //企业全称
             if (think.isNullOrUndefined(data.biz_name)){
                 var biz_name = '';
@@ -292,7 +300,9 @@ module.exports = class extends think.cmswing.home {
             try {
                 await this.model('cmswing/business').applyAdd(applyData);
                 const applydata = await this.model('cmswing/business').applyQueryByUser(user_id);
+                return this.redirect('/center/index');
                 return this.success({code:200,applydata:applydata});
+                // return this.assign('info', res.data.applydata[0])
             }catch (e) {
                 console.log(e);
                 return this.fail({code:500});
@@ -378,9 +388,16 @@ module.exports = class extends think.cmswing.home {
 
     async applyQueryByUserAction(){
         const data = this.post();
+        
         const user_id = data.user_id;
+
+        let data2 = this.session("userInfo")
+        console.log(data2)
         try {
             const applydata = await this.model('cmswing/business').applyQueryByUser(user_id);
+            
+            // this.assign("info",data)
+            // this.display()
             return this.success({code:200,applydata:applydata});
         }catch (e) {
             console.log(e);
@@ -456,7 +473,7 @@ module.exports = class extends think.cmswing.home {
         console.log(uploadfile);
         const url = await this.saveFile(uploadfile,false,filetype);
         if (url == 'fail'){
-            return this.fail({code:500});
+            return this.fail({code:4500});
         }else{
             return this.success({code:200,url:url});
         }
