@@ -54,7 +54,6 @@
       "cookie": {
         "name": "thinkjs"
       },
-
       "sessionPath": "/Users/yym/Desktop/hiahiahia/web/施老大/wingcode/wingCode/runtime/session"
     }
   },
@@ -73,9 +72,7 @@
       "backups": 10,
       "absolute": true,
       "maxLogSize": 51200,
-
       "filename": "/Users/yym/Desktop/hiahiahia/web/施老大/wingcode/wingCode/logs/app.log"
-
     },
     "dateFile": {
       "level": "ALL",

@@ -27,7 +27,7 @@
             <h4 class="modal-title">{{controller.meta_title}}</h4>
         </div>
 
-        <form method="post" class="form-horizontal" action="/admin/approval/edshop" data-validate="parsley" target="myIframe">
+        <form method="post" class="form-horizontal" action="/admin/approval/edshop" data-validate="parsley" target="/admin/approval/index">
             <div class="modal-body refuse-content" style="padding: 0">
                 <div class="table-responsive">
                     <!-- <p style="background-color: aqua;">{{detailsxx}}</p> -->
@@ -144,7 +144,10 @@
                         <div class="col-sm-9">
                             <div class="row">
                                 <div class="col-sm-9">
-                                    {{details.logo}}
+                                    <a href="{{details.logo}}" class="pull-left thumb-md avatar b-3x m-r" target="_blank>
+                                        <img src="{{details.logo}}">
+                                    </a>
+                                    
                                     <!-- {{HOOKS@adminUpPic.icon|safe}} -->
                                 </div>
                             </div>
@@ -160,7 +163,11 @@
                             <div class="row">
                                 <div class="col-sm-9">
                                     <!-- {{HOOKS@adminUpPicss.icon|safe}} -->
-                                    {{details.license}}
+                                    
+                                    <a href="{{details.license}}" class="pull-left thumb-md avatar b-3x m-r" target="_blank>
+                                        <img src="{{details.license}}">
+                                    </a>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -173,7 +180,9 @@
                         <div class="col-sm-9">
                             <div class="row">
                                 <div class="col-md-5 flex-wrap">
-                                    {{details.account}}
+                                    <a href="{{details.account}}" class="pull-left thumb-md avatar b-3x m-r" target="_blank>
+                                        <img src="{{details.account}}">
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -186,7 +195,9 @@
                         <div class="col-sm-9">
                             <div class="row">
                                 <div class="col-md-5 flex-wrap">
-                                    {{details.prod_cert}}
+                                    <a href="{{details.prod_cert}}" class="pull-left thumb-md avatar b-3x m-r" target="_blank>
+                                        <img src="{{details.prod_cert}}">
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -199,7 +210,9 @@
                         <div class="col-sm-9">
                             <div class="row">
                                 <div class="col-md-5 flex-wrap">
-                                    {{details.registration}}
+                                    <a href="{{details.registration}}" class="pull-left thumb-md avatar b-3x m-r" target="_blank>
+                                        <img src="{{details.registration}}">
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -212,7 +225,9 @@
                         <div class="col-sm-9">
                             <div class="row">
                                 <div class="col-md-5 flex-wrap">
-                                    {{details.online_sales}}
+                                    <a href="{{details.online_sales}}" class="pull-left thumb-md avatar b-3x m-r" target="_blank>
+                                        <img src="{{details.online_sales}}">
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -226,7 +241,9 @@
                             <div class="row">
                                 <div class="col-md-5 flex-wrap">
                                     <span class="ml10">身份证正面（国徽面）</span>
-                                    {{details.legal_person_front}}
+                                    <a href="{{details.legal_person_front}}" class="pull-left thumb-md avatar b-3x m-r" target="_blank>
+                                        <img src="{{details.legal_person_front}}">
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -239,7 +256,9 @@
                             <div class="row">
                                 <div class="col-md-5 flex-wrap">
                                     <span class="ml10">身份证反面（人像面）</span>
-                                    {{details.legal_person_back}}
+                                    <a href="{{details.legal_person_back}}" class="pull-left thumb-md avatar b-3x m-r" target="_blank>
+                                        <img src="{{details.legal_person_back}}">
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -248,7 +267,7 @@
                     </div>
                     <div class="clear"></div> 
                     
-                    {%if details.status != 10 %}
+                    {%if details.status != 10 and details.status != 20 %}
                     <label class="col-sm-2 control-label">
                         拒绝原因:
                     </label>
@@ -260,18 +279,11 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <!-- {{details.id}} -->
-                <br>
-                <!-- {{details.user_id}} -->
 
                 <input type="hidden" name="biz_id" value="{{details.id}}">
                 <input type="hidden" name="user_id" value="{{userinfo.uid}}">
 
                 {%if details.status == 0%}
-                    <!-- <button class="btn btn-primary btn-s-md ajax-post" type="submit" target-form="form-horizontal">
-                        拒绝
-                    </button> -->
-                
                     <button class="btn btn-danger ajax-post" type="submit" name="action_type" value="first_reject" target-form="form-horizontal">拒绝</button>
                     <button class="btn btn-success ajax-post" type="submit" target-form="form-horizontal" name="action_type" value="first_pass">通过</button>
                     <a href="#" class="btn btn-default" data-dismiss="modal">关闭</a>
@@ -284,7 +296,7 @@
                 {%elif details.status == 10 or details.status == 20%}
                     <a href="#" class="btn btn-default" data-dismiss="modal">关闭</a>
                 {%endif%}
-                <iframe name="myIframe" style="display:none"></iframe>
+                <!-- <iframe name="myIframe" style="display:none"></iframe> -->
             </div>
         </form>
 
