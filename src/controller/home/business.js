@@ -38,7 +38,7 @@ module.exports = class extends think.cmswing.home {
             let legal_person_front;
             let legal_person_back;
             //商户状态。待审核(提交):0,一审通过:10,一审驳回:11,二审通过:20,二审驳回:21,超时:30,重新提交:1,创建:2
-            let status = 0;
+            let biz_status = 0;
             //企业全称
             if (think.isNullOrUndefined(data.biz_name)){
                 biz_name = '';
@@ -187,12 +187,13 @@ module.exports = class extends think.cmswing.home {
                 'store_manager' : store_manager,
                 'manager_phone' : manager_phone,
                 'manager_email' : manager_email,
-                'status' : status,
+                'biz_status' : biz_status,
                 'contact' : contact,
                 'introduction' : introduction,
                 'biz_scope' : biz_scope,
                 'biz_prac' : biz_prac,
                 'expire_date' : expire_date,
+                'update_time' : Date.now(),
                 'logo' : logo,
                 'first_reject' : '',
                 'second_reject' : '',
@@ -228,8 +229,9 @@ module.exports = class extends think.cmswing.home {
                     "id":biz_id
                 };
                 const  updatedata = {
-                    "status":10,
-                    "first_pass_user":user_id
+                    "biz_status":10,
+                    "first_pass_user":user_id,
+                    "update_time":Date.now()
                 };
                 await this.model('cmswing/business').applyUpdate(condition,updatedata);
                 return this.success({code:200});
@@ -238,8 +240,9 @@ module.exports = class extends think.cmswing.home {
                     "id":biz_id
                 };
                 const  updatedata = {
-                    "status":20,
-                    "second_pass_user":user_id
+                    "biz_status":20,
+                    "second_pass_user":user_id,
+                    "update_time":Date.now()
                 };
                 await this.model('cmswing/business').applyUpdate(condition,updatedata);
                 return this.success({code:200});
@@ -252,8 +255,9 @@ module.exports = class extends think.cmswing.home {
                     "id":biz_id
                 };
                 const  updatedata = {
-                    "status":11,
-                    "first_reject":reject
+                    "biz_status":11,
+                    "first_reject":reject,
+                    "update_time":Date.now()
                 };
                 await this.model('cmswing/business').applyUpdate(condition,updatedata);
                 return this.success({code:200,reject:reject});
@@ -266,8 +270,9 @@ module.exports = class extends think.cmswing.home {
                     "id":biz_id
                 };
                 const  updatedata = {
-                    "status":21,
-                    "second_reject":reject
+                    "biz_status":21,
+                    "second_reject":reject,
+                    "update_time":Date.now()
                 };
                 await this.model('cmswing/business').applyUpdate(condition,updatedata);
                 return this.success({code:200,reject:reject});
@@ -370,8 +375,8 @@ module.exports = class extends think.cmswing.home {
             think.mkdir(savePath);
             const suffix = filename.split('.').pop();
             // 对文件名进行过滤
-            const name = filetype + '_' + filename.split('.').shift().replace(/[\s\\\/,.*@#$%^&\|""“”：:]/gi, '');
-            const newname = `${name}_${Date.now()}.${suffix}`;
+            const tmpname = filetype + '_' + filename.split('.').shift().replace(/[\s\\\/,.*@#$%^&\|""“”：:]/gi, '');
+            const newname = `${tmpname}_${Date.now()}.${suffix}`;
             // 如果是base64 文件的话 进行转buffer保存
             if (base64) {
                 base64 = base64.replace(/^data:\w+\/\w+;base64,/, '');
