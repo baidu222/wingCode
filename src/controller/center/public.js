@@ -12,7 +12,7 @@ module.exports = class extends think.cmswing.center {
   async registerAction() {
     if (this.isPost) {
       const data = this.post();
-      // console.log(data);
+      
       // 验证
       let res;
       if (think.isEmpty(data.username)) {
@@ -49,11 +49,17 @@ module.exports = class extends think.cmswing.center {
       if (data.clause != 'on') {
         return this.fail('必须要同意,网站服务条款');
       }
-
+      if (data.is_admin == 0) {
+        data.groupid = 9
+      }else
+      if (data.is_admin == 1) {
+        data.groupid = 7
+      }
       data.status = 1;
       data.reg_time = new Date().valueOf();
       data.reg_ip = _ip2int(this.ip);
       data.password = encryptPassword(data.password);
+
       const reg = await this.model('member').add(data);
       await this.model('cmswing/member').autoLogin({id: reg}, this.ip);// 更新用户登录信息，自动登陆
       const userInfo = {

@@ -5,13 +5,13 @@ module.exports = [
   {
     handle: 'meta',
     options: {
-      logRequest: isDev,
-      sendResponseTime: isDev
+      logRequest: true,    //isDev or true
+      sendResponseTime: true
     }
   },
   {
     handle: 'resource',
-    enable: isDev,
+    enable: true,
     options: {
       root: path.join(think.ROOT_PATH, 'www'),
       publicPath: /^\/(static|upload|favicon\.ico)/

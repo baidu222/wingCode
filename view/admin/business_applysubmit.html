@@ -1,0 +1,847 @@
+{% extends "./inc/base.html" %}
+{% block content %}
+<script src="/static/admin/js/jquery.min.js"></script>
+<link rel="stylesheet" href="/static/admin/js/webuploader/webuploader.css" type="text/css">
+<script src="/static/admin/js/webuploader/webuploader.js" type="text/javascript"></script>
+<link rel="stylesheet" href="/static/admin/js/chosen/chosen.css" type="text/css" />
+<!-- <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+<section class="vbox">
+    <!-- 用户协议弹框 -->
+    <div 
+        class="modal fade" 
+        id="myModal" 
+        tabindex="-1" 
+        role="dialog"
+        data-keyboard="false" 
+        aria-labelledby="myModalLabel" 
+        aria-hidden="true"
+        >
+        <div class="modal-dialog" style="width: 80%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="color: #000">用户协议</h4>
+                </div>
+                <div class="modal-body content-body">
+                    <h5 class="fcolor-666">重要提示</h5>
+                    <p>请您仔细阅读以下条款，并确认您已完全理解本协议之规定，尤其是免除及限制责任的条款、知识产权条款、法律适用及争议解决条款。</p>
+                    <p>若您对本声明或本协议任何条款有异议，请停止注册或使用xxxx网（xxxx.com，包括手机、电脑等移动设备客户端，下同）所提供的全部服务。</p> 
+                    <h5 class="fcolor-666">一、协议的接受、变更与补充</h5>
+                    <ol>
+                        <li>勾选本协议前选项框并点击“注册”，将视为您签署了本协议，表明您自愿接受本协议全部条款的约束，本协议将构成您与xxxxx公司及其经营的“xx”平台（以下统称“xx”，包括相关关联方）之间具有约束力的法律文件。无论您是进入xx浏览网页，还是在xx上发布任何内容，或者是直接或通过各类方式（如站外API引用等）间接使用xx网服务和数据的行为，都将被视作已无条件接受本声明所涉全部内容。</li>
+                        <li>xx有权利对本协议进行修改，协议修改后，xx将通过在相关页面公告或发送通知等方式公布修改的内容，修改后的协议一经公布即有效的代替原协议。如果您不同意本协议的修改，请立即停止访问或使用本网站或取消已经获得的服务；如果您选择继续访问或使用本网站，则视为您已接受本协议的修改。</li>
+                    </ol>
+                    <h5 class="fcolor-666">二、帐号密码与注册、登录</h5>
+                    <ol>
+                        <li>勾选本协议前选项框并点击“注册”，将视为您签署了本协议，表明您自愿接受本协议全部条款的约束，本协议将构成您与xxxxxx公司及其经营的“xx”平台（以下统称“xx”，包括相关关联方）之间具有约束力的法律文件。无论您是进入xx浏览网页，还是在xx上发布任何内容，或者是直接或通过各类方式（如站外API引用等）间接使用xx网服务和数据的行为，都将被视作已无条件接受本声明所涉全部内容。</li>
+                        <li>xx有权利对本协议进行修改，协议修改后，xx将通过在相关页面公告或发送通知等方式公布修改的内容，修改后的协议一经公布即有效的代替原协议。如果您不同意本协议的修改，请立即停止访问或使用本网站或取消已经获得的服务；如果您选择继续访问或使用本网站，则视为您已接受本协议的修改。</li>
+                    </ol>
+                    <h5 class="fcolor-666">三、用户个人信息</h5>
+                    <ol>
+                        <li>勾选本协议前选项框并点击“注册”，将视为您签署了本协议，表明您自愿接受本协议全部条款的约束，本协议将构成您与xxxx公司及其经营的“xx”平台（以下统称“xx”，包括相关关联方）之间具有约束力的法律文件。无论您是进入xx浏览网页，还是在xx上发布任何内容，或者是直接或通过各类方式（如站外API引用等）间接使用xx网服务和数据的行为，都将被视作已无条件接受本声明所涉全部内容。</li>
+                        <li>xx有权利对本协议进行修改，协议修改后，xx将通过在相关页面公告或发送通知等方式公布修改的内容，修改后的协议一经公布即有效的代替原协议。如果您不同意本协议的修改，请立即停止访问或使用本网站或取消已经获得的服务；如果您选择继续访问或使用本网站，则视为您已接受本协议的修改。</li>
+                    </ol>
+                    <h5 class="fcolor-666">四、xx的服务</h5>
+                    <h5 class="fcolor-666">五、知识产权声明</h5>
+                </div>
+                <div class="modal-footer" style="margin-top:0">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                        同意以上协议
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 查看图片 -->
+    <!-- <div
+        class="modal fade" 
+        id="picPreview" 
+        tabindex="-1" 
+        role="dialog"
+        aria-labelledby="myModalLabel" 
+        aria-hidden="true"
+        >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div> -->
+
+    <header class="header bg-light dk">
+        <p>{{controller.meta_title}}</p>
+    </header>
+    <section class="scrollable wrapper">
+        <div class="row"><div class="col-lg-12">
+        <section class="panel panel-default">
+            <div class="panel-body">
+                <div class="flex-wrap status" >
+                    <div class="flex-wrap">
+                        <span id="status1-icon1" class="glyphicon glyphicon-check" style="font-size: 40px; display: none;" aria-hidden="true"></span>
+                        <span id="status1-icon2"  class="glyphicon glyphicon-ok" style="font-size: 40px; display: none;" aria-hidden="true"></span>
+                        <h4 class="blue ml10" id="status1">注册信息填写</h4>
+                    </div>
+                    <div class="flex-wrap">
+                        <span class="line"></span>
+                        <!-- <span class="glyphicon glyphicon-chevron-right" style="font-size: 40px;" aria-hidden="true"></span> -->
+                    </div>
+                    <div class="flex-wrap">
+                        <span id="status2-icon1"  class="glyphicon glyphicon-check" style="font-size: 40px;display:none" aria-hidden="true"></span>
+                        <span id="status2-icon2"  class="glyphicon glyphicon-ok" style="font-size: 40px;display: none;" aria-hidden="true"></span>
+                        <h4 class="ml10" id="status2">提交审核</h4>
+                    </div>
+                    <div class="flex-wrap">
+                        <span class="line"></span>
+                        <!-- <span class="glyphicon glyphicon-chevron-right" style="font-size: 40px;" aria-hidden="true"></span> -->
+                    </div>
+                    <div class="flex-wrap">
+                        <span id="status3-icon1"  class="glyphicon glyphicon-check" style="font-size: 40px;" aria-hidden="true"></span>
+                        <span id="status3-icon2"  class="glyphicon glyphicon-ok" style="font-size: 40px;" aria-hidden="true"></span>
+                        <h4 class="ml10" id="status3">完成</h4>
+                    </div>
+                </div>
+                <form id="ajaxForm" method="post" style="display: none;" class="form-horizontal" enctype="multipart/form-data" action="{{http.url}}" data-validate="parsley">
+                    <!-- 公司全名 -->
+                    <div class="form-group" style="margin-top: 25px">
+                        <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i>公司全名</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        name="biz_name" 
+                                        value="{{info.biz_name if info.biz_name else null}}"  
+                                        data-required="true" 
+                                        placeholder="支持中文、英文、数字、标点符号输入">
+                                </div>
+                                <!-- <div class="col-md-12">
+                                    <span class="help-block m-b-none text-muted"><i class="fa fa-info-circle text-info"></i> 支持中文、英文、数字、标点符号输入</span>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 当前用户id -->
+                    <!-- <div class="form-group" style="margin-top: 25px">
+                        <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i></label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        name="user_id" 
+                                        value="{{info.user_id if info.user_id else null}}"  
+                                        data-required="true" 
+                                        placeholder="支持中文、英文、数字、标点符号输入">
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- 公司类型 -->
+                    <div class="form-group">
+                    <!-- <p style="display: none;" id="uid">{{userinfo.uid}}</p> -->
+                    <input type="hidden" name="uid" value="{{userinfo.uid}}">
+
+                        <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i>公司类型</label>
+                        <div class="col-sm-10">
+                            <label class="radio-inline i-checks">
+                                <input type="radio" value="0" name="biz_type" data-required="true" {%if user.is_admin==0%}checked{%endif%}><i></i> 生产企业
+                            </label>
+                            <label class="radio-inline i-checks">
+                                <input type="radio" value="1" name="biz_type" data-required="true" {%if user.is_admin==1%}checked{%endif%}><i></i> 经销商
+                            </label>
+                        </div>
+                    </div>
+                    <!-- 公司地址 -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i>公司地址</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        name="address" 
+                                        value="{{info.address if info.address else null}}" 
+                                        placeholder="支持英文、数字、标点符号输入" 
+                                        data-required="true" >
+                                </div>
+                                <!-- <div class="col-md-12">
+                                    <span class="help-block m-b-none text-muted"><i class="fa fa-info-circle text-info"></i> 支持中文、英文、数字、标点符号输入</span>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 店铺全称 -->
+                    <div class="form-group" style="margin-top: 25px">
+                        <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i>店铺全称</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        name="store_name" 
+                                        value="{{info.name if info.name else null}}"  
+                                        data-required="true" 
+                                        placeholder="支持中文、英文、数字、标点符号输入">
+                                </div>
+                                <!-- <div class="col-md-12">
+                                    <span class="help-block m-b-none text-muted"><i class="fa fa-info-circle text-info"></i> 支持中文、英文、数字、标点符号输入</span>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 店铺类型 -->
+                    <div class="form-group" style="margin-top: 25px">
+                        <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i>店铺类型</label>
+                        <div class="col-sm-10">
+                            <label class="radio-inline i-checks">
+                                <input type="radio" value="0" name="store_type" data-required="true" {%if user.is_admin==0%}checked{%endif%}><i></i> 旗舰
+                            </label>
+                            <label class="radio-inline i-checks">
+                                <input type="radio" value="1" name="store_type" data-required="true" {%if user.is_admin==1%}checked{%endif%}><i></i> 专卖
+                            </label>
+                            <label class="radio-inline i-checks">
+                                <input type="radio" value="2" name="store_type" data-required="true" {%if user.is_admin==1%}checked{%endif%}><i></i> 专营
+                            </label>
+                        </div>
+                    </div>
+                    <!-- 店铺负责人姓名 -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i>店铺负责人</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        name="store_manager" 
+                                        value="{{info.legalPerson if info.legalPerson else null}}" 
+                                        placeholder="支持中文、英文、数字、标点符号输入" 
+                                        data-required="true" >
+                                </div>
+                        
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 店铺负责人电话 -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i>负责人电话</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <input 
+                                        type="text" 
+                                        data-type="phone"
+                                        class="form-control" 
+                                        name="manager_phone" 
+                                        value="{{info.tel if info.tel else null}}" 
+                                        placeholder="支持数字、标点符号输入"  
+                                        data-required="true"
+                                        >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 店铺负责人邮箱 -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i>负责人邮箱</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        name="manager_email" 
+                                        data-type="email" 
+                                        value="{{info.manager_email if info.emmanager_emailail else null}}" 
+                                        placeholder="支持英文、数字、标点符号输入" 
+                                        data-required="true" >
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 联系方式 -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i>联系方式</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <input 
+                                        type="text" 
+                                        data-type="number"
+                                        class="form-control" 
+                                        name="contact" 
+                                        value="{{info.contact if info.contact else null}}" 
+                                        placeholder="支持数字、标点符号输入"  
+                                        data-required="true"
+                                        >
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 公司介绍 -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i>公司介绍</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <textarea 
+                                        class="form-control" 
+                                        name="introduction"
+                                        data-required="true" 
+                                        placeholder="支持中文、英文、数字、标点符号输入">{{ info.introduction }}</textarea>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 公司经营范围 -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i>公司经营范围</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <textarea 
+                                        class="form-control" 
+                                        name="biz_scope"
+                                        data-required="true" 
+                                        placeholder="支持中文、英文、数字、标点符号输入">{{ info.biz_scope }}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 公司经营方式 -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i>公司经营方式</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <textarea 
+                                        class="form-control" 
+                                        name="biz_prac"
+                                        data-required="true" 
+                                        placeholder="支持中文、英文、数字、标点符号输入">{{ info.biz_prac }}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 公司经营方式 -->
+                    <!-- <div class="form-group">
+                        <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i>公司经营方式</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <textarea 
+                                        class="form-control" 
+                                        name="logo"
+                                        data-required="true" 
+                                        placeholder="支持中文、英文、数字、标点符号输入">{{ info.operation }}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- 公司logo -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i>公司logo上传</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-md-5 flex-wrap">
+                                    <div class="input-upload" name="logo1" id="pic0-btn">选择文件</div>
+                                    <input 
+                                        type="file" 
+                                        class="input-file" 
+                                        style="opacity: 0;"
+                                        id="pic0" 
+                                        accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"/>
+                                    <input type="text" style="display: none" name="logo" id="pic0-value" value="">
+                                    <span class="ml10" id="pic0-text">请上传文件</span>
+                                    <!-- <img 
+                                        id="pic0-img"
+                                        name="logo" 
+                                        style="width: 100px; height: 100px;" 
+                                        src="/u/avatar/{{user.id}}" 
+                                        alt="{{user.username}}"> -->
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i>企业营业执照</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-md-5 flex-wrap">
+                                    <div class="input-upload" name="license1" id="pic1-btn">选择文件</div>
+                                    <input 
+                                        type="file" 
+                                        class="input-file" 
+                                        style="opacity: 0;" 
+                                        id="pic1" 
+                                        accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"/>
+                                    <input type="text" style="display: none" name="license" id="pic1-value" value="">
+                                    <span class="ml10" id="pic1-text">请上传文件</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 银行开户许可证 -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i>银行开户许可证</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-md-5 flex-wrap">
+                                    <div class="input-upload" name="account1" id="pic2-btn">选择文件</div>
+                                    <input 
+                                        type="file" 
+                                        class="input-file" 
+                                        
+                                        style="opacity: 0;" 
+                                        id="pic2" 
+                                        accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"/>
+                                    <input type="text" style="display: none" name="account" id="pic2-value" value="">
+                                    <span class="ml10" id="pic2-text">请上传文件</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 医疗器械生产许可证 -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i>医疗器械生产许可证</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-md-5 flex-wrap">
+                                    <div class="input-upload" name="prod_cert1" id="pic3-btn">选择文件</div>
+                                    <input 
+                                        type="file" 
+                                        class="input-file" 
+                                        
+                                        style="opacity: 0;" 
+                                        id="pic3" 
+                                        accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"/>
+                                    <input type="text" style="display: none" name="prod_cert" id="pic3-value" value="">
+
+                                    <span class="ml10" id="pic3-text">请上传文件</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 生产备案凭证 -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i>生产备案凭证</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-md-5 flex-wrap">
+                                    <div class="input-upload" name="registration1" id="pic4-btn">选择文件</div>
+                                    <input 
+                                        type="file" 
+                                        class="input-file" 
+                                       
+                                        style="opacity: 0;" 
+                                        id="pic4" 
+                                        accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"/>
+                                    <input type="text" style="display: none" name="registration" id="pic4-value" value="">
+
+                                    <span class="ml10" id="pic4-text">请上传文件</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 网络销售许可证 -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i>网络销售许可证</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-md-5 flex-wrap">
+                                    <div class="input-upload" name="online_sales1" id="pic5-btn">选择文件</div>
+                                    <input 
+                                        type="file" 
+                                        class="input-file"  
+                                        style="opacity: 0;" 
+                                        id="pic5" 
+                                        accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"/>
+                                    <input type="text" style="display: none" name="online_sales" id="pic5-value" value="">
+                                        
+                                    <span class="ml10" id="pic5-text">请上传文件</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 法人身份证 -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i>法人身份证复印件</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-md-5 flex-wrap">
+                                    <div class="input-upload" name="legal_person_front1" id="pic6-btn">选择文件</div>
+                                    <input 
+                                        type="file" 
+                                        class="input-file" 
+                                        
+                                        style="opacity: 0;" 
+                                        id="pic6" 
+                                        accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"/>
+                                    <input type="text" style="display: none" name="legal_person_front" id="pic6-value" value="">
+
+                                    <span class="ml10" id="pic6-text">请上传身份证正面（国徽面）</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 45px">
+                        <label class="col-sm-2 control-label font-bold"></label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-md-5 flex-wrap">
+                                    <div class="input-upload" name="legal_person_back1" id="pic7-btn">选择文件</div>
+                                    <input 
+                                        type="file" 
+                                        class="input-file" 
+                                        style="opacity: 0;" 
+                                        id="pic7" 
+                                        accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"/>
+                                    <input type="text" style="display: none" name="legal_person_back" id="pic7-value" value="">
+
+                                    <span class="ml10" id="pic7-text">请上传身份证反面（人像面）</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 45px">
+                        <label class="col-sm-2 control-label font-bold"></label>
+                        <div class="col-sm-10">
+                            <label class="checkbox-inline i-checks" style="padding-top: 0; margin-left: 15px">
+                                <input type="checkbox" value="1" data-required="true" name="check" {% if user.vip==1%} checked{%endif%}><i></i>
+                                <a id="dialog" class="text-info" data-toggle="modal" data-target="#myModal">点此查看用户协议（示例）</a>
+                            </label>
+                        </div>
+                        
+                    </div>
+                    <div class="form-group form-submit">
+                        <div class="col-sm-4 col-sm-offset-2">
+                            <button class="btn btn-primary ajax-post" target-form="form-horizontal" type="submit">确定</button>
+                            <!-- <button class="btn btn-primary ajax-post" target-form="form-horizontal" type="button" onclick="btn()">确定</button> -->
+                            <button class="btn btn-default" onclick="javascript:history.back(-1);return false;" type="submit">返回</button>
+                        </div>
+                    </div>
+                </form>
+                <form action="" id="status2-form" style="display: none;">
+                    <div class="shenhe">
+                        <h3>审核状态</h3>
+                        <div style="margin-top: 20px">
+                            <h4>您的审核已提交，审核通过后即可使用</h4>
+                        </div>
+                    </div>
+                </form>
+                <form action="" id="status3-form" style="display: none;">
+                    <div class="shenhe">
+                        <h3>审核状态</h3>
+                        <div id="pass" style="display: none;">
+                            <h4>您的审核已通过！</h4>
+                            <button class="btn btn-success btn-lg ajax-post" target-form="form-horizontal" type="submit">开始使用</button>
+                        </div>
+                        <div id="unpass" style="display: none;">
+                            <h4>您的本次审核未通过，原因如下：</h4>
+                            <ol>
+                                <li style="text-align: left;"><p id="reson1"></p></li>
+                                <li style="text-align: left;"><p id="reson2"></p></li>
+                            </ol>
+                            <button class="btn btn-primary btn-lg ajax-post" target-form="form-horizontal" onclick="reUpload()">重新上传</button>
+                        </div>
+                        <!-- <div style="margin-top: 20px; text-align: left;">
+                            <span class="glyphicon glyphicon-ok" style="font-size: 40px;" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-arrow-right" style="font-size: 40px;" aria-hidden="true"></span>
+                            <h4>您本次审核未通过，原因如下</h4>
+                            
+                                <h5>1. 审核文件1图片清晰度不足</h5>
+                                <h5>2. 法人名称不可查</h5>
+                            
+                        </div> -->
+                    </div>
+
+                </form>
+            </div>
+        </section>
+        </div></div>
+    </section>
+</section>
+
+{% endblock %}
+
+{% block script%}
+<style>
+    .input-upload{
+        /* position: absolute;
+        top: 0;
+        left: 15px; */
+        display: inline-block;
+        /* cursor: pointer; */
+        background: #00b7ee;
+        padding: 10px 15px;
+        color: #fff;
+        text-align: center;
+        border-radius: 3px;
+        overflow: hidden;
+    }
+    .input-file{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 15px;
+        cursor: pointer;
+        width: 86px;
+    }
+    .input-file:hover{
+        cursor: pointer;
+    }
+    input[type="file"] {
+        -moz-user-select: none;
+        background-color: #F5F5F5;
+        background-image: -moz-linear-gradient(center top , #F5F5F5, #F1F1F1);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 2px 2px 2px 2px;
+        color: #666666;
+        font-family: arial,sans-serif;
+        font-size: 11px;
+        font-weight: bold;
+        height: 38px;
+        line-height: 27px;
+        /* margin: 11px 6px; */
+        min-width: 54px;
+        padding: 0 8px;
+        text-align: center;
+    }
+    .status{
+        width: 90%;
+        margin: 0 auto;
+        justify-content: space-around;
+        padding: 20px 0;
+    }
+    .flex-wrap{
+        display: flex;
+        align-items: center;
+    }
+    .ml10{
+        margin-left: 10px;
+    }
+    .ml2{
+        margin-right: 4px
+    }
+    .icon{
+        margin-right: 5px;
+        font-size: 2px
+    }
+    .fcolor-666{
+        color: #666;
+        font-weight: bold;
+    }
+    .content-body{
+        width: 100%;
+        height: 75vh;
+        overflow-y:auto;
+    }
+    .shenhe{
+        height: 300px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 50px;
+        /* justify-content: center; */
+    }
+    .blue{
+        color: #545ca6;
+    }
+    .line{
+        height: 10px;
+        width: 200px;
+        background: #788187;
+    }
+    .dn{
+        display: none;
+    }
+</style>
+<script src="/static/admin/js/parsley/parsley.min.js" type="text/javascript"></script>
+<script src="/static/admin/js/parsley/parsley.extend.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function(){
+        $('form').submit(evt=>{
+            console.log($('form').serialize())
+            evt.preventDefault();
+            $.ajax({
+                url: '/admin/business/applysubmit',
+                type: 'POST', 
+                dataType: 'json',
+                data: $('form').serialize(), 
+                success:res=>{
+                    console.log(res)
+                    if(!res.errno) {
+                        alert('Update Successfully！');
+                        window.location.reload();
+                    }
+                    else alert(res.errmsg);
+                }
+            });
+        });
+    });
+    
+    window.onload = function(){
+        // window.open("/admin/user/edituser")
+        // document.getElementById('pic1-text').innerHTML= '2222ddd'
+        // console.log($("input[type='file']")[2])
+        // this.fullscreen()
+        let uploadId = $("input[type='file']")
+        for(let i = 0; i <= uploadId.length -1 ; i ++){
+            // console.log(uploadId[i])
+            uploadId[i].onchange = function(e){
+                console.log(this.files[0])
+                e = e || event;
+                let type= this.files[0].type.split('/')[1]
+                var reg = /\.(png|jpg|gif|jpeg|webp)$/;
+
+                // 查看按钮的显示
+                // let upload = document.getElementById(uploadId[i].id);
+                // upload.setAttribute("style","display: none");
+                let arr = ['logo','license','account','prod_cert','registration','online_sales','legal_person_front','legal_person_back']
+                let d = new FormData()
+                d.append("filetype", arr[i])
+                d.append(arr[i], this.files[0])
+
+                $.ajax({
+                    url: '/admin/business/upload',
+                    type: 'POST', 
+                    contentType: false,
+                    // 告诉jQuery不要去设置Content-Type请求头
+                    processData: false,
+                    data: d, 
+                    success:res=>{
+                        console.log(res)
+                        if(!res.errno) {
+                           
+                            // window.location.reload();
+
+                            // let img = document.getElementById(uploadId[i].id+'-img');
+                            // img.src = res.data.url
+                            
+                            // 更改提示文本
+                            let value = document.getElementById(uploadId[i].id+ '-value');
+                            value.value= res.data.url
+
+                            // 更改提示文本
+                            let text = document.getElementById(uploadId[i].id+ '-text');
+                            text.innerHTML= this.files[0].name
+
+                            // 更改上传按钮样式
+                            let btn = document.getElementById(uploadId[i].id + '-btn');
+                            btn.setAttribute("style","background: #1ab667");//一次添加多个
+                            btn.innerHTML= '上传成功'
+                        }
+                        else alert(res.errmsg);
+                    }
+                });
+
+               
+
+                
+
+                if(!reg.test(this.files[0].name)){
+                    alert('请选择png/jpg/jpeg/webp格式的图片进行上传')
+                }
+            }
+        }
+        
+        // 用户协议弹框
+        // document.querySelector('#dialog').click()
+        let uid = $("[name=uid]").val()
+        $.ajax({
+            url: '/admin/business/applyQueryByUser',
+            type: 'POST', 
+            dataType: 'json',
+            data: {
+                user_id: uid
+            }, 
+            success:res=>{
+                
+                if(!res.errno) {
+                    console.log(res.data.applydata[0])
+                    let d = res.data.applydata[0]
+                    for(let key in d){
+                        $("[name="+key+"]").val(d[key]);
+                        $("[name="+key+"1]").css("background", "#1ab667");//一次添加多个
+                        $("[name="+key+"1]").html("上传成功") //一次添加多个
+                    }
+                    // 填写过审核信息
+                    if(d){
+                        if(d.status == 2){
+                            $("#status1-icon1").css('display','block');
+                            $("#status1-icon2").css('display','none');
+                            $("#status2-icon1").css('display','block');
+                            $("#status3-icon1").css('display','block');
+                            $("#status3-icon2").css('display','none');
+                            
+                            $("#ajaxForm").css('display','block');
+                        }else 
+                        if(d.status == 0){
+                            $("#status1-icon1").css('display','none');
+                            $("#status1-icon2").css('display','block');
+                            $("#status2-icon1").css('display','block');
+                            $("#status3-icon2").css('display','none');
+                            $("#status1").css('color','#788187')
+                            $("#status2").css('color','#545ca6');
+                            $("#ajaxForm").css('display','none');
+                            $("#status2-form").css('display','block');
+                        }else{
+                            $("#status1-icon1").css('display','none');
+                            $("#status1-icon2").css('display','block');
+                            $("#status2-icon1").css('display','none');
+                            $("#status2-icon2").css('display','block');
+                            $("#status3-icon1").css('display','none');
+                            $("#status3-icon2").css('display','block');
+                            $("#status1").css('color','#788187')
+                            $("#status3").css('color','#545ca6');
+                            $("#ajaxForm").css('display','none');
+                            $("#status2-form").css('display','none');
+                            $("#status3-form").css('display','block');
+                            if(d.status == 20){
+                                $("#pass").css('display','block');
+                            }else{
+                                $("#unpass").css('display','block');
+                                console.log(res.data.applydata[0].first_reject)
+                                $("#reson1").text(d.first_reject)
+                                $("#reson2").text(d.second_reject)
+                            }
+
+                        }
+                        
+                    }
+                   
+
+                }
+                else alert(res.errmsg);
+            }
+        });
+    }
+    function reUpload() {
+        console.log(111)
+        $("#status1-icon1").css('display','block');
+        $("#status1-icon2").css('display','none');
+        $("#status2-icon1").css('display','block');
+        $("#status2-icon2").css('display','none');
+        $("#status3-icon1").css('display','block');
+        $("#status3-icon2").css('display','none');
+        $("#status1").css('color','#545ca6');
+        $("#ajaxForm").css('display','block');
+        $("#status3").css('color','#788187');
+        $("#status2-form").css('display','none');
+        $("#status3-form").css('display','none');
+    };
+</script>
+{% endblock %}

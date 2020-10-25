@@ -32,9 +32,15 @@ module.exports = class extends think.Controller {
         // await this.model("cmswing/action").log("user_login","member",res.uid,res.uid,this.ip,this.ctx.url);
         // console.log(11111111111111);
         await this.session('userInfo', res);
+        const applydata = await this.model('cmswing/business').applyQueryByUser(res.uid);
+        if (think.isEmpty(applydata)){
+            return this.success({name: '登陆成功!', url: '/admin/index'});
+        }else{
+            return this.success({name: '登陆成功!', url: '/admin/business/applysubmit'});
+        }
         // TODO 用户密钥
         // this.redirect('/admin/index');
-        return this.success({name: '登陆成功!', url: '/admin/index'});
+        // return this.success({name: '登陆成功!', url: '/admin/index'});
       } else { // 登录失败
         let fail;
         switch (res) {
