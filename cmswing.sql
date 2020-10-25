@@ -9722,6 +9722,7 @@ CREATE TABLE `cmswing_goods` (
   `price` double NOT NULL DEFAULT '0.0' COMMENT '商品单价',
   `status` tinyint(2) unsigned NOT NULL DEFAULT '2' COMMENT '商品申请状态。待审核(添加):0,一审通过:10,一审驳回:11,二审通过:20,二审驳回:21,超时:30,重新提交:1,创建:2',
   `withdraw` tinyint(2) unsigned NOT NULL DEFAULT '1' COMMENT '商品是否下架，在架:0,下架:1',
+  `update_time` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
   `first_pass_user` int NOT NULL DEFAULT '0' COMMENT '一审用户id',
   `first_reject` varchar(255) NOT NULL DEFAULT '' COMMENT '一审驳回原因',
   `second_pass_user` int NOT NULL DEFAULT '0 'COMMENT '二审用户id',

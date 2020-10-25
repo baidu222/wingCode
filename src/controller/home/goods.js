@@ -62,6 +62,8 @@ module.exports = class extends think.cmswing.home {
             let picture2;
             //销售授权委托书路径
             let market_author;
+            //每次数据变更时间
+            let update_time;
             if (think.isNullOrUndefined(data.name)){
                 name = '';
             }else{
@@ -110,6 +112,7 @@ module.exports = class extends think.cmswing.home {
             }else{
                 market_author = data.market_author;
             }
+            update_time = Date.now();
             const goodsData = {
                 "batch_number":batch_number,
                 "user_id":user_id,
@@ -119,6 +122,7 @@ module.exports = class extends think.cmswing.home {
                 "price":price,
                 "num":num,
                 "status":status,
+                "update_time":update_time,
                 "picture":picture,
                 "picture1":picture1,
                 "picture2":picture2,
@@ -149,7 +153,8 @@ module.exports = class extends think.cmswing.home {
                 };
                 const  updatedata = {
                     "status":10,
-                    "first_pass_user":user_id
+                    "first_pass_user":user_id,
+                    "update_time":Date.now()
                 };
                 await this.model('cmswing/goods').applyUpdate(condition,updatedata);
                 return this.success({code:200});
@@ -159,7 +164,8 @@ module.exports = class extends think.cmswing.home {
                 };
                 const  updatedata = {
                     "status":20,
-                    "second_pass_user":user_id
+                    "second_pass_user":user_id,
+                    "update_time":Date.now()
                 };
                 await this.model('cmswing/goods').applyUpdate(condition,updatedata);
                 return this.success({code:200});
@@ -173,7 +179,8 @@ module.exports = class extends think.cmswing.home {
                 };
                 const  updatedata = {
                     "status":11,
-                    "first_reject":reject
+                    "first_reject":reject,
+                    "update_time":Date.now()
                 };
                 await this.model('cmswing/goods').applyUpdate(condition,updatedata);
                 return this.success({code:200,reject:reject});
@@ -187,7 +194,8 @@ module.exports = class extends think.cmswing.home {
                 };
                 const  updatedata = {
                     "status":21,
-                    "second_reject":reject
+                    "second_reject":reject,
+                    "update_time":Date.now()
                 };
                 await this.model('cmswing/goods').applyUpdate(condition,updatedata);
                 return this.success({code:200,reject:reject});
