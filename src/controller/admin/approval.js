@@ -85,10 +85,12 @@ module.exports = class extends think.cmswing.admin {
     }
     this.assign('model', modlist);
 
-    // 全部二级审核数量（改）
-    this.assign('count', await this.db.where({
-      model: ['IN', [4, 9]]
-    }).count());
+    // 全部二级审核数量
+    let countshop = await this.model('cmswing/business').where('status = 10').count() 
+    let countgoods = await this.model('cmswing/goods').where('status = 10').count();
+    this.assign('count', countshop + countgoods);
+    this.assign('countshop', countshop);
+    this.assign('countgoods', countgoods);
 
      // 获取数据
      const map = {};
@@ -290,7 +292,8 @@ module.exports = class extends think.cmswing.admin {
                 };
                 const  updatedata = {
                     "status":10,
-                    "first_pass_user":user_id
+                    "first_pass_user":user_id,
+                    "update_time":Date.now()
                 };
                 const res = await this.model('cmswing/goods').where(condition).update(updatedata);
                 if (res) {
@@ -306,7 +309,8 @@ module.exports = class extends think.cmswing.admin {
                 };
                 const  updatedata = {
                     "status":20,
-                    "second_pass_user":user_id
+                    "second_pass_user":user_id,
+                    "update_time":Date.now()
                 };
                 const res = await this.model('cmswing/goods').where(condition).update(updatedata);
                 if (res) {
@@ -326,7 +330,8 @@ module.exports = class extends think.cmswing.admin {
                 };
                 const  updatedata = {
                     "status":11,
-                    "first_reject":reject
+                    "first_reject":reject,
+                    "update_time":Date.now()
                 };
                 const res = await this.model('cmswing/goods').where(condition).update(updatedata);
                 if (res) {
@@ -346,7 +351,8 @@ module.exports = class extends think.cmswing.admin {
                 };
                 const  updatedata = {
                     "status":21,
-                    "second_reject":reject
+                    "second_reject":reject,
+                    "update_time":Date.now()
                 };
                 const res = await this.model('cmswing/goods').where(condition).update(updatedata);
                 if (res) {

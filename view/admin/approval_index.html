@@ -14,7 +14,7 @@
                             <span class="badge bg-info">{{count}}</span></a></li>
                     {%for m in model%}
                     <li class="{%if controller.get('model')==m.id%}active{%endif%}"><a
-                            href="/admin/approval/index/?model={{m.id}}">{{m.title}} 审核
+                            href="/admin/approval/index/?model={{m.id}}">{{m.title}}审核
                             {%if btn==m.id and btn == 9 and countshop > 0%}
                                 <span class="badge bg-info">
                                     {{countshop}}
@@ -123,7 +123,7 @@
                             <td>{{item.name}}</td>
                             <td><a href="/admin/user/showuser/?id={{item.biz_id}}" class="text-info"
                                     data-toggle="ajaxModal">{{item.biz_id|get_nickname}}</a></td>
-                            <td>{{item.time | moment('YYYY-MM-DD HH:mm:ss')}}</td>
+                            <td>{{item.update_time | moment('YYYY-MM-DD HH:mm:ss')}}</td>
                             <td>{%if item.status == 0 %}待审核
                                 {%elif item.status== 10%}一审通过
                                 {%elif item.status == 11 %}待二审
@@ -155,6 +155,7 @@
 
                     </tbody>
                 </table>
+                {#
                 {%else%}
                 <table class="table table-hover b-t b-light treetable" id="category">
                     <thead>
@@ -211,6 +212,7 @@
 
                     </tbody>
                 </table>
+                #}
                 {% endif %}
 
             </div>

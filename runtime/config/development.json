@@ -37,7 +37,7 @@
       "logSql": true,
       "user": "root",
       "password": "12345678",
-      "database": "cmstest",
+      "database": "cmswing",
       "host": "127.0.0.1",
       "port": 3306,
       "connectionLimit": 1,
