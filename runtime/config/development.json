@@ -25,7 +25,11 @@
     "type": "file",
     "file": {
       "timeout": 86400000,
+<<<<<<< HEAD
       "cachePath": "/Users/yym/Desktop/hiahiahia/web/施老大/wingcode/wingCode/runtime/cache",
+=======
+      "cachePath": "/Users/rr/Desktop/pj/wingCode/runtime/cache",
+>>>>>>> f59e486d654cb34f0974aaf427336be111f563eb
       "pathDepth": 1,
       "gcInterval": 86400000
     }
@@ -37,14 +41,22 @@
       "logSql": true,
       "user": "root",
       "password": "12345678",
+<<<<<<< HEAD
       "database": "cmstest",
+=======
+      "database": "cmswing",
+>>>>>>> f59e486d654cb34f0974aaf427336be111f563eb
       "host": "127.0.0.1",
       "port": 3306,
       "connectionLimit": 1,
       "prefix": "cmswing_",
       "cache": {
         "type": "file",
+<<<<<<< HEAD
         "cachePath": "/Users/yym/Desktop/hiahiahia/web/施老大/wingcode/wingCode/runtime/cache"
+=======
+        "cachePath": "/Users/rr/Desktop/pj/wingCode/runtime/cache"
+>>>>>>> f59e486d654cb34f0974aaf427336be111f563eb
       }
     }
   },
@@ -54,13 +66,21 @@
       "cookie": {
         "name": "thinkjs"
       },
+<<<<<<< HEAD
       "sessionPath": "/Users/yym/Desktop/hiahiahia/web/施老大/wingcode/wingCode/runtime/session"
+=======
+      "sessionPath": "/Users/rr/Desktop/pj/wingCode/runtime/session"
+>>>>>>> f59e486d654cb34f0974aaf427336be111f563eb
     }
   },
   "view": {
     "type": "nunjucks",
     "nunjucks": {
+<<<<<<< HEAD
       "viewPath": "/Users/yym/Desktop/hiahiahia/web/施老大/wingcode/wingCode/view",
+=======
+      "viewPath": "/Users/rr/Desktop/pj/wingCode/view",
+>>>>>>> f59e486d654cb34f0974aaf427336be111f563eb
       "sep": "_",
       "extname": ".html"
     }
@@ -72,14 +92,22 @@
       "backups": 10,
       "absolute": true,
       "maxLogSize": 51200,
+<<<<<<< HEAD
       "filename": "/Users/yym/Desktop/hiahiahia/web/施老大/wingcode/wingCode/logs/app.log"
+=======
+      "filename": "/Users/rr/Desktop/pj/wingCode/logs/app.log"
+>>>>>>> f59e486d654cb34f0974aaf427336be111f563eb
     },
     "dateFile": {
       "level": "ALL",
       "absolute": true,
       "pattern": "-yyyy-MM-dd",
       "alwaysIncludePattern": true,
+<<<<<<< HEAD
       "filename": "/Users/yym/Desktop/hiahiahia/web/施老大/wingcode/wingCode/logs/app.log"
+=======
+      "filename": "/Users/rr/Desktop/pj/wingCode/logs/app.log"
+>>>>>>> f59e486d654cb34f0974aaf427336be111f563eb
     }
   }
 }

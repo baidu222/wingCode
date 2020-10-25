@@ -124,81 +124,19 @@ module.exports = class extends think.cmswing.admin {
   }
 
   /**
-   * 通过一审审核
-   */
-  async adoptaAction() {
-    const ids = this.para('ids');
-    if (think.isEmpty(ids)) {
-      return this.fail('参数错误！');
-    }
-
-    const datalist = await this.db.where({
-      id: ['IN', ids]
-    }).select();
-    // console.log(datalist);
-    for (const v of datalist) {
-      const table = await this.model('cmswing/model').get_table_name(v.model, true);
-      console.log(table);
-      let res = null;
-      switch (table.extend) {
-        case 0:
-          // console.log(table);
-          res = await this.modModel(table.table, table.table).updates(JSON.parse(v.data), v.time);
-          if (res) {
-            // 添加操作日志，可根据需求后台设置日志类型。
-            await this.model('cmswing/action').log('addquestion', 'question', res.id, res.data.uid, this.ip, this.ctx.url);
-            // 审核成功后删掉审核表中内容
-            await this.db.where({
-              id: v.id
-            }).delete();
-            return this.success({
-              name: '审核成功'
-            });
-          } else {
-            return this.fail('操作失败！');
-          }
-          case 1:
-            // todo
-            res = await this.model('cmswing/document').updates(JSON.parse(v.data), v.time);
-            if (res) {
-              // 添加操作日志，可根据需求后台设置日志类型。
-              // await this.model("cmswing/action").log("addquestion", "question", res.id, res.data.uid, this.ip, this.ctx.url);
-              // 审核成功后删掉审核表中内容
-              await this.db.where({
-                id: v.id
-              }).delete();
-              return this.success({
-                name: '审核成功'
-              });
-            } else {
-              return this.fail('操作失败！');
-            }
-      }
-    }
-
-    // 一级审核卖家
-    // {
-    //   "biz_id":int,//获取商户申请信息
-    //   "user_id":int,//当前提交用户id
-    //   "action_type":"first_pass"
-    // }
-    // think.Controller('cmswing/business').update();
-
-  }
-
-   /**
-   * 拒绝一审卖家
-   */
-
-
-  /**
    * 编辑商家审核
    */
   async edshopAction() {
+    // 用户信息
+    this.user = await this.session('userInfo');
+
+    const user_id = this.user.uid;
+    // this.assign('userinfo',this.user.uid);
     if(this.isPost){
         const data = this.post();
         const biz_id = data.biz_id;
-        const user_id = data.user_id;
+        // const user_id = data.user_id;
+
         if (!think.isNullOrUndefined(data.action_type)){
             const action_type = data.action_type;
 
