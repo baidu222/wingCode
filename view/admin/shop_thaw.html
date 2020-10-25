@@ -1,0 +1,84 @@
+{% extends "./inc/base.html" %}
+{% block style %}
+<!--<link rel="stylesheet" href="/static/js/slider/slider.css" type="text/css" />-->
+<link rel="stylesheet" href="/static/admin/js/chosen/chosen.css" type="text/css" />
+<script src="/static/admin/js/jquery.min.js"></script>
+
+{% endblock %}
+{% block content %}
+<section class="vbox">
+    <header class="header bg-light dk">
+        <p>{{controller.meta_title}}</p>
+
+    </header>
+    <section class="scrollable wrapper">
+
+        <div class="row">
+
+            <div class="col-lg-12">
+                <section class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">
+                                    保证金当前金额
+                                </label>
+                                <div class="col-sm-10">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <p class="form-control-static">0.00元</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="line line-dashed b-b line-lg pull-in"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">
+                                    可申请解冻金额
+                                </label>
+                                <div class="col-sm-10">
+                                    <div class="row m-b">
+                                        <div class="col-md-3">
+                                            <p class="form-control-static">1000.00元</p>
+                                        </div>
+                                    </div>
+                                    <small>
+                                        <code>解冻保证金后，店铺经营活动将不能正常进行，为了您的经营不受影响，请谨慎选择</code>
+                                    </small>
+                                </div>
+                            </div>
+                           
+                            <div class="line line-dashed b-b line-lg pull-in"></div>
+                            <div class="form-group form-submit">
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <a href="/admin/shop/thawsuccess" class="btn btn-danger btn-s-md">继续申请</a>
+                                    <a href="/admin/shop/margin" class="btn btn-default">放弃并返回</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+        </div>
+    </section>
+</section>
+
+{% endblock %}
+
+{% block script %}
+<!-- slider -->
+<!--<script src="/static/js/slider/bootstrap-slider.js"></script>-->
+<!-- file input -->
+<script src="/static/admin/js/chosen/chosen.jquery.min.js"></script>
+<script src="/static/admin/js/file-input/bootstrap-filestyle.min.js"></script>
+<script src="/static/admin/js/parsley/parsley.min.js"></script>
+<script src="/static/admin/js/parsley/parsley.extend.js"></script>
+<script type="text/javascript">
+    $(function(){
+
+
+    })
+</script>
+{% endblock %}

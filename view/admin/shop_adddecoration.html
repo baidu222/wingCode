@@ -1,0 +1,42 @@
+<div class="modal-dialog ">
+  <form method="post" class="form-horizontal" action="/admin/shop/adddecoration" data-validate="parsley">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">{{controller.meta_title}}</h4>
+          </div>
+          <div class="modal-body">
+              <div class="form-group">
+                  <label class="col-sm-2 control-label">页面名称</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="input-sm form-control" placeholder="请输入页面名称" name="shop_name" data-required="true">
+                  </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">页面类型</label>
+                <div class="col-sm-10">
+                  <label class="radio-inline i-checks">
+                    <input type="radio" checked="checked" value="0" name="type"><i></i> 店铺主页
+                  </label>
+                  <label class="radio-inline i-checks">
+                      <input type="radio"  value="1" name="type"><i></i> 商品详情页
+                  </label>
+                  <label class="radio-inline i-checks">
+                      <input type="radio"  value="2" name="type"><i></i> 自定义页
+                  </label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">页面链接</label>
+                <div class="col-sm-10">
+                  <textarea type="text" class="input-sm form-control" placeholder="请选择页面链接" name="shop_url" data-required="true"></textarea>
+                </div>
+              </div>
+            <div class="modal-footer">
+                <a href="javascript:;" class="btn btn-default" data-dismiss="modal">关闭</a>
+                <button class="btn btn-primary btn-s-md ajax-post" type="submit" target-form="form-horizontal">确定</button>
+            </div>
+          </div>
+      </div>
+  </form>
+</div>

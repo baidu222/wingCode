@@ -1,0 +1,137 @@
+{% extends "./inc/base.html" %}
+{% block content %}
+<section class="vbox">
+    <header class="header bg-light dk">
+      <div class="btn-group pull-right">
+        <a href="/admin/shop/adddecoration" type="button" class="btn btn-info btn-sm" data-toggle="ajaxModal"><i class="fa fa-plus text"></i> 添加页面</a>
+      </div>
+      <p>{{controller.meta_title}}</p>
+  </header>
+
+    <section class="scrollable wrapper">
+
+        <section class="panel panel-default">
+            <header class="panel-heading">
+                页面列表
+                <i data-title="订单状态为已审核时才能发货，审核的订单才能进入执行中。" data-placement="bottom" data-toggle="tooltip" class="fa fa-info-sign text-muted" data-original-title="" title=""><i class="fa fa-question-circle"></i></i>
+            </header>
+            <div class="row wrapper">
+
+              <div class="col-sm-9 m-b-xs">
+                  <div class="">
+                      <a class="btn btn-sm btn-info ajax-post confirm" href="/admin/action/remove" target-form="ids">
+                        批量删除
+                      </a>
+                  </div>
+              </div>
+              <div class="col-sm-3">
+                  <div class="input-group pull-right">
+                      <input type="text" class="input-sm form-control" placeholder="Search">
+                    <span class="input-group-btn">
+                      <button class="btn btn-sm btn-default" type="button">Go!</button>
+                    </span>
+                  </div>
+              </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped b-t b-light">
+                  <thead>
+                    <tr>
+                        <th>页面名称</th>
+                        <th>页面类型</th>
+                        <th>创建时间</th>
+                        <th>更新时间</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for item in list %}
+                    <tr>
+                        <td>{{item.shop_name}}</td>
+                        <td>
+                          {%if item.type == 0 %}
+                          <span class="text-muted">店铺主页 </span>
+                          {%elif item.type ==1%}
+                          <span class="text-muted">商品详情页</span>
+                          {%elif item.type ==2%}
+                          <span class="text-muted">自定义页</span>
+                          {%endif%}
+                        </td>
+                        <td>{{item.create_time|dateformat("Y-m-d H:i:s")}}</td>
+                        <td>{{item.update_time|dateformat("Y-m-d H:i:s")}}</td>
+                        <td>
+                          {%if item.status ==1 %}
+                          <span class="text-muted">等待审核 </span>
+                          {%elif item.status ==3%}
+                          <span class="text-success">已审核</span>
+                          {%elif item.status ==6%}
+                          <del>已作废</del>
+                          {%elif item.status == 4%}
+                          <span class="text-primary">已完成</span>
+                          {%endif%}
+                        </td>
+                        <td>
+                          <a href="javascript:;" class="btn btn-success btn-xs todo"><i class="fa fa-edit"></i> 
+                            页面装修
+                          </a>
+                          <a href="#" class="btn btn-info btn-xs ajax-post copy-btn" data-path="{{item.shop_url}}">
+                            <i class="fa fa-trash-o"></i> 复制地址
+                          </a>
+                          <a href="/admin/shop/editdecoration/?id={{item.id}}" class="btn btn-warning btn-xs" data-toggle="ajaxModal"><i class="fa fa-trash-o"></i> 编辑</a>
+
+                          <a href="/admin/shop/deledecoration/?id={{item.id}}" class="btn btn-danger btn-xs confirm ajax-get">
+                            <i class="fa fa-trash-o"></i> 删除
+                          </a>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                      <td colspan="5">
+                        <div class="alert alert-warning alert-block">
+                          <button data-dismiss="alert" class="close" type="button">×</button>
+                          <p>暂无页面数据</p>
+                        </div>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <footer class="panel-footer">
+                <div class="row">
+                  <div class="col-sm-12 text-right text-center-xs">
+                      {{pagerData | safe}}
+                  </div>
+                </div>
+            </footer>
+        </section>
+    </section>
+</section>
+
+{% endblock %}
+{% block script%}
+<script src="/static/admin/js/parsley/parsley.min.js"></script>
+<script src="/static/admin/js/parsley/parsley.extend.js"></script>
+<script>
+   // 复制文本内容
+  function CopyText(content) {
+    var oInput = document.createElement('input');
+    oInput.value = content;
+    document.body.appendChild(oInput);
+    oInput.select(); // 选择对象
+    document.execCommand("Copy"); // 执行浏览器复制命令
+    oInput.style.display = 'none';
+    toastr.success('复制成功: ' + content);
+  }
+
+  // 初始化copy
+  $(function () {
+    $('.copy-btn').click(function () {
+      var _this = $(this);
+      var content = _this.attr('data-path');
+      CopyText(content);
+    });
+  })
+</script>
+{% endblock%}

@@ -1,0 +1,51 @@
+{% extends "./inc/base.html" %} {% block content %}
+
+<section class="vbox">
+    <header class="header bg-light dk">
+        <p>{{controller.meta_title}}</p>
+    </header>
+    <section class="scrollable wrapper">
+        <section class="panel panel-default">
+            <header class="panel-heading">
+                {{controller.meta_title_sub}}
+            </header>
+            <div class="row wrapper" style="padding-bottom: 0">
+              <div class="col-sm-12 m-b-xs">
+                <div class="margin-money">
+                  <div class="margin-money-item money">
+                    <h4 class="text-success m-b-xs text-center">入驻保证金金额</h4>
+                    ￥<span class="text-danger">0.00</span>元
+                  </div>
+                  <div class="margin-money-item money">
+                    <h4 class="m-b-xs  text-center">冻结金额</h4>
+                    ￥<span class="text-danger">0.00</span>元
+                  </div>
+                  <div class="margin-money-item money">
+                    <h4 class="m-b-xs text-center">待补缴金额</h4>
+                    ￥<span class="text-danger">0.00</span>元
+                  </div>
+                  <div class="margin-money-item">
+                    <a href="/admin/shop/money" class="btn btn-info m-b-xs" style="display: block;">立即缴纳</a>
+                    <a href="/admin/shop/thaw" class="btn btn-default" style="display: block;">申请解冻</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 m-t">
+                <div class="alert alert-warning alert-block">
+                  <button data-dismiss="alert" class="close" type="button">×</button>
+                  <p>入驻本平台需缴纳1000元保证金，否则不能开展店铺经营活动，为了您的经营不受影响，请及时缴纳</p>
+                </div>
+              </div>
+            </div>
+        </section>
+    </section>
+</section>
+
+{% endblock %}
+{% block script%}
+<script>
+    $(function () {
+        
+    })
+</script>
+{% endblock%}
