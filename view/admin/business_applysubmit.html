@@ -4,6 +4,8 @@
 <link rel="stylesheet" href="/static/admin/js/webuploader/webuploader.css" type="text/css">
 <script src="/static/admin/js/webuploader/webuploader.js" type="text/javascript"></script>
 <link rel="stylesheet" href="/static/admin/js/chosen/chosen.css" type="text/css" />
+<link rel="stylesheet" href="/static/admin/js/datepicker/bootstrap-datetimepicker.min.css" type="text/css">
+
 <!-- <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
@@ -126,27 +128,18 @@
                         </div>
                     </div>
                     <!-- 当前用户id -->
-                    <!-- <div class="form-group" style="margin-top: 25px">
+                    <div class="form-group" style="margin-top: 25px; display: none;">
                         <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i></label>
                         <div class="col-sm-10">
                             <div class="row">
                                 <div class="col-md-5">
-                                    <input 
-                                        type="text" 
-                                        class="form-control" 
-                                        name="user_id" 
-                                        value="{{info.user_id if info.user_id else null}}"  
-                                        data-required="true" 
-                                        placeholder="支持中文、英文、数字、标点符号输入">
+                                    <input type="hidden" name="user_id" value="{{userinfo.uid}}">
                                 </div>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
                     <!-- 公司类型 -->
                     <div class="form-group">
-                    <!-- <p style="display: none;" id="uid">{{userinfo.uid}}</p> -->
-                    <input type="hidden" name="uid" value="{{userinfo.uid}}">
-
                         <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i>公司类型</label>
                         <div class="col-sm-10">
                             <label class="radio-inline i-checks">
@@ -334,21 +327,17 @@
                             </div>
                         </div>
                     </div>
-                    <!-- 公司经营方式 -->
-                    <!-- <div class="form-group">
-                        <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i>公司经营方式</label>
+                    <!-- 有效时间 -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i>有效时间</label>
                         <div class="col-sm-10">
                             <div class="row">
                                 <div class="col-md-5">
-                                    <textarea 
-                                        class="form-control" 
-                                        name="logo"
-                                        data-required="true" 
-                                        placeholder="支持中文、英文、数字、标点符号输入">{{ info.operation }}</textarea>
+                                    <input class="input-sm input-s time form-control" size="16" type="text" value="" placeholder="示例：2022/10/22"  name="expire_date">
                                 </div>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
                     <!-- 公司logo -->
                     <div class="form-group">
                         <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i>公司logo上传</label>
@@ -375,6 +364,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- 营业执照 -->
                     <div class="form-group">
                         <label class="col-sm-2 control-label font-bold"><i class="fa fa-asterisk text-danger icon"></i>企业营业执照</label>
                         <div class="col-sm-10">
@@ -496,6 +486,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- 法人身份证 -->
                     <div class="form-group" style="margin-bottom: 45px">
                         <label class="col-sm-2 control-label font-bold"></label>
                         <div class="col-sm-10">
@@ -691,6 +682,12 @@
                 }
             });
         });
+        $('.time').datetimepicker({
+            format: 'yyyy-mm-dd',
+            language:"zh-CN",
+            minView:2,
+            autoclose:true
+        });
     });
     
     window.onload = function(){
@@ -760,7 +757,7 @@
         
         // 用户协议弹框
         // document.querySelector('#dialog').click()
-        let uid = $("[name=uid]").val()
+        let uid = $("[name=user_id]").val()
         $.ajax({
             url: '/admin/business/applyQueryByUser',
             type: 'POST', 
