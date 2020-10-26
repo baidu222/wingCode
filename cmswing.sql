@@ -10280,15 +10280,79 @@ CREATE TABLE `cmswing_zoning` (
 -- ----------------------------
 -- Records of cmswing_zoning
 -- ----------------------------
-BEGIN;
-INSERT INTO `cmswing_zoning` VALUES (12, '华东', '310000,320000,330000,340000,360000');
-INSERT INTO `cmswing_zoning` VALUES (13, '华北', '110000,120000,130000,140000,150000,370000');
-INSERT INTO `cmswing_zoning` VALUES (14, '华中', '410000,420000,430000');
-INSERT INTO `cmswing_zoning` VALUES (15, '华南', '350000,440000,450000,460000');
-INSERT INTO `cmswing_zoning` VALUES (16, '东北', '210000,220000,230000');
-INSERT INTO `cmswing_zoning` VALUES (17, '西北', '610000,620000,630000,640000,650000');
-INSERT INTO `cmswing_zoning` VALUES (18, '西南', '500000,510000,520000,530000,540000');
-INSERT INTO `cmswing_zoning` VALUES (20, '港澳台', '710000,810000,820000');
-COMMIT;
+INSERT INTO `cmswing_zoning` VALUES ('12', '华东', '310000,320000,330000,340000,360000');
+INSERT INTO `cmswing_zoning` VALUES ('13', '华北', '110000,120000,130000,140000,150000,370000');
+INSERT INTO `cmswing_zoning` VALUES ('14', '华中', '410000,420000,430000');
+INSERT INTO `cmswing_zoning` VALUES ('15', '华南', '350000,440000,450000,460000');
+INSERT INTO `cmswing_zoning` VALUES ('16', '东北', '210000,220000,230000');
+INSERT INTO `cmswing_zoning` VALUES ('17', '西北', '610000,620000,630000,640000,650000');
+INSERT INTO `cmswing_zoning` VALUES ('18', '西南', '500000,510000,520000,530000,540000');
+INSERT INTO `cmswing_zoning` VALUES ('20', '港澳台', '710000,810000,820000');
 
-SET FOREIGN_KEY_CHECKS = 1;
+
+-- ----------------------------
+-- Table structure for cmswing_business
+-- ----------------------------
+DROP TABLE IF EXISTS `cmswing_business`;
+CREATE TABLE `cmswing_business` (
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '执行用户id',
+  `biz_name` varchar(100) NOT NULL DEFAULT '' COMMENT '企业全称',
+  `biz_type` tinyint(2) unsigned NOT NULL DEFAULT '1' COMMENT '企业类型。生产企业:0,经销商:1',
+  `address` varchar(100) NOT NULL DEFAULT '' COMMENT '企业地址',
+  `store_name` varchar(100) NOT NULL DEFAULT '' COMMENT '店铺全称',
+  `store_type` tinyint(2) unsigned NOT NULL DEFAULT '1' COMMENT '店铺类型。旗舰店:0,专卖店:1,专营店:2',
+  `store_manager` varchar(30) NOT NULL DEFAULT '' COMMENT '店铺负责人姓名',
+  `manager_phone` varchar(20) NOT NULL DEFAULT '' COMMENT '店铺负责人电话',
+  `manager_email` varchar(20) NOT NULL DEFAULT '' COMMENT '店铺负责人邮箱',
+  `biz_status` tinyint(2) unsigned NOT NULL DEFAULT '2' COMMENT '商户申请状态。待审核(提交):0,一审通过:10,一审驳回:11,二审通过:20,二审驳回:21,超时:30,重新提交:1,创建:2',
+  `contact` varchar(40) NOT NULL DEFAULT '' COMMENT '联系方式',
+  `introduction` varchar(255) NOT NULL DEFAULT '' COMMENT '企业介绍',
+  `biz_scope` varchar(255) NOT NULL DEFAULT '' COMMENT '企业经营范围',
+  `biz_prac` varchar(255) NOT NULL DEFAULT '' COMMENT '企业经营方式',
+  `expire_date` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '到期日期',
+  `update_time` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
+  `first_pass_user` int NOT NULL DEFAULT '0' COMMENT '一审用户id',
+  `first_reject` varchar(255) NOT NULL DEFAULT '' COMMENT '一审驳回原因',
+  `second_pass_user` int NOT NULL DEFAULT '0 'COMMENT '二审用户id',
+  `second_reject` varchar(255) NOT NULL DEFAULT '' COMMENT '二审驳回原因',
+  `logo` varchar(100) NOT NULL COMMENT '企业log路径',
+  `license` varchar(100) NOT NULL COMMENT '企业营业执照路径',
+  `account` varchar(100) NOT NULL DEFAULT '' COMMENT '银行开户许可证路径',
+  `prod_cert` varchar(100) NOT NULL DEFAULT '' COMMENT '医疗器械生产许可证路径',
+  `registration` varchar(100) NOT NULL DEFAULT '' COMMENT '生产备案凭证路径',
+  `online_sales` varchar(100) NOT NULL DEFAULT '' COMMENT '网络销售许可证路径',
+  `legal_person_front` varchar(100) NOT NULL DEFAULT '' COMMENT '法人身份证正面复印件路径',
+  `legal_person_back` varchar(100) NOT NULL DEFAULT '' COMMENT '法人身份证背面复印件路径',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT;
+
+-- ----------------------------
+-- Table structure for cmswing_goods
+-- ----------------------------
+DROP TABLE IF EXISTS `cmswing_goods`;
+CREATE TABLE `cmswing_goods` (
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `batch_number` varchar(100) NOT NULL DEFAULT '' COMMENT '生产批号',
+  `user_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加用户id',
+  `biz_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '商户开户id(business表id)',
+  `goods_name` varchar(100) NOT NULL DEFAULT '' COMMENT '商品名称',
+  `remarks` varchar(100) NOT NULL DEFAULT '' COMMENT '商品备注',
+  `num` int(10) NOT NULL DEFAULT '0' COMMENT '商品数量',
+  `price` double NOT NULL DEFAULT '0.0' COMMENT '商品单价',
+  `goods_status` tinyint(2) unsigned NOT NULL DEFAULT '2' COMMENT '商品申请状态。待审核(添加):0,一审通过:10,一审驳回:11,二审通过:20,二审驳回:21,超时:30,重新提交:1,创建:2',
+  `withdraw` tinyint(2) unsigned NOT NULL DEFAULT '1' COMMENT '商品是否下架，在架:0,下架:1',
+  `update_time` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
+  `first_pass_user` int NOT NULL DEFAULT '0' COMMENT '一审用户id',
+  `first_reject` varchar(255) NOT NULL DEFAULT '' COMMENT '一审驳回原因',
+  `second_pass_user` int NOT NULL DEFAULT '0 'COMMENT '二审用户id',
+  `second_reject` varchar(255) NOT NULL DEFAULT '' COMMENT '二审驳回原因',
+  `picture` varchar(100) NOT NULL DEFAULT '' COMMENT '商品图片路径',
+  `picture1` varchar(100) NOT NULL DEFAULT '' COMMENT '商品图片路径',
+  `picture2` varchar(100) NOT NULL DEFAULT '' COMMENT '商品图片路径',
+  `market_author` varchar(100) NOT NULL DEFAULT '' COMMENT '销售授权委托书路径',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY (`batch_number`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT;
+

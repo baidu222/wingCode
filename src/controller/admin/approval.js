@@ -162,10 +162,10 @@ module.exports = class extends think.cmswing.admin {
                 };
                 const res = await this.model('cmswing/business').where(condition).update(updatedata);
                 if (res) {
-                  this.redirect('/admin/approval/index/')
+                  this.redirect('/admin/approval/index')
                   return this.success({name: '更新成功!'});
                 } else {
-                  this.redirect('/admin/approval/index/')
+                  this.redirect('/admin/approval/index')
                   return this.fail('更新失败!');
                 }
             }else if(action_type == "second_pass"){

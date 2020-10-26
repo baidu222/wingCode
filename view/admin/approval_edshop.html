@@ -148,7 +148,11 @@
                                     <a href="{{details.logo}}" class="pull-left thumb-md avatar b-3x m-r" target="_blank>
                                         <img src="{{details.logo}}">
                                     </a>
-                                    
+                                    {#
+                                    <a href="/u/avatar/{{userinfo.uid}}" class="pull-left thumb-md avatar b-3x m-r">
+                                        <img src="/u/avatar/{{userinfo.uid}}" alt="{{userinfo.username}}">
+                                    </a>
+                                    #}
                                     <!-- {{HOOKS@adminUpPic.icon|safe}} -->
                                 </div>
                             </div>
@@ -280,21 +284,24 @@
                 </div>
             </div>
             <div class="modal-footer">
-
                 <input type="hidden" name="biz_id" value="{{details.id}}">
                 <input type="hidden" name="user_id" value="{{userinfo.uid}}">
 
                 {%if details.status == 0 or details.status == 1%}
-                    <button class="btn btn-danger ajax-post" type="submit" name="action_type" value="first_reject" target-form="form-horizontal">拒绝</button>
-                    <button class="btn btn-success ajax-post" type="submit" target-form="form-horizontal" name="action_type" value="first_pass">通过</button>
+                    <button class="btn btn-danger ajax-post" type="submit" name="action_type" value="first_reject"
+                        target-form="form-horizontal">拒绝</button>
+                    <button class="btn btn-success ajax-post" type="submit" target-form="form-horizontal" name="action_type"
+                        value="first_pass">通过</button>
                     <a href="#" class="btn btn-default" data-dismiss="modal">关闭</a>
 
                 {%elif details.status == 10%}
-                    <button class="btn btn-danger ajax-post" type="submit" target-form="form-horizontal" name="action_type" value="second_reject">拒绝</button>
-                    <button class="btn btn-success ajax-post" type="submit" target-form="form-horizontal" name="action_type" value="second_pass">通过</button>
+                    <button class="btn btn-danger ajax-post" type="submit" target-form="form-horizontal" name="action_type"
+                        value="second_reject">拒绝</button>
+                    <button class="btn btn-success ajax-post" type="submit" target-form="form-horizontal" name="action_type"
+                        value="second_pass">通过</button>
                     <a href="#" class="btn btn-default" data-dismiss="modal">关闭</a>
 
-                {%elif or details.status == 20%}
+                {%elif details.status == 20%}
                     <a href="#" class="btn btn-default" data-dismiss="modal">关闭</a>
                 {%endif%}
             </div>

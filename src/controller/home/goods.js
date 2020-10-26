@@ -8,7 +8,7 @@ module.exports = class extends think.cmswing.home {
         let user_id = data.user_id;
         let condition = {
             "user_id":user_id,
-            "status":20
+            "biz_status":20
         };
         const list = await this.model('cmswing/business').applyConditionQuery(condition);
         if (!think.isEmpty(list)){
@@ -45,7 +45,7 @@ module.exports = class extends think.cmswing.home {
             //商户id
             const biz_id = applydata.id;
             //商品名称
-            let name;
+            let goods_name;
             //商品备注
             let remarks;
             //商品单价
@@ -53,7 +53,7 @@ module.exports = class extends think.cmswing.home {
             //商品数量
             let num;
             //商品申请状态。待审核(添加):0,一审通过:10,一审驳回:11,二审通过:20,二审驳回:21,超时:30,重新提交:1,创建:2',
-            let status = 0;
+            let goods_status = 0;
             //商品图片路径
             let picture;
             //商品图片路径
@@ -64,10 +64,10 @@ module.exports = class extends think.cmswing.home {
             let market_author;
             //每次数据变更时间
             let update_time;
-            if (think.isNullOrUndefined(data.name)){
-                name = '';
+            if (think.isNullOrUndefined(data.goods_name)){
+                goods_name = '';
             }else{
-                name = data.name;
+                goods_name = data.goods_name;
             }
             if (think.isNullOrUndefined(data.remarks)){
                 remarks = '';
@@ -117,11 +117,11 @@ module.exports = class extends think.cmswing.home {
                 "batch_number":batch_number,
                 "user_id":user_id,
                 "biz_id":biz_id,
-                "name":name,
+                "goods_name":goods_name,
                 "remarks":remarks,
                 "price":price,
                 "num":num,
-                "status":status,
+                "goods_status":goods_status,
                 "update_time":update_time,
                 "picture":picture,
                 "picture1":picture1,
@@ -152,7 +152,7 @@ module.exports = class extends think.cmswing.home {
                     "id":goods_id
                 };
                 const  updatedata = {
-                    "status":10,
+                    "goods_status":10,
                     "first_pass_user":user_id,
                     "update_time":Date.now()
                 };
@@ -163,7 +163,7 @@ module.exports = class extends think.cmswing.home {
                     "id":goods_id
                 };
                 const  updatedata = {
-                    "status":20,
+                    "goods_status":20,
                     "second_pass_user":user_id,
                     "update_time":Date.now()
                 };
@@ -178,7 +178,7 @@ module.exports = class extends think.cmswing.home {
                     "id":goods_id
                 };
                 const  updatedata = {
-                    "status":11,
+                    "goods_status":11,
                     "first_reject":reject,
                     "update_time":Date.now()
                 };
@@ -193,7 +193,7 @@ module.exports = class extends think.cmswing.home {
                     "id":goods_id
                 };
                 const  updatedata = {
-                    "status":21,
+                    "goods_status":21,
                     "second_reject":reject,
                     "update_time":Date.now()
                 };
@@ -286,8 +286,8 @@ module.exports = class extends think.cmswing.home {
             think.mkdir(savePath);
             const suffix = filename.split('.').pop();
             // 对文件名进行过滤
-            const name = filetype + '_' + filename.split('.').shift().replace(/[\s\\\/,.*@#$%^&\|""“”：:]/gi, '');
-            const newname = `${name}_${Date.now()}.${suffix}`;
+            const tmpname = filetype + '_' + filename.split('.').shift().replace(/[\s\\\/,.*@#$%^&\|""“”：:]/gi, '');
+            const newname = `${tmpname}_${Date.now()}.${suffix}`;
             // 如果是base64 文件的话 进行转buffer保存
             if (base64) {
                 base64 = base64.replace(/^data:\w+\/\w+;base64,/, '');
