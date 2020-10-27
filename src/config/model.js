@@ -17,7 +17,7 @@ module.exports = {
     handle: mysql, // Adapter handle
     user: 'root', // 用户名
     password: 'shishi123', // 密码
-    database: 'cmswing', // 数据库
+    database: 'cmswing2', // 数据库
     host: '47.93.8.191', // host
     port: 3306, // 端口
     connectionLimit: 1, // 连接池的连接个数，默认为 1

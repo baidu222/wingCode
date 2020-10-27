@@ -1,6 +1,7 @@
 const path = require('path');
 const isDev = think.env === 'development';
 const wechat = require('think-wechat');
+const cors = require('@koa/cors');
 module.exports = [
   {
     handle: 'meta',
@@ -48,6 +49,9 @@ module.exports = [
     options: {
       optimizeHomepageRouter: false
     }
+  },
+  {
+    handle: cors
   },
   'cwlogic',
   // 'logic',

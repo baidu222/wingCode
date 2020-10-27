@@ -37,7 +37,7 @@
       "logSql": true,
       "user": "root",
       "password": "shishi123",
-      "database": "cmswing",
+      "database": "cmswing2",
       "host": "47.93.8.191",
       "port": 3306,
       "connectionLimit": 1,
