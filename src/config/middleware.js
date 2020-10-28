@@ -51,7 +51,10 @@ module.exports = [
     }
   },
   {
-    handle: cors
+    handle: cors,
+    options: {
+      credentials: true
+    }
   },
   'cwlogic',
   // 'logic',

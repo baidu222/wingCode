@@ -3785,3 +3785,29 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2020-10-27 14:08:35
+
+
+CREATE TABLE `cmswing_goods` (
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `batch_number` varchar(100) NOT NULL DEFAULT '' COMMENT '生产批号',
+  `user_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加用户id',
+  `biz_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '商户开户id(business表id)',
+  `name` varchar(100) NOT NULL DEFAULT '' COMMENT '商品名称',
+  `url` varchar(100) NOT NULL DEFAULT '' COMMENT '商品链接',
+  `remarks` varchar(100) NOT NULL DEFAULT '' COMMENT '商品备注',
+  `num` int(10) NOT NULL DEFAULT '0' COMMENT '商品数量',
+  `price` double NOT NULL DEFAULT '0' COMMENT '商品单价',
+  `status` tinyint(2) unsigned NOT NULL DEFAULT '2' COMMENT '商品申请状态。待审核(添加):0,一审通过:10,一审驳回:11,二审通过:20,二审驳回:21,超时:30,重新提交:1,创建:2',
+  `withdraw` tinyint(2) unsigned NOT NULL DEFAULT '1' COMMENT '商品是否下架，在架:0,下架:1',
+  `update_time` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
+  `first_pass_user` int(11) NOT NULL DEFAULT '0' COMMENT '一审用户id',
+  `first_reject` varchar(255) NOT NULL DEFAULT '' COMMENT '一审驳回原因',
+  `second_pass_user` int(11) NOT NULL DEFAULT '0' COMMENT '二审用户id',
+  `second_reject` varchar(255) NOT NULL DEFAULT '' COMMENT '二审驳回原因',
+  `picture` varchar(100) NOT NULL DEFAULT '' COMMENT '商品图片路径',
+  `picture1` varchar(100) NOT NULL DEFAULT '' COMMENT '商品图片路径',
+  `picture2` varchar(100) NOT NULL DEFAULT '' COMMENT '商品图片路径',
+  `market_author` varchar(100) NOT NULL DEFAULT '' COMMENT '销售授权委托书路径',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `batch_number` (`batch_number`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
